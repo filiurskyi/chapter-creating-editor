@@ -1,0 +1,1 @@
+const arrowTypes = ["cbc", "leo", "rabbit", "doe"];

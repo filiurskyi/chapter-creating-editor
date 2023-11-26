@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Drag and Drop File Upload</title>
+    <style>
+        #dropArea {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed #007bff;
+            text-align: center;
+            line-height: 200px;
+            color: #007bff;
+            display: block;
+            margin: auto;
+        }
+
+        #dropArea.highlight {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dropArea">Drop files here</div>
+    <button id="jsonButton">Download JSON</button>
+
+    <input type="file" id="fileInput" style="display: none;" />
+    <button id="openFileExplorer">Open File Explorer</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

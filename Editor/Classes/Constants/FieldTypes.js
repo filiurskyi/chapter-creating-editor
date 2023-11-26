@@ -1,0 +1,1 @@
+const fieldTypes = ["ch", "text", "animation", "loc", "emo"];

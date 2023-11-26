@@ -1,0 +1,1 @@
+const frameTypes = ["Dialog", "Text", "Choice", "Choice-by-choice", "Choice-by-character", "Prop"];
