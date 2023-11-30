@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const workplace = document.getElementById('workplace')
-
-    let mousePosition = new Vector2(0, 0)
-
-    let isGrabbing = false;
-
     document.addEventListener('mousemove', function (e) {
         var rect = workplace.getBoundingClientRect();
 
@@ -33,14 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (arrowToMove && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
-                if (e.target === blocks[i].topPoint) {
+                if (e.target === blocks[i].docElement) {
                     arrowToMove.setTo(blocks[i].topPoint, blocks[i].id, true)
                     blocks[i].arrowsList.push(arrowToMove)
-                    break
-                } else if (e.target === blocks[i].bottomPoint) {
-                    arrowToMove.setTo(blocks[i].bottomPoint, blocks[i].id, false)
-                    blocks[i].arrowsList.push(arrowToMove)
-                    break
                 }
             }
             if (arrowToMove.to == null) {
@@ -67,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     function createBlock() {
-
         let adjustedPosition = new Vector2(
             Math.round(mousePosition.x / cellSize.x) * cellSize.x,
             Math.round(mousePosition.y / cellSize.y) * cellSize.y
@@ -76,8 +65,4 @@ document.addEventListener('DOMContentLoaded', () => {
         let block = new Block(adjustedPosition, blockSize, workplace, blocks.length, blocks, arrowToMove, blockToMove)
         blocks.push(block)
     }
-
-    workplace.addEventListener('wheel', (e) => {
-        e.preventDefault();
-    });
 })

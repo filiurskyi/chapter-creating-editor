@@ -6,8 +6,8 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         block.form.input.value = blockInfo.header.input
         blockInfo.formsList.forEach(formInfo => {
             const keyValuePairForm = new KeyValuePairForm(block.docElement, fieldTypes, block.addButton, block.formsList.length)
-            keyValuePairForm.autocompleteForm.input.value = formInfo.key.input
-            keyValuePairForm.input.value = formInfo.value
+            keyValuePairForm.keyForm.input.value = formInfo.key.input
+            keyValuePairForm.valueForm.input.value = formInfo.value.input
             block.formsList.push(keyValuePairForm)
         })
         blocks.push(block)

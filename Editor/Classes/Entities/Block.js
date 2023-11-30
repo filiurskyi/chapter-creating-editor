@@ -7,31 +7,76 @@ class Block {
         this.docElement = document.createElement('div');
         this.docElement.id = 'frame';
         this.docElement.classList.add('frame');
-        this.docElement.style.width = this.width + 'px';
-        this.docElement.style.height = this.height + 'px';
-        this.docElement.style.left = (position.x - this.size.x / 2.0) + 'px';
-        this.docElement.style.top = (position.y - this.size.y / 2.0) + 'px';
+        this.docElement.style.width = this.size.x + 'px';
+        this.docElement.style.minHeight = this.size.y + 'px';
+
+        let adjustedPosition = new Vector2(
+            Math.round(this.position.x / cellSize.x) * cellSize.x,
+            Math.round(this.position.y / cellSize.y) * cellSize.y
+        );
+        this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
+        this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
         container.appendChild(this.docElement);
+
+        this.avatarPlaceholder = document.createElement('img');
+        this.avatarPlaceholder.src = 'Images/placeholder.png'
+        this.avatarPlaceholder.width = "50"
+        this.avatarPlaceholder.height = "50"
+        this.avatarPlaceholder.style.position = "absolute"
+        this.avatarPlaceholder.style.top = "15px"
+        this.avatarPlaceholder.style.right = "25px"
+        this.docElement.appendChild(this.avatarPlaceholder);
 
         this.addButton = document.createElement('button');
         this.addButton.textContent = 'Add';
         this.addButton.classList.add('add-button');
         this.topPoint = document.createElement('div');
-        this.topPoint.classList.add('point');
+        this.topPoint.style.position = 'absolute'
+        this.topPoint.style.top = '0px'
+        this.topPoint.style.left = '50%'
+        const point = document.createElement('div');
+        point.style.position = 'relative'
         this.bottomPoint = document.createElement('div');
         this.bottomPoint.classList.add('point');
 
         this.docElement.appendChild(this.topPoint);
         this.docElement.appendChild(this.addButton);
-        this.docElement.appendChild(this.bottomPoint);
-        this.form = new Form(this.docElement, frameTypes, this.addButton, -1);
-        this.form.form.style.marginBottom = '10px';
+        this.docElement.appendChild(point);
+        point.appendChild(this.bottomPoint);
+        this.header = new Form(this.docElement, [...frameTypes.keys()], this.addButton, -1, 16, (value) => {
+            let color = frameTypes.get(value)
+            if (color) {
+                this.docElement.style.borderColor = color
+                this.header.input.style.borderColor = color
+                this.header.input.style.color = color
+                this.bottomPoint.style.backgroundColor = color
+                for (let i = 0; i < this.arrowsList.length; i++) {
+                    if (this.arrowsList[i].startBlock == this) {
+                        this.arrowsList[i].setColor(color)
+                    }
+                }
+            }
+            else {
+                this.docElement.style.borderColor = '#fff'
+                this.header.input.style.borderColor = '#fff'
+                this.header.input.style.color = '#fff'
+                this.bottomPoint.style.backgroundColor = '#fff'
+                for (let i = 0; i < this.arrowsList.length; i++) {
+                    if (this.arrowsList[i].startBlock == this) {
+                        this.arrowsList[i].setColor('#fff')
+                    }
+                }
+            }
+        });
+        this.header.form.style.marginBottom = '10px';
+        this.header.form.style.marginLeft = '10px';
+        this.header.form.style.maxWidth = '50%';
 
         this.formsList = []
         this.arrowsList = []
 
         this.addButton.addEventListener('click', () => {
-            this.formsList.push(new KeyValuePairForm(this.docElement, fieldTypes, this.addButton, this.formsList.length));
+            this.formsList.push(new KeyValuePairForm(this.docElement, fieldTypes, fieldTypes, this.addButton, this.formsList.length));
             this.updateArrows()
         });
 
@@ -39,24 +84,23 @@ class Block {
             event.preventDefault();
         });
 
-        this.docElement.addEventListener('click', function () {
+        this.docElement.addEventListener('click', (e) => {
+            if (e.target === this.docElement) return
+
             blocks.forEach(b => b.docElement.classList.remove('selected'));
 
-            this.classList.add('selected');
+            this.docElement.classList.add('selected');
         });
 
         this.docElement.addEventListener('mousedown', (e) => {
             if (e.button === 0) {
-                if (e.target === this.addButton) {
+                if (e.target === this.bottomPoint) {
+                    arrowToMove = new Arrow(workplace, 2, this)
+                    arrowToMove.setFrom(this.bottomPoint, this.id, false)
                     return
                 }
 
-                if (e.target === this.topPoint ||
-                    e.target === this.bottomPoint) {
-                    arrowToMove = new Arrow(workplace, 2, this)
-                    arrowToMove.setFrom(e.target === this.topPoint ? this.topPoint : this.bottomPoint, this.id, e.target === this.topPoint)
-                    return
-                }
+                if (e.target !== this.docElement) return
 
                 blockToMove = this;
 
@@ -67,12 +111,12 @@ class Block {
                     arrow.deleteArrow()
                 })
 
-                blocks = blocks.filter(item => item !== block);
+                blocks = blocks.filter(item => item !== this);
             }
         })
     }
 
-    placeToMousePosition(delta, cellSize) {
+    placeToMousePosition(delta) {
         this.position.x += delta.x
         this.position.y += delta.y
 
@@ -81,8 +125,8 @@ class Block {
             Math.round(this.position.y / cellSize.y) * cellSize.y
         );
 
-        this.docElement.style.left = adjustedPosition.x + 'px';
-        this.docElement.style.top = adjustedPosition.y + 'px';
+        this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
+        this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
 
         this.updateArrows()
     }
@@ -99,7 +143,7 @@ class Block {
     toJSON() {
         return {
             id: this.id,
-            header: this.form,
+            header: this.header,
             position: this.position,
             formsList: this.formsList
         };

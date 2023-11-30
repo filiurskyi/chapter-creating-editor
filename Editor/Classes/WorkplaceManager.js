@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let dots = []
 
     const workplace = document.getElementById('workplace')
-    const workplaceSize = new Vector2(10000, 10000)
+    const workplaceSize = new Vector2(100000, 100000)
     const dotsSize = new Vector2(2, 2)
 
     workplace.style.minWidth = workplaceSize.x + 'px'
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('grabbing');
             startX = e.clientX;
             startY = e.clientY;
-            e.preventDefault();
         }
     })
 
@@ -82,4 +81,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    let zoom = 100
+
+    workplace.addEventListener('wheel', (e) => {
+        if (isCtrlPressed == false || e.target === workplace)
+            e.preventDefault()
+
+        // zoom += -e.deltaY * 0.1
+        // workplace.style.zoom = zoom + "%"
+    });
+
 })
