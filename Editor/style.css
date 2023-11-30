@@ -19,18 +19,16 @@
     height: 8vh;
 }
 
+.dot {
+    background-color: #285d3c;
+    border-radius: 50%;
+    position: absolute;
+}
+
 .workplace {
     position: absolute;
-    min-width: 1000vw;
-    min-height: 1000vh;
     overflow: auto;
-    /* transition: transform 0.2s ease; */
-    /* transform-origin: center center; */
-
-    background-image: url('Images/Grid\ white.png');
-    background-repeat: repeat;
-    background-position: top;
-    background-color: #e8e8e8;
+    background-color: #1c222d;
 }
 
 .frame {
