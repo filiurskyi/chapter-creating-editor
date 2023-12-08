@@ -25,10 +25,11 @@ class Block {
         this.avatarPlaceholder.style.position = "absolute"
         this.avatarPlaceholder.style.top = "15px"
         this.avatarPlaceholder.style.right = "25px"
+        this.avatarPlaceholder.style.cursor = "pointer"
         this.docElement.appendChild(this.avatarPlaceholder);
 
         this.addButton = document.createElement('button');
-        this.addButton.textContent = 'Add';
+        this.addButton.textContent = '+ Add';
         this.addButton.classList.add('add-button');
         this.topPoint = document.createElement('div');
         this.topPoint.style.position = 'absolute'
@@ -45,28 +46,7 @@ class Block {
         point.appendChild(this.bottomPoint);
         this.header = new Form(this.docElement, [...frameTypes.keys()], this.addButton, -1, 16, (value) => {
             let color = frameTypes.get(value)
-            if (color) {
-                this.docElement.style.borderColor = color
-                this.header.input.style.borderColor = color
-                this.header.input.style.color = color
-                this.bottomPoint.style.backgroundColor = color
-                for (let i = 0; i < this.arrowsList.length; i++) {
-                    if (this.arrowsList[i].startBlock == this) {
-                        this.arrowsList[i].setColor(color)
-                    }
-                }
-            }
-            else {
-                this.docElement.style.borderColor = '#fff'
-                this.header.input.style.borderColor = '#fff'
-                this.header.input.style.color = '#fff'
-                this.bottomPoint.style.backgroundColor = '#fff'
-                for (let i = 0; i < this.arrowsList.length; i++) {
-                    if (this.arrowsList[i].startBlock == this) {
-                        this.arrowsList[i].setColor('#fff')
-                    }
-                }
-            }
+            this.changeColor(color ? color : '#fff')
         });
         this.header.form.style.marginBottom = '10px';
         this.header.form.style.marginLeft = '10px';
@@ -85,17 +65,15 @@ class Block {
         });
 
         this.docElement.addEventListener('click', (e) => {
-            if (e.target === this.docElement) return
-
-            blocks.forEach(b => b.docElement.classList.remove('selected'));
-
-            this.docElement.classList.add('selected');
+            this.select();
         });
+
+        this.select();
 
         this.docElement.addEventListener('mousedown', (e) => {
             if (e.button === 0) {
                 if (e.target === this.bottomPoint) {
-                    arrowToMove = new Arrow(workplace, 2, this)
+                    arrowToMove = new Arrow(workplace, this)
                     arrowToMove.setFrom(this.bottomPoint, this.id, false)
                     return
                 }
@@ -103,15 +81,6 @@ class Block {
                 if (e.target !== this.docElement) return
 
                 blockToMove = this;
-
-            } else if (e.button === 2) {
-                this.docElement.remove()
-                this.arrowsList.forEach(arrow => {
-                    arrows = arrows.filter(item => item !== arrow);
-                    arrow.deleteArrow()
-                })
-
-                blocks = blocks.filter(item => item !== this);
             }
         })
     }
@@ -138,6 +107,37 @@ class Block {
 
             arrow.placeArrow()
         });
+    }
+
+    changeColor(color) {
+        if (this.docElement.classList.contains('selected'))
+            color = selectedColor
+
+        this.docElement.style.borderColor = color
+        this.header.input.style.borderColor = color
+        this.header.input.style.color = color
+        this.bottomPoint.style.backgroundColor = color
+        for (let i = 0; i < this.arrowsList.length; i++) {
+            if (this.arrowsList[i].startBlock == this) {
+                this.arrowsList[i].setColor(color)
+            }
+        }
+    }
+
+    remove() {
+        this.docElement.remove()
+        this.arrowsList.forEach(arrow => {
+            arrows = arrows.filter(item => item !== arrow);
+            arrow.deleteArrow()
+        })
+
+        blocks = blocks.filter(item => item !== this);
+    }
+
+    select() {
+        blocks.forEach(b => b.docElement.classList.remove('selected'));
+
+        this.docElement.classList.add('selected');
     }
 
     toJSON() {

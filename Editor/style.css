@@ -11,19 +11,55 @@
 }
 
 .header {
-    width: 20vw;
-    height: 10vh;
-    background-color: #fff;
-    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    background-color: #111824;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    display: none;
+    border-radius: 10px;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    padding: 25px 30px;
+    border: 1px solid #4A87FF;
 }
 
 .headerButton {
-    width: 8vh;
-    height: 8vh;
+    width: fit-content;
+    height: fit-content;
+    padding: 0px 25px;
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.headerButton:hover {
+    cursor: pointer;
+}
+
+.headerButton>img {
+    height: 20px;
+    margin-right: 15px;
+}
+
+.headerButton>div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: left;
+    color: #fff;
+}
+
+.headerButton>div>h3 {
+    width: fit-content;
+}
+
+.headerButton>div>p {
+    margin-top: 5px;
+    opacity: 50%;
 }
 
 .dot {
@@ -44,7 +80,6 @@
     position: absolute;
     border-radius: 5px;
     border: 0.3px solid;
-    border-color: #fff;
     background-color: #111824;
     display: flex;
     flex-direction: column;
@@ -55,25 +90,29 @@
     padding-bottom: 15px;
 }
 
-.frame:not(.selected):hover {
-    /* border: 3px solid #ffe600; */
-    z-index: 2;
-}
-
-.selected {
-    /* border: 2px solid blue; */
-    z-index: 3;
-}
-
 .add-button {
-    width: 50px;
-    height: 25px;
-    border-radius: 0px;
-    opacity: 50%;
+    width: 75px;
+    height: 35px;
     margin: auto;
     display: block;
     margin-top: 15px;
-    border: none;
+    border: 2px #1c222d solid;
+    border-radius: 75px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #1c222d;
+    border: 1px #4A87FF solid;
+
+}
+
+.add-button:active {
+    background-color: #4A87FF;
+    color: #111824;
 }
 
 .formInput {
@@ -145,6 +184,7 @@ body::-webkit-scrollbar {
     top: 25px;
     left: 50%;
     transform: translateX(-50%);
+    cursor: pointer;
 }
 
 .key-value-pair-form {
@@ -169,6 +209,7 @@ body::-webkit-scrollbar {
     justify-content: space-between;
     align-items: center;
     padding-left: 15px;
+    position: relative;
 }
 
 .key-value-pair-input {
@@ -179,4 +220,128 @@ body::-webkit-scrollbar {
     z-index: 150;
     position: absolute;
     background-color: #fff;
+}
+
+.resize {
+    height: 15px;
+    margin-right: 25px;
+    transition: transform ease-in-out 0.2s;
+}
+
+.resize:hover {
+    transform: scale(1.25);
+    cursor: pointer;
+}
+
+.cross {
+    height: 15px;
+    transition: transform ease-in-out 0.2s;
+}
+
+.cross:hover {
+    cursor: pointer;
+    transform: rotate(180deg);
+}
+
+.arrow-form {
+    border: 1px solid #3b4860;
+    border-radius: 100px;
+    width: 75px;
+    height: 20px;
+    position: absolute;
+    background-color: #111824;
+    z-index: 150;
+    padding: 10px 10px;
+    transform: translateY(-10px);
+}
+
+.arrow-form:hover {
+    border: 1px solid #4A87FF;
+}
+
+.template-context-menu {
+    position: absolute;
+}
+
+.template-context-menu {
+    position: absolute;
+    z-index: 250;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #fff;
+}
+
+.template-context-menu::-webkit-scrollbar {
+    width: 10px;
+}
+
+.template-context-menu::-webkit-scrollbar-track {
+    background: #111824;
+}
+
+.template-context-menu::-webkit-scrollbar-thumb {
+    background: #3b4860;
+}
+
+.template-context-menu div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #111824;
+}
+
+.template-context-menu div:hover {
+    background-color: #3b4860;
+}
+
+.frame>textarea {
+    background-color: #3b4860;
+    border: 1px solid #4A87FF;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+    border-radius: 5px;
+    color: #fff;
+    resize: none;
+    overflow: auto;
+    padding: 10px;
+}
+
+@keyframes growUp {
+    from {
+        display: block;
+        transform: scale(0);
+        transform-origin: center;
+    }
+
+    to {
+        transform: scale(1);
+        transform-origin: center;
+    }
+}
+
+@keyframes growDown {
+    from {
+        transform: scale(1);
+        transform-origin: center;
+    }
+
+    to {
+        transform: scale(0);
+        transform-origin: center;
+        display: none;
+    }
+}
+
+.textarea-grow-up {
+    animation: growUp 0.3s forwards;
+}
+
+.textarea-grow-down {
+    animation: growDown 0.3s forwards;
+}
+
+.textarea-display-none {
+    display: none;
 }

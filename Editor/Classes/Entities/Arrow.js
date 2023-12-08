@@ -1,5 +1,5 @@
 class Arrow {
-    constructor(container, width, startBlock) {
+    constructor(container, startBlock) {
         const arrowPartsLenght = 3;
 
         this.arrowParts = []
@@ -24,19 +24,13 @@ class Arrow {
             }
         })
 
-        this.width = width
+        this.width = 2
         this.container = container
         this.from = null
         this.to = null
 
-        this.form = new Form(container, arrowTypes, null, 0)
-        this.form.form.style.maxWidth = '100px'
-        this.form.form.style.width = '100px'
-        this.form.form.style.height = '20px'
-        this.form.form.style.position = 'absolute'
-        this.form.form.style.zIndex = '150'
-        this.form.form.style.backgroundColor = '#1c222d'
-        this.form.form.style.padding = '10px 10px'
+        this.form = new Form(container, arrowTypes, null, 0, 16)
+        this.form.form.classList.add('arrow-form')
 
         this.tip = document.createElement('img')
         this.tip.src = 'Images/tip.png'
@@ -44,6 +38,7 @@ class Arrow {
         this.tip.style.zIndex = '150'
         this.tip.style.width = '10px'
         this.tip.style.height = '10px'
+        this.tip.style.display = 'none'//
         this.docElement.appendChild(this.tip)
 
         this.startBlock = startBlock

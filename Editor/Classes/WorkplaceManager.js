@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let zoom = 100
 
     workplace.addEventListener('wheel', (e) => {
-        if (isCtrlPressed == false || e.target === workplace)
+        if (isCtrlPressed == false && e.target === workplace)
             e.preventDefault()
 
         // zoom += -e.deltaY * 0.1

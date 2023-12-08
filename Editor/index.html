@@ -12,12 +12,47 @@
 </head>
 
 <body>
-    <div id="workplace" class="workplace"></div>
+    <div id="workplace" class="workplace">
+        <div id="template-context-menu" class="template-context-menu"></div>
+    </div>
 
     <div class="header" id="header">
         <input type="file" id="fileInput" accept=".cce" style="display: none;" />
-        <button id="loadButton" class="headerButton">Load</button>
-        <button id="saveButton" class="headerButton">Save</button>
+        <button id="saveButton" class="headerButton">
+            <img src="Images/save.png">
+            <div>
+                <h3>Save (.cce)</h3>
+                <p>Ctrl+S</p>
+            </div>
+        </button>
+        <button id="loadButton" class="headerButton">
+            <img src="Images/load.png">
+            <div>
+                <h3>Load</h3>
+                <p>Ctrl+O</p>
+            </div>
+        </button>
+        <button id="exportButton" class="headerButton">
+            <img src="Images/export.png">
+            <div>
+                <h3>Export .json</h3>
+                <p>Ctrl+E</p>
+            </div>
+        </button>
+        <button id="statButton" class="headerButton">
+            <img src="Images/stat.png">
+            <div>
+                <h3>Statistics</h3>
+                <p>Ctrl+I</p>
+            </div>
+        </button>
+        <button id="helpButton" class="headerButton">
+            <img src="Images/help.png">
+            <div>
+                <h3>Help</h3>
+                <p>Ctrl+H</p>
+            </div>
+        </button>
     </div>
 
     <script src="Classes/Entities/Form.js"></script>
@@ -25,13 +60,14 @@
     <script src="Classes/Entities/Vector2.js"></script>
     <script src="Classes/Entities/Arrow.js"></script>
     <script src="Classes/Entities/KeyValuePairForm.js"></script>
+    <script src="Classes/Entities/TemplatesContextMenu.js"></script>
     <script src="Classes/Constants/FrameTypes.js"></script>
     <script src="Classes/Constants/FieldTypes.js"></script>
     <script src="Classes/Constants/ArrowTypes.js"></script>
     <script src="Classes/WorkplaceManager.js"></script>
     <script src="Classes/FromJSONConverter.js"></script>
-    <script src="Classes/HeaderManager.js"></script>
     <script src="Classes/GlobalValues.js"></script>
+    <script src="Classes/ShortCuts.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -3,10 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mousemove', function (e) {
         var rect = workplace.getBoundingClientRect();
 
-        const sidePanel = document.getElementById('header')
-        sidePanel.style.top = (-rect.top) + 'px';
-        sidePanel.style.left = (-rect.left) + 'px';
-
         let newMousePosition = new Vector2(e.clientX - rect.left, e.clientY - rect.top)
         let delta = newMousePosition.subtract(mousePosition)
 
@@ -45,24 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    });
-
     document.addEventListener('mousedown', function (e) {
-        if (e.button === 2) {
-            if (e.target == workplace)
-                createBlock()
+        if (e.button === 0) {
+            blocks.forEach(b => b.docElement.classList.remove('selected'));
+        }
+        else if (e.button === 1) {
+            e.preventDefault()
         }
     })
 
-    function createBlock() {
-        let adjustedPosition = new Vector2(
-            Math.round(mousePosition.x / cellSize.x) * cellSize.x,
-            Math.round(mousePosition.y / cellSize.y) * cellSize.y
-        );
-
-        let block = new Block(adjustedPosition, blockSize, workplace, blocks.length, blocks, arrowToMove, blockToMove)
-        blocks.push(block)
-    }
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Delete') {
+            blocks.forEach(b => {
+                if (b.docElement.classList.contains('selected')) {
+                    b.remove()
+                    return
+                }
+            })
+        }
+    });
 })

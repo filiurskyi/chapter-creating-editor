@@ -16,13 +16,32 @@ class KeyValuePairForm {
 
         const resize = document.createElement('img')
         resize.src = 'Images/resize.png'
-        resize.style.maxHeight = "15px"
-        resize.style.marginRight = "25px"
+        resize.classList.add('resize')
         background.appendChild(resize)
+
+        const textarea = document.createElement('textarea')
+        container.appendChild(textarea)
+        textarea.classList.add('textarea-display-none')
+
+        resize.addEventListener('click', (e) => {
+            textarea.value = this.valueForm.input.value;
+            textarea.classList.remove('textarea-display-none')
+
+            textarea.classList.add('textarea-grow-up')
+            textarea.classList.remove('textarea-grow-down')
+        })
+
+        document.addEventListener('click', (e) => {
+            if (e.target !== textarea && e.target !== resize) {
+                this.valueForm.input.value = textarea.value
+                textarea.classList.remove('textarea-grow-up')
+                textarea.classList.add('textarea-grow-down')
+            }
+        })
 
         const remove = document.createElement('img')
         remove.src = 'Images/cross.png'
-        remove.style.maxHeight = "15px"
+        remove.classList.add('cross')
 
         background.appendChild(remove)
 
