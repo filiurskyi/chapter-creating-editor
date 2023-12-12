@@ -19,9 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             duplicate();
         }
+
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E')) {
+            event.preventDefault();
+            exportToJSON();
+        }
     });
 
     document.getElementById("loadButton").addEventListener('click', load)
+
+    document.getElementById("exportButton").addEventListener('click', exportToJSON)
 
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
@@ -79,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function save() {
         let data = {
             blocks: blocks,
-            arrows: arrows
+            arrows: arrows,
+            scale: scale,
         };
 
         let jsonString = JSON.stringify(data);

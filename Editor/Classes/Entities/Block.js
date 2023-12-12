@@ -16,6 +16,7 @@ class Block {
         );
         this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
         this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
+        this.docElement.style.transform = "scale(" + scale + ")";
         container.appendChild(this.docElement);
 
         this.avatarPlaceholder = document.createElement('img');

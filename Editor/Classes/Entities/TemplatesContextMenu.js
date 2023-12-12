@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             Math.round(position.x / cellSize.x) * cellSize.x,
             Math.round(position.y / cellSize.y) * cellSize.y
         );
-
-        let block = new Block(adjustedPosition, blockSize, workplace, blocks.length, blocks, arrowToMove, blockToMove)
+        const id = blocks.length == 0 ? 0 : blocks[blocks.length - 1].id + 1
+        let block = new Block(adjustedPosition, blockSize, workplace, id, blocks, arrowToMove, blockToMove)
         blocks.push(block)
 
         return block
@@ -191,24 +191,26 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.keyForm.input.value = "item-name"
         block.formsList.push(keyValuePairForm)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 250, lastMousePosition.y + 500))
-        const block1 = createBlock(new Vector2(lastMousePosition.x + 250, lastMousePosition.y + 500))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 250 * scale, lastMousePosition.y + 500 * scale))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 250 * scale, lastMousePosition.y + 500 * scale))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
         arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0, true)
+        arrow0.setTo(block0.topPoint, block0.id, true)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.form.input.value = "1"
         arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1, true)
+        arrow1.setTo(block1.topPoint, block1.id, true)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
     }
 
     function choiceTemplate() {
@@ -224,30 +226,33 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.value = "location"
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
-        const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
+        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
+        const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
+        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0, true)
+        arrow0.setTo(block0.topPoint, block0.id, true)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1, true)
+        arrow1.setTo(block1.topPoint, block1.id, true)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
 
         const arrow2 = new Arrow(workplace, block)
         arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2, true)
+        arrow2.setTo(block2.topPoint, block2.id, true)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
+        arrows.push(arrow2)
     }
 
     function choiceByCharacterTemplate() {
@@ -263,33 +268,35 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.value = "outfit-set"
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
-        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
         arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0, true)
+        arrow0.setTo(block0.topPoint, block0.id, true)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.form.input.value = "clothes-id1"
         arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1, true)
+        arrow1.setTo(block1.topPoint, block1.id, true)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
-
+        arrows.push(arrow1)
         const arrow2 = new Arrow(workplace, block)
         arrow2.form.input.value = "clothes-id2"
         arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2, true)
+        arrow2.setTo(block2.topPoint, block2.id, true)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
+        arrows.push(arrow2)
     }
 
     function choiceByChoiceTemplate() {
@@ -297,39 +304,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         block.header.input.value = "Choice-by-choice"
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
-        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
-        const block3 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 200))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
+        const block3 = createBlock(new Vector2(lastMousePosition.x - 750 * scale, lastMousePosition.y + 200 * scale))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
         arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0, true)
+        arrow0.setTo(block0.topPoint, block0.id, true)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1, true)
+        arrow1.setTo(block1.topPoint, block1.id, true)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
 
         const arrow2 = new Arrow(workplace, block)
         arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2, true)
+        arrow2.setTo(block2.topPoint, block2.id, true)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
+        arrows.push(arrow2)
 
         const arrow3 = new Arrow(workplace, block)
         arrow3.form.input.value = "cbc"
         arrow3.setFrom(block.bottomPoint, block.id, false)
-        arrow3.setTo(block3.topPoint, block3, true)
+        arrow3.setTo(block3.topPoint, block3.id, true)
         arrow3.placeArrow()
         block3.arrowsList.push(arrow3)
         block.arrowsList.push(arrow3)
+        arrows.push(arrow3)
     }
 })

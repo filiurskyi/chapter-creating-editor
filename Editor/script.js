@@ -1,5 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
     const workplace = document.getElementById('workplace')
+
+    var rect = workplace.getBoundingClientRect();
+    mousePosition = new Vector2(event.clientX - rect.left, event.clientY - rect.top)
+
     document.addEventListener('mousemove', function (e) {
         var rect = workplace.getBoundingClientRect();
 
@@ -55,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
             blocks.forEach(b => {
                 if (b.docElement.classList.contains('selected')) {
                     b.remove()
-                    return
                 }
             })
         }

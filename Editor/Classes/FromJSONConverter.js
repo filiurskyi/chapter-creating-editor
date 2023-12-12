@@ -1,5 +1,16 @@
 function fromJSONConvert(jsonData, blocks, arrows, size, container) {
-    console.log(jsonData)
+    blocks.forEach(block => {
+        block.remove()
+    })
+
+    arrows.forEach(arrow => {
+        arrow.deleteArrow()
+    })
+
+    // console.log(jsonData)
+    scale = jsonData.scale;
+    recalculateDots();
+
     jsonData.blocks.forEach(blockInfo => {
         const position = new Vector2(blockInfo.position.x, blockInfo.position.y)
         const block = new Block(position, size, container, blockInfo.id)
@@ -10,6 +21,7 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
             keyValuePairForm.valueForm.input.value = formInfo.value.input
             block.formsList.push(keyValuePairForm)
         })
+
         blocks.push(block)
     });
 

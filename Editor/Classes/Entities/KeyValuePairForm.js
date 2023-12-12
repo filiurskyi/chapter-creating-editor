@@ -1,5 +1,6 @@
 class KeyValuePairForm {
     constructor(container, listKey, listValue, insertBeforeItem, id) {
+        let opened = false;
         this.form = document.createElement('div');
         this.form.classList.add('key-value-pair-form')
 
@@ -29,13 +30,18 @@ class KeyValuePairForm {
 
             textarea.classList.add('textarea-grow-up')
             textarea.classList.remove('textarea-grow-down')
+            opened = true;
         })
 
         document.addEventListener('click', (e) => {
             if (e.target !== textarea && e.target !== resize) {
-                this.valueForm.input.value = textarea.value
+
+                if (opened)
+                    this.valueForm.input.value = textarea.value
+
                 textarea.classList.remove('textarea-grow-up')
                 textarea.classList.add('textarea-grow-down')
+                opened = false;
             }
         })
 

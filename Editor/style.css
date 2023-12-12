@@ -1,8 +1,15 @@
+/* arrow-form */
+/* frame */
+
 * {
     margin: 0;
     padding: 0;
     user-select: none;
     font-family: 'Roboto', sans-serif;
+}
+
+body {
+    color: #1c222d;
 }
 
 ::selection {
@@ -88,6 +95,10 @@
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
+}
+
+.selected {
+    box-shadow: 0 0 5px 1px #4A87FF;
 }
 
 .add-button {

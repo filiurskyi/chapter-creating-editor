@@ -31,15 +31,7 @@ class Arrow {
 
         this.form = new Form(container, arrowTypes, null, 0, 16)
         this.form.form.classList.add('arrow-form')
-
-        this.tip = document.createElement('img')
-        this.tip.src = 'Images/tip.png'
-        this.tip.style.position = 'absolute'
-        this.tip.style.zIndex = '150'
-        this.tip.style.width = '10px'
-        this.tip.style.height = '10px'
-        this.tip.style.display = 'none'//
-        this.docElement.appendChild(this.tip)
+        this.form.form.style.transform = "scale(" + scale + ")";
 
         this.startBlock = startBlock
         this.fromId = null
@@ -155,22 +147,9 @@ class Arrow {
             this.arrowParts[2].style.height = `${this.width}px`;
             this.arrowParts[2].style.width = `${Math.abs(semiDistance)}px`;
         }
-
-        this.tip.style.top = `${to.y - 5}px`;
-        this.tip.style.left = `${to.x - 5}px`;
-
-        let angle;
-        if (Math.abs(distance.y) > Math.abs(distance.x)) {
-            angle = distance.y > 0 ? 180 : 0
-        } else {
-            angle = distance.x > 0 ? 90 : -90
-        }
-
-        this.tip.style.transform = `rotate(${angle}deg)`;
     }
 
     deleteArrow() {
-        this.tip.remove()
         this.docElement.remove()
         this.form.form.remove()
     }
