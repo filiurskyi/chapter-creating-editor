@@ -59,9 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function recalculateDots() {
+    const dotMargin = new Vector2(mapValue(cellSize.x, 2.5, 25, 15, 25), mapValue(cellSize.y, 3.5, 25, 15, 25));
+
     var rect = workplace.getBoundingClientRect();
-    const minLeft = Math.round(-rect.left / cellSize.x) * cellSize.x
-    const minTop = Math.round(-rect.top / cellSize.x) * cellSize.x
+    const minLeft = Math.round(-rect.left / dotMargin.x) * dotMargin.x
+    const minTop = Math.round(-rect.top / dotMargin.x) * dotMargin.x
 
     const maxLeft = minLeft + screen.width
     const maxTop = minTop + screen.height
@@ -72,13 +74,11 @@ function recalculateDots() {
 
     dots = []
 
-    if (cellSize.x < 15 && cellSize.y < 15) return
-
-    for (let x = minLeft; x < maxLeft; x += cellSize.x) {
-        for (let y = minTop; y < maxTop; y += cellSize.y) {
+    for (let x = minLeft; x < maxLeft; x += dotMargin.x) {
+        for (let y = minTop; y < maxTop; y += dotMargin.y) {
             const dot = document.createElement('div');
-            dot.style.left = (x + (cellSize.x - dotsSize.x) / 2) + 'px';
-            dot.style.top = (y + (cellSize.y - dotsSize.y) / 2) + 'px';
+            dot.style.left = (x + (dotMargin.x - dotsSize.x) / 2) + 'px';
+            dot.style.top = (y + (dotMargin.y - dotsSize.y) / 2) + 'px';
             dot.style.width = dotsSize.x + 'px'
             dot.style.height = dotsSize.y + 'px'
 
@@ -86,5 +86,12 @@ function recalculateDots() {
             workplace.appendChild(dot);
             dots.push(dot)
         }
+    }
+
+    function mapValue(value, minRange, maxRange, minMapped, maxMapped) {
+        let normalized = (value - minRange) / (maxRange - minRange);
+        let mappedValue = minMapped + normalized * (maxMapped - minMapped);
+
+        return Math.max(minMapped, Math.min(mappedValue, maxMapped));
     }
 }

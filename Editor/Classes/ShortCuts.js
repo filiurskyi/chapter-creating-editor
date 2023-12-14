@@ -22,13 +22,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E')) {
             event.preventDefault();
-            exportToJSON();
+            exportToFile();
+        }
+
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'b' || event.key === 'B')) {
+            event.preventDefault();
+
+            blocks.sort((a, b) => {
+                const ax = Math.round(a.position.x * cellSize.x) / (cellSize.x);
+                const ay = Math.round(a.position.y * cellSize.x) / (cellSize.x);
+
+                const bx = Math.round(b.position.x * cellSize.x) / (cellSize.x);
+                const by = Math.round(b.position.y * cellSize.x) / (cellSize.x);
+
+                if (ay === by) {
+                    return ax - bx;
+                }
+                return ay - by;
+            });
+
+            blocks.forEach((block, index) => {
+                block.id = index + 1;
+                block.text.textContent = block.id;
+            });
         }
     });
 
     document.getElementById("loadButton").addEventListener('click', load)
 
-    document.getElementById("exportButton").addEventListener('click', exportToJSON)
+    document.getElementById("exportButton").addEventListener('click', exportToFile)
 
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
@@ -54,9 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
 
-        if (original === null) return
+        if (original === undefined) return
 
-        const point = new Vector2(mousePosition.x + 250, mousePosition.y + 250)
+        const point = new Vector2(mousePosition.x + 250 * scale, mousePosition.y + 250 * scale)
 
         let adjustedPosition = new Vector2(
             Math.round(point.x / cellSize.x) * cellSize.x,
@@ -84,6 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function save() {
+        blocks.sort((a, b) => {
+            const scaleRate = 3;
+            const ax = Math.round(a.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+            const ay = Math.round(a.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+            const bx = Math.round(b.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+            const by = Math.round(b.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+            if (ay === by) {
+                return ax - bx;
+            }
+            return ay - by;
+        });
+
+        blocks.forEach((block, index) => {
+            block.id = index + 1;
+            block.text.textContent = block.id;
+        });
+
         let data = {
             blocks: blocks,
             arrows: arrows,
@@ -97,6 +138,33 @@ document.addEventListener('DOMContentLoaded', () => {
         let a = document.createElement("a");
         a.href = url;
         a.download = "save.cce";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function exportToFile() {
+        let chapter;
+        do {
+            chapter = prompt('Enter chapter number:', 4);
+
+            if (chapter !== null && !isNaN(chapter) && chapter.trim() !== "") {
+                chapter = Number(chapter);
+            } else {
+                alert("Please enter a valid number.");
+                chapter = null;
+            }
+        } while (chapter === null);
+
+        const json = exportToJson(chapter);
+
+        let blob = new Blob([json], { type: "application/json" });
+        let url = URL.createObjectURL(blob);
+
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = `chapter${chapter}.json`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

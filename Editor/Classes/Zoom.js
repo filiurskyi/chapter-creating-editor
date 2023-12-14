@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scaleRate = 0.1;
-    const minScale = 0.1
+    const minScale = 0.2
     const maxScale = 1 - scaleRate
     const workplace = document.getElementById('workplace');
 

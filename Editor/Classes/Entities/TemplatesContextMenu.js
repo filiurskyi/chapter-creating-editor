@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
-        arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0.id, true)
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
@@ -205,8 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.form.input.value = "1"
-        arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1.id, true)
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
@@ -231,24 +231,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
 
         const arrow0 = new Arrow(workplace, block)
-        arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0.id, true)
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
         arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
-        arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1.id, true)
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
 
         const arrow2 = new Arrow(workplace, block)
-        arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2.id, true)
+        arrow2.setFrom(block.bottomPoint)
+        arrow2.setTo(block2.topPoint, block2)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
@@ -274,8 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
-        arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0.id, true)
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
@@ -283,16 +283,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow1 = new Arrow(workplace, block)
         arrow1.form.input.value = "clothes-id1"
-        arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1.id, true)
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
         const arrow2 = new Arrow(workplace, block)
         arrow2.form.input.value = "clothes-id2"
-        arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2.id, true)
+        arrow2.setFrom(block.bottomPoint)
+        arrow2.setTo(block2.topPoint, block2)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
@@ -311,24 +311,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
-        arrow0.setFrom(block.bottomPoint, block.id, false)
-        arrow0.setTo(block0.topPoint, block0.id, true)
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
         block0.arrowsList.push(arrow0)
         block.arrowsList.push(arrow0)
         arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
-        arrow1.setFrom(block.bottomPoint, block.id, false)
-        arrow1.setTo(block1.topPoint, block1.id, true)
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
 
         const arrow2 = new Arrow(workplace, block)
-        arrow2.setFrom(block.bottomPoint, block.id, false)
-        arrow2.setTo(block2.topPoint, block2.id, true)
+        arrow2.setFrom(block.bottomPoint)
+        arrow2.setTo(block2.topPoint, block2)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
@@ -336,8 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const arrow3 = new Arrow(workplace, block)
         arrow3.form.input.value = "cbc"
-        arrow3.setFrom(block.bottomPoint, block.id, false)
-        arrow3.setTo(block3.topPoint, block3.id, true)
+        arrow3.setFrom(block.bottomPoint)
+        arrow3.setTo(block3.topPoint, block3)
         arrow3.placeArrow()
         block3.arrowsList.push(arrow3)
         block.arrowsList.push(arrow3)

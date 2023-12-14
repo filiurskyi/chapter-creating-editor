@@ -1,8 +1,8 @@
 class Block {
-    constructor(position, size, container, id) {
+    constructor(position, size, container) {
         this.size = size;
         this.position = position;
-        this.id = id
+        this.id = 0
 
         this.docElement = document.createElement('div');
         this.docElement.id = 'frame';
@@ -28,6 +28,14 @@ class Block {
         this.avatarPlaceholder.style.right = "25px"
         this.avatarPlaceholder.style.cursor = "pointer"
         this.docElement.appendChild(this.avatarPlaceholder);
+
+        this.text = document.createElement('p');
+        this.text.textContent = this.id;
+        this.text.style.position = "absolute"
+        this.text.style.top = "15px"
+        this.text.style.left = "25px"
+        this.text.style.color = 'white'
+        this.docElement.appendChild(this.text);
 
         this.addButton = document.createElement('button');
         this.addButton.textContent = '+ Add';
@@ -75,7 +83,7 @@ class Block {
             if (e.button === 0) {
                 if (e.target === this.bottomPoint) {
                     arrowToMove = new Arrow(workplace, this)
-                    arrowToMove.setFrom(this.bottomPoint, this.id, false)
+                    arrowToMove.setFrom(this.bottomPoint)
                     return
                 }
 
@@ -119,7 +127,7 @@ class Block {
         this.header.input.style.color = color
         this.bottomPoint.style.backgroundColor = color
         for (let i = 0; i < this.arrowsList.length; i++) {
-            if (this.arrowsList[i].startBlock == this) {
+            if (this.arrowsList[i].fromBlock == this) {
                 this.arrowsList[i].setColor(color)
             }
         }

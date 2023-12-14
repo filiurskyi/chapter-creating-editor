@@ -99,6 +99,7 @@ body {
 
 .selected {
     box-shadow: 0 0 5px 1px #4A87FF;
+    z-index: 100;
 }
 
 .add-button {

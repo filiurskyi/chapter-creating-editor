@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (arrowToMove && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
                 if (e.target === blocks[i].docElement) {
-                    arrowToMove.setTo(blocks[i].topPoint, blocks[i].id, true)
+                    arrowToMove.setTo(blocks[i].topPoint, blocks[i])
                     blocks[i].arrowsList.push(arrowToMove)
                 }
             }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 arrowToMove.deleteArrow()
             }
             else {
-                arrowToMove.startBlock.arrowsList.push(arrowToMove)
+                arrowToMove.fromBlock.arrowsList.push(arrowToMove)
                 arrows.push(arrowToMove)
                 arrowToMove.placeArrow()
             }

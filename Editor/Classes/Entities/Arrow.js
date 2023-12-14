@@ -33,23 +33,20 @@ class Arrow {
         this.form.form.classList.add('arrow-form')
         this.form.form.style.transform = "scale(" + scale + ")";
 
-        this.startBlock = startBlock
         this.fromId = null
         this.toId = null
-        this.fromTop = null
-        this.toTop = null
+
+        this.fromBlock = startBlock
+        this.toBlock = null
     }
 
-    setFrom(from, id, isTop) {
+    setFrom(from) {
         this.from = from
-        this.fromId = id
-        this.fromTop = isTop
     }
 
-    setTo(to, id, isTop) {
+    setTo(to, toBlock) {
         this.to = to
-        this.toId = id
-        this.toTop = isTop
+        this.toBlock = toBlock
     }
 
     placeArrow(mouse) {
@@ -162,10 +159,8 @@ class Arrow {
 
     toJSON() {
         return {
-            from: this.fromId,
-            to: this.toId,
-            fromTop: this.fromTop,
-            toTop: this.toTop,
+            from: this.fromBlock.id,
+            to: this.toBlock.id,
             value: this.form,
         };
     }
