@@ -15,6 +15,10 @@ class Arrow {
             this.arrowParts.push(element)
             this.docElement.appendChild(element)
             element.classList.add('arrow')
+
+            element.addEventListener('click', (e) => {
+                this.select();
+            });
         }
 
         this.docElement.addEventListener('mousedown', (e) => {
@@ -154,6 +158,15 @@ class Arrow {
         for (let i = 0; i < this.arrowParts.length; i++) {
             this.arrowParts[i].style.backgroundColor = color;
         }
+    }
+
+    select() {
+        blocks.forEach(b => b.docElement.classList.remove('selected'));
+        arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
+
+        this.arrowParts.forEach(ap => ap.classList.add('selected'));
+
+        setTimeout(() => this.setColor(selectedColor), 1);
     }
 
     toJSON() {

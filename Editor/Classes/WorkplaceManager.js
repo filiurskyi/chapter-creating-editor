@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let isCtrlPressed = false;
     var panning = false,
         pointX = -workplaceSize.x * screen.width / 200,
+        // pointX = 0,
         pointY = -workplaceSize.y * screen.height / 200,
+        // pointY = 0,
         start = { x: 0, y: 0 },
         zoom = document.getElementById("zoom"),
         minScale = 0.1,
@@ -28,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    workplace.addEventListener('wheel', (e) => {
-        if (isCtrlPressed == false && e.target === workplace)
-            e.preventDefault()
-    });
-
     function setTransform() {
         zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
     }
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     zoom.onmouseup = function (e) {
         panning = false;
-        // recalculateDots();
         zoom.classList.remove('grabbing')
     }
 
@@ -62,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     zoom.onwheel = function (e) {
-        e.preventDefault();
+        if (isCtrlPressed)
+            e.preventDefault();
 
         if (!isCtrlPressed) return;
 
@@ -77,48 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pointY = e.clientY - ys * scale;
 
         setTransform();
-        // recalculateDots();
     }
 
     setTransform();
-    // recalculateDots();
 })
-
-function recalculateDots() {
-    const cellRate = 20;
-    const dotMargin = new Vector2(cellSize.x * cellRate, cellSize.y * cellRate);
-
-    var rect = workplace.getBoundingClientRect();
-    const minLeft = Math.round(-rect.left / dotMargin.x) * dotMargin.x
-    const minTop = Math.round(-rect.top / dotMargin.x) * dotMargin.x
-
-    const maxLeft = minLeft + screen.width
-    const maxTop = minTop + screen.height
-
-    dots.forEach(element => {
-        element.remove()
-    });
-
-    dots = []
-
-    for (let x = minLeft; x < maxLeft; x += dotMargin.x) {
-        for (let y = minTop; y < maxTop; y += dotMargin.y) {
-            const dot = document.createElement('div');
-            dot.style.left = (x + (dotMargin.x - dotsSize.x) / 2) + 'px';
-            dot.style.top = (y + (dotMargin.y - dotsSize.y) / 2) + 'px';
-            dot.style.width = dotsSize.x + 'px'
-            dot.style.height = dotsSize.y + 'px'
-
-            dot.classList.add('dot');
-            workplace.appendChild(dot);
-            dots.push(dot)
-        }
-    }
-
-    // function mapValue(value, minRange, maxRange, minMapped, maxMapped) {
-    //     let normalized = (value - minRange) / (maxRange - minRange);
-    //     let mappedValue = minMapped + normalized * (maxMapped - minMapped);
-
-    //     return Math.max(minMapped, Math.min(mappedValue, maxMapped));
-    // }
-}

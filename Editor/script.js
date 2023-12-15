@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         mousePosition = newMousePosition
 
         if (arrowToMove != null) {
-            arrowToMove.placeArrow(new Vector2(newMousePosition.x - 5, newMousePosition.y - 5))
+            arrowToMove.placeArrow(new Vector2(e.clientX - 5, e.clientY - 5))
         }
 
         if (blockToMove == null) return;
@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('mousedown', function (e) {
         if (e.button === 0) {
             blocks.forEach(b => b.docElement.classList.remove('selected'));
+
+            arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
         }
         else if (e.button === 1) {
             e.preventDefault()
@@ -62,6 +64,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             blocks.forEach(b => {
                 if (b.docElement.classList.contains('selected')) {
                     b.remove()
+                }
+            })
+
+            arrows.forEach(a => {
+                if (a.arrowParts[0].classList.contains('selected')) {
+                    a.deleteArrow()
                 }
             })
         }

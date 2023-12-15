@@ -148,7 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
         do {
             chapter = prompt('Enter chapter number:', 4);
 
-            if (chapter !== null && !isNaN(chapter) && chapter.trim() !== "") {
+            if (chapter == null) return;
+
+            if (!isNaN(chapter) && chapter.trim() !== "") {
                 chapter = Number(chapter);
             } else {
                 alert("Please enter a valid number.");

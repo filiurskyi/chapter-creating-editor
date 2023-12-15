@@ -7,8 +7,6 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         arrow.deleteArrow();
     })
 
-    recalculateDots();
-
     jsonData.blocks.forEach(blockInfo => {
         const position = new Vector2(blockInfo.position.x, blockInfo.position.y)
         const block = new Block(position, size, container)
@@ -40,11 +38,9 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         arrows.push(arrow)
     });
 
-    var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
+    // var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    // var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     // window.scrollBy(-100000, -100000);
-
     // window.scrollBy(blocks[0].position.x - viewportWidth / 2, blocks[0].position.y - viewportHeight / 2);
 }
 

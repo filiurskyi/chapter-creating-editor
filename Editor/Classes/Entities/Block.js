@@ -144,6 +144,7 @@ class Block {
 
     select() {
         blocks.forEach(b => b.docElement.classList.remove('selected'));
+        arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
 
         this.docElement.classList.add('selected');
     }
