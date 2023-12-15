@@ -150,6 +150,8 @@ class Arrow {
     }
 
     deleteArrow() {
+        arrows = arrows.filter(item => item !== this);
+
         this.docElement.remove()
         this.form.form.remove()
     }

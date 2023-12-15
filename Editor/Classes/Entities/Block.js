@@ -135,7 +135,6 @@ class Block {
     remove() {
         this.docElement.remove()
         this.arrowsList.forEach(arrow => {
-            arrows = arrows.filter(item => item !== arrow);
             arrow.deleteArrow()
         })
 
