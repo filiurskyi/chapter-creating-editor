@@ -31,7 +31,6 @@ class Arrow {
 
         this.form = new Form(container, arrowTypes, null, 0, 16)
         this.form.form.classList.add('arrow-form')
-        this.form.form.style.transform = "scale(" + scale + ")";
 
         this.fromId = null
         this.toId = null
@@ -55,7 +54,7 @@ class Arrow {
         var rect = this.container.getBoundingClientRect();
         var rect0;
         var rect1;
-        var from
+        var from;
         var to;
 
         if (this.from == null) {
@@ -74,7 +73,7 @@ class Arrow {
             to = new Vector2(rect1.left - rect.left + rect1.width / 2, rect1.top - rect.top + rect1.height / 2)
         }
 
-        this.placeArrowParts(from, to)
+        this.placeArrowParts(from.divide(scale), to.divide(scale))
     }
 
     placeArrowParts(from, to) {

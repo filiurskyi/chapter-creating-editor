@@ -16,7 +16,6 @@ class Block {
         );
         this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
         this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
-        this.docElement.style.transform = "scale(" + scale + ")";
         container.appendChild(this.docElement);
 
         this.avatarPlaceholder = document.createElement('img');
@@ -35,7 +34,7 @@ class Block {
         this.text.style.top = "15px"
         this.text.style.left = "25px"
         this.text.style.color = 'white'
-        this.docElement.appendChild(this.text);
+        // this.docElement.appendChild(this.text);
 
         this.addButton = document.createElement('button');
         this.addButton.textContent = '+ Add';

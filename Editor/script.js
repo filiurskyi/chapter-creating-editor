@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         var rect = workplace.getBoundingClientRect();
 
         let newMousePosition = new Vector2(e.clientX - rect.left, e.clientY - rect.top)
+        newMousePosition.x /= scale
+        newMousePosition.y /= scale
+
         let delta = newMousePosition.subtract(mousePosition)
 
         mousePosition = newMousePosition
 
         if (arrowToMove != null) {
-            arrowToMove.placeArrow(new Vector2(e.clientX - 5, e.clientY - 5))
+            arrowToMove.placeArrow(new Vector2(newMousePosition.x - 5, newMousePosition.y - 5))
         }
 
         if (blockToMove == null) return;

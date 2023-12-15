@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 contextMenu.style.display = 'block'
                 contextMenu.style.left = mousePosition.x + "px"
                 contextMenu.style.top = mousePosition.y + "px"
+
+                contextMenu.style.transformOrigin = '0% 0%';
+                contextMenu.style.transform = 'scale(' + 1 / scale + ')';
             }
         }
     });
@@ -191,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.keyForm.input.value = "item-name"
         block.formsList.push(keyValuePairForm)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 250 * scale, lastMousePosition.y + 500 * scale))
-        const block1 = createBlock(new Vector2(lastMousePosition.x + 250 * scale, lastMousePosition.y + 500 * scale))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 250, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 250, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
@@ -226,9 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.value = "location"
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
-        const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
-        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
+        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
+        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.setFrom(block.bottomPoint)
@@ -268,9 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.value = "outfit-set"
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
-        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"
@@ -304,10 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         block.header.input.value = "Choice-by-choice"
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500 * scale, lastMousePosition.y + 500 * scale))
-        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500 * scale))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500 * scale, lastMousePosition.y + 500 * scale))
-        const block3 = createBlock(new Vector2(lastMousePosition.x - 750 * scale, lastMousePosition.y + 200 * scale))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
+        const block3 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 200))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.value = "0"

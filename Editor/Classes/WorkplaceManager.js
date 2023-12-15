@@ -1,18 +1,20 @@
 let dots = []
-const dotsSize = new Vector2(2, 2)
+const dotsSize = new Vector2(5, 5)
 
 document.addEventListener('DOMContentLoaded', () => {
+    const workplaceSize = new Vector2(10000, 10000)
     let isCtrlPressed = false;
-    let isLeftMouseButtonPressed = false;
-    let startX
-    let startY
+    var panning = false,
+        pointX = -workplaceSize.x * screen.width / 200,
+        pointY = -workplaceSize.y * screen.height / 200,
+        start = { x: 0, y: 0 },
+        zoom = document.getElementById("zoom"),
+        minScale = 0.1,
+        maxScale = 1;
 
     const workplace = document.getElementById('workplace')
-    const workplaceSize = new Vector2(100000, 100000)
-    workplace.style.minWidth = workplaceSize.x + 'px'
-    workplace.style.minHeight = workplaceSize.y + 'px'
-
-    recalculateDots();
+    zoom.style.minWidth = workplaceSize.x + 'vw'
+    zoom.style.minHeight = workplaceSize.y + 'vh'
 
     document.addEventListener('keydown', (event) => {
         if (event.ctrlKey) {
@@ -26,40 +28,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.addEventListener('mousedown', function (e) {
-        if (e.button === 0 && isCtrlPressed) {
-            isLeftMouseButtonPressed = true;
-            document.body.classList.add('grabbing');
-            startX = e.clientX;
-            startY = e.clientY;
-        }
-    })
-
-    document.addEventListener('mouseup', function (e) {
-        if (e.button === 0) {
-            isLeftMouseButtonPressed = false;
-            document.body.classList.remove('grabbing');
-            recalculateDots()
-        }
-    })
-
-    document.addEventListener('mousemove', (e) => {
-        if (isCtrlPressed && isLeftMouseButtonPressed) {
-            e.preventDefault();
-            window.scrollBy(startX - e.clientX, startY - e.clientY);
-            startX = e.clientX;
-            startY = e.clientY;
-        }
-    });
-
     workplace.addEventListener('wheel', (e) => {
         if (isCtrlPressed == false && e.target === workplace)
             e.preventDefault()
     });
+
+    function setTransform() {
+        zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+    }
+
+    zoom.onmousedown = function (e) {
+        e.preventDefault();
+        start = { x: e.clientX - pointX, y: e.clientY - pointY };
+        panning = true;
+
+        if (isCtrlPressed) zoom.classList.add('grabbing')
+    }
+
+    zoom.onmouseup = function (e) {
+        panning = false;
+        // recalculateDots();
+        zoom.classList.remove('grabbing')
+    }
+
+    zoom.onmousemove = function (e) {
+        e.preventDefault();
+        if (!isCtrlPressed) return;
+        if (!panning) return;
+
+        pointX = (e.clientX - start.x)
+        pointY = (e.clientY - start.y)
+        setTransform();
+    }
+
+    zoom.onwheel = function (e) {
+        e.preventDefault();
+
+        if (!isCtrlPressed) return;
+
+        var xs = (e.clientX - pointX) / scale,
+            ys = (e.clientY - pointY) / scale,
+            delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
+        (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
+
+        scale = Math.min(Math.max(minScale, scale), maxScale);
+
+        pointX = e.clientX - xs * scale;
+        pointY = e.clientY - ys * scale;
+
+        setTransform();
+        // recalculateDots();
+    }
+
+    setTransform();
+    // recalculateDots();
 })
 
 function recalculateDots() {
-    const dotMargin = new Vector2(mapValue(cellSize.x, 2.5, 25, 15, 25), mapValue(cellSize.y, 3.5, 25, 15, 25));
+    const cellRate = 20;
+    const dotMargin = new Vector2(cellSize.x * cellRate, cellSize.y * cellRate);
 
     var rect = workplace.getBoundingClientRect();
     const minLeft = Math.round(-rect.left / dotMargin.x) * dotMargin.x
@@ -88,10 +115,10 @@ function recalculateDots() {
         }
     }
 
-    function mapValue(value, minRange, maxRange, minMapped, maxMapped) {
-        let normalized = (value - minRange) / (maxRange - minRange);
-        let mappedValue = minMapped + normalized * (maxMapped - minMapped);
+    // function mapValue(value, minRange, maxRange, minMapped, maxMapped) {
+    //     let normalized = (value - minRange) / (maxRange - minRange);
+    //     let mappedValue = minMapped + normalized * (maxMapped - minMapped);
 
-        return Math.max(minMapped, Math.min(mappedValue, maxMapped));
-    }
+    //     return Math.max(minMapped, Math.min(mappedValue, maxMapped));
+    // }
 }
