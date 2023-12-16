@@ -10,63 +10,67 @@ class Form {
         this.input.placeholder = 'None';
         this.input.style.fontSize = fontSize + "px"
 
-        const image = document.createElement('img');
-        image.src = 'Images/tip.png';
-        image.style.width = "15px"
-        image.style.height = "15px"
-        image.style.marginRight = "10px"
-        image.style.transition = "transform ease-in-out 0.3s"
-        image.style.transform = "rotate(180deg)"
+        this.image = document.createElement('img');
+        this.image.src = 'Images/tip.png';
+        this.image.style.width = "15px"
+        this.image.style.height = "15px"
+        this.image.style.marginRight = "10px"
+        this.image.style.transition = "transform ease-in-out 0.3s"
+        this.image.style.transform = "rotate(180deg)"
 
-        const autocompleteList = document.createElement('div');
-        autocompleteList.classList.add('autocomplete-items');
-        autocompleteList.id = 'autocomplete-list';
+        this.autocompleteList = document.createElement('div');
+        this.autocompleteList.classList.add('autocomplete-items');
+        this.autocompleteList.id = 'autocomplete-list';
+
+        this.list = list;
 
         if (insertBeforeItem)
             container.insertBefore(this.form, insertBeforeItem);
         else
             container.appendChild(this.form)
 
-        this.form.appendChild(image);
+        this.form.appendChild(this.image);
         this.form.appendChild(this.input);
-        this.form.appendChild(autocompleteList);
+        this.form.appendChild(this.autocompleteList);
 
         this.input.addEventListener('input', () => {
-            typeEvent(this.input)
+            this.typeEvent(this.input)
         });
 
         this.input.addEventListener('click', () => {
-            typeEvent(this.input)
+            this.typeEvent(this.input)
         });
-
-        function typeEvent(input) {
-            input.style.borderBottom = "2px solid"
-            const inputText = input.value;
-            autocompleteList.innerHTML = '';
-            image.style.transform = "rotate(0deg)"
-
-            list.forEach(item => {
-                if (inputText === '' || item.substr(0, inputText.length).toUpperCase() === inputText.toUpperCase()) {
-                    let divElement = document.createElement('div');
-                    divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
-                    divElement.addEventListener('click', () => {
-                        input.value = item;
-                        autocompleteList.innerHTML = '';
-                    });
-                    autocompleteList.appendChild(divElement);
-                }
-            });
-            if (method) method(inputText)
-        }
 
         document.addEventListener('click', e => {
             if (e.target.id != 'formInput' + id) {
                 this.input.style.borderBottom = ""
-                autocompleteList.innerHTML = '';
-                image.style.transform = "rotate(180deg)"
+                this.autocompleteList.innerHTML = '';
+                this.image.style.transform = "rotate(180deg)"
                 if (method) method(this.input.value)
             }
         });
+
+        this.method = method;
+    }
+
+    typeEvent(input) {
+        input.style.borderBottom = "2px solid"
+        const inputText = input.value;
+        this.autocompleteList.innerHTML = '';
+        this.image.style.transform = "rotate(0deg)"
+
+        this.list.forEach(item => {
+            if (inputText === '' || item.substr(0, inputText.length).toUpperCase() === inputText.toUpperCase()) {
+                let divElement = document.createElement('div');
+                divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
+                divElement.addEventListener('click', () => {
+                    input.value = item;
+                    this.autocompleteList.innerHTML = '';
+                });
+                this.autocompleteList.appendChild(divElement);
+            }
+        });
+        if (this.method) method(inputText)
     }
 
     toJSON() {

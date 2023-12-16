@@ -151,9 +151,10 @@ class Arrow {
 
     deleteArrow() {
         arrows = arrows.filter(item => item !== this);
+        blocks.forEach(b => b.arrowsList = b.arrowsList.filter(item => item !== this));
 
-        this.docElement.remove()
-        this.form.form.remove()
+        this.docElement.remove();
+        this.form.form.remove();
     }
 
     setColor(color) {

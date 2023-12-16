@@ -14,7 +14,7 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         block.id = blockInfo.id
 
         blockInfo.formsList.forEach(formInfo => {
-            const keyValuePairForm = new KeyValuePairForm(block.docElement, fieldTypes, fieldTypes, block.addButton, block.formsList.length)
+            const keyValuePairForm = new KeyValuePairForm(block.docElement, Object.keys(fieldTypes), block.addButton, block.formsList.length)
             keyValuePairForm.keyForm.input.value = formInfo.key.input
             keyValuePairForm.valueForm.input.value = formInfo.value.input
             block.formsList.push(keyValuePairForm)

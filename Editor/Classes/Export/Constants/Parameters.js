@@ -17,10 +17,10 @@ const parametersList = {
     "item": { name: "needed_prop", type: ValueTypes.String },
     "bubble": { name: "bubble", type: ValueTypes.String },
     "paid": { name: "paid", type: ValueTypes.Boolean },
-    "outfit_set": { name: "outfit_bundle_key", type: ValueTypes.String },
+    "outfit-set": { name: "outfit_bundle_key", type: ValueTypes.String },
     "chapter": { name: "chapter", type: ValueTypes.Integer },
     "clothes_id": { name: "clothes_id", type: ValueTypes.Integer },
-    "item_name": { name: "frame_type", type: ValueTypes.String },
+    "item-name": { name: "frame_type", type: ValueTypes.String },
     "add": { name: "take", type: ValueTypes.Boolean },
     "timer": { name: "frame_type", type: ValueTypes.Boolean }
 };

@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isCtrlPressed = false;
     var panning = false,
         pointX = -workplaceSize.x * screen.width / 200,
-        // pointX = 0,
         pointY = -workplaceSize.y * screen.height / 200,
-        // pointY = 0,
         start = { x: 0, y: 0 },
         zoom = document.getElementById("zoom"),
         minScale = 0.1,
@@ -35,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     zoom.onmousedown = function (e) {
-        e.preventDefault();
+        if (e.target === zoom)
+            e.preventDefault();
         start = { x: e.clientX - pointX, y: e.clientY - pointY };
         panning = true;
 
@@ -48,7 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     zoom.onmousemove = function (e) {
-        e.preventDefault();
+        if (e.target === zoom)
+            e.preventDefault();
         if (!isCtrlPressed) return;
         if (!panning) return;
 
@@ -58,8 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     zoom.onwheel = function (e) {
-        if (isCtrlPressed)
-            e.preventDefault();
+        e.preventDefault();
 
         if (!isCtrlPressed) return;
 

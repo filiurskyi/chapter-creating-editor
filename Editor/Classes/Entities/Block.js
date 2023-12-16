@@ -26,6 +26,7 @@ class Block {
         this.avatarPlaceholder.style.top = "15px"
         this.avatarPlaceholder.style.right = "25px"
         this.avatarPlaceholder.style.cursor = "pointer"
+        this.avatarPlaceholder.style.borderRadius = "50%"
         this.docElement.appendChild(this.avatarPlaceholder);
 
         this.text = document.createElement('p');
@@ -64,7 +65,7 @@ class Block {
         this.arrowsList = []
 
         this.addButton.addEventListener('click', () => {
-            this.formsList.push(new KeyValuePairForm(this.docElement, fieldTypes, fieldTypes, this.addButton, this.formsList.length));
+            this.formsList.push(new KeyValuePairForm(this.docElement, Object.keys(fieldTypes), this.addButton, this.formsList.length));
             this.updateArrows()
         });
 
