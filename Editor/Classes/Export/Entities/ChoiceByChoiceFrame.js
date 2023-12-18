@@ -22,11 +22,11 @@ class ChoiceByChoiceFrame extends Converter {
         for (let i = 0; i < duplicates.length; i++) {
             let jsonFrame;
 
-            if (duplicates[i].from in jsonGenerator.JSONFrames) {
-                jsonFrame = jsonGenerator.JSONFrames[duplicates[i].from];
+            if (duplicates[i].to in jsonGenerator.JSONFrames) {
+                jsonFrame = jsonGenerator.JSONFrames[duplicates[i].to];
             } else {
-                jsonFrame = new JSONFrame(duplicates[i].from);
-                jsonGenerator.JSONFrames[duplicates[i].from] = jsonFrame;
+                jsonFrame = new JSONFrame(duplicates[i].to);
+                jsonGenerator.JSONFrames[duplicates[i].to] = jsonFrame;
             }
 
             if (duplicates[i].value.input == "cbc") {
@@ -40,9 +40,7 @@ class ChoiceByChoiceFrame extends Converter {
             jsonFrame.frameID = idPart + variantCount;
         }
 
-        _choiceCount++;
-        return json.Substring(0, json.Length - 1);
+        this.choiceCount++;
+        return json.substring(0, json.length - 1);
     }
-
-
 }

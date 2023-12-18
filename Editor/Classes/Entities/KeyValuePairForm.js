@@ -1,14 +1,25 @@
 class KeyValuePairForm {
-    constructor(container, listKey, insertBeforeItem, id, method) {
+    constructor(container, listKey, insertBeforeItem, id) {
         let opened = false;
         this.form = document.createElement('div');
         this.form.classList.add('key-value-pair-form')
+
+        this.inputEvent = () => {
+            const inputText = this.keyForm.input.value;
+
+            let list = [];
+            if (fieldTypes.hasOwnProperty(inputText)) {
+                list = fieldTypes[inputText];
+            }
+
+            this.valueForm.list = list;
+        }
 
         container.insertBefore(this.form, insertBeforeItem);
 
         this.keyForm = new Form(this.form, listKey, null, id, 14)
         this.keyForm.form.style.marginRight = "40px"
-        this.valueForm = new Form(this.form, [], null, id, 14)
+        this.valueForm = new Form(this.form, [], null, id, 14, this.inputEvent)
         this.valueForm.form.style.marginRight = "25px"
 
         const background = document.createElement('div');
@@ -25,14 +36,7 @@ class KeyValuePairForm {
         textarea.classList.add('textarea-display-none')
 
         this.keyForm.form.addEventListener('input', () => {
-            const inputText = this.keyForm.form.value;
-
-            let list = [];
-            if (fieldTypes.hasOwnProperty(inputText)) {
-                list = fieldTypes[inputText];
-            }
-
-            this.valueForm.list = list;
+            this.inputEvent()
         });
 
         resize.addEventListener('click', (e) => {

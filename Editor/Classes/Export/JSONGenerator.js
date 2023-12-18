@@ -23,6 +23,9 @@ class JSONGenerator {
             new ChoiceFrame(),
             new ChoiceByCharacterFrame(),
             new ChoiceByChoiceFrame(),
+            new BubbleFrame(),
+            new LoveFrame(),
+            new ItemCheckFrame(),
         ];
 
         this.bannedIndexes = new Set();

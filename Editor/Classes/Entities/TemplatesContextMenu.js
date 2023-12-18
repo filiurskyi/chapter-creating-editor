@@ -4,12 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const workplace = document.getElementById('workplace')
     const contextMenu = document.getElementById('template-context-menu')
     contextMenu.style.display = "none"
+    contextMenu.style.overflowY = 'auto';
+
+    contextMenu.addEventListener('wheel', function (e) {
+        if ((contextMenu.scrollHeight - contextMenu.scrollTop <= contextMenu.clientHeight && e.deltaY > 0) || (contextMenu.scrollTop === 0 && e.deltaY < 0)) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 
     const list = [...frameTypes.keys()]
     list.forEach(type => {
         const div = document.createElement('div');
         div.textContent = type
         contextMenu.appendChild(div)
+        scrollable.push(div);
         div.addEventListener('click', (e) => {
             contextMenu.style.display = 'none'
             if (type == 'Dialog') dialogTemplate()

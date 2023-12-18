@@ -1,5 +1,6 @@
 let blocks = [];
 let arrows = [];
+let scrollable = [];
 let blockToMove;
 let arrowToMove;
 const blockSize = new Vector2(440, 50)

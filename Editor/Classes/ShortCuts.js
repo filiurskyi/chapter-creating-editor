@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (original === undefined) return
 
-        const point = new Vector2(mousePosition.x + 250 * scale, mousePosition.y + 250 * scale)
+        const point = new Vector2(mousePosition.x + 250, mousePosition.y + 250)
 
         let adjustedPosition = new Vector2(
             Math.round(point.x / cellSize.x) * cellSize.x,
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         block.header.input.value = original.header.input.value
 
         original.formsList.forEach(form => {
-            const newForm = new KeyValuePairForm(block.docElement, fieldTypes, fieldTypes, block.addButton, block.formsList.length)
+            const newForm = new KeyValuePairForm(block.docElement, fieldTypes, block.addButton, block.formsList.length)
             newForm.keyForm.input.value = form.keyForm.input.value
             newForm.valueForm.input.value = form.valueForm.input.value
             block.formsList.push(newForm)

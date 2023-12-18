@@ -1,5 +1,5 @@
 class Form {
-    constructor(container, list, insertBeforeItem, id, fontSize, method) {
+    constructor(container, list, insertBeforeItem, id, fontSize, method = null) {
         this.form = document.createElement('div');
         this.form.classList.add('autocomplete');
 
@@ -51,6 +51,12 @@ class Form {
         });
 
         this.method = method;
+
+        this.autocompleteList.addEventListener('wheel', function (e) {
+            if ((this.scrollHeight - this.scrollTop <= this.clientHeight && e.deltaY > 0) || (this.scrollTop === 0 && e.deltaY < 0)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
     }
 
     typeEvent(input) {
@@ -62,6 +68,7 @@ class Form {
         this.list.forEach(item => {
             if (inputText === '' || item.substr(0, inputText.length).toUpperCase() === inputText.toUpperCase()) {
                 let divElement = document.createElement('div');
+                scrollable.push(divElement)
                 divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
                 divElement.addEventListener('click', () => {
                     input.value = item;
@@ -70,7 +77,9 @@ class Form {
                 this.autocompleteList.appendChild(divElement);
             }
         });
-        if (this.method) method(inputText)
+        if (this.method !== null) {
+            this.method(inputText)
+        }
     }
 
     toJSON() {

@@ -58,7 +58,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     zoom.onwheel = function (e) {
-        e.preventDefault();
+        let isScrollable = false;
+        scrollable.forEach(s => {
+            if (isScrollable === false) {
+                if (s === null || s === undefined) {
+                    scrollable.filter(item => item !== s);
+                }
+                if (s === e.target) {
+                    isScrollable = true;
+                }
+            }
+        });
+
+        if (isScrollable == false || isCtrlPressed)
+            e.preventDefault();
 
         if (!isCtrlPressed) return;
 
