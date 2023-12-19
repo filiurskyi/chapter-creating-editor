@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         start = { x: e.clientX - pointX, y: e.clientY - pointY };
         panning = true;
 
-        if (isCtrlPressed) zoom.classList.add('grabbing')
+        if (isCtrlPressed && e.buttons === 1) zoom.classList.add('grabbing')
     }
 
     zoom.onmouseup = function (e) {
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         if (!isCtrlPressed) return;
         if (!panning) return;
+        if (e.buttons !== 1) return;
 
         pointX = (e.clientX - start.x)
         pointY = (e.clientY - start.y)

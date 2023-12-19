@@ -58,6 +58,47 @@
         </button>
     </div>
 
+    <div class="popup" id="popup" style="display: none;">
+        <div class="popup-item">
+            <img src="Images/Buttons/Ctrl.png">
+            <img src="Images/Buttons/plus.png">
+            <img src="Images/Buttons/Left.png">
+            <p>Drag</p>
+        </div>
+        <div class="popup-item">
+            <img src="Images/Buttons/Ctrl.png">
+            <img src="Images/Buttons/plus.png">
+            <img src="Images/Buttons/Center.png">
+            <p>Zoom</p>
+        </div>
+        <div class="popup-item">
+            <img src="Images/Buttons/Center.png">
+            <p>Menu scrolling</p>
+        </div>
+        <div class="popup-item">
+            <img src="Images/Buttons/Right.png">
+            <p>Creation menu</p>
+        </div>
+        <div class="popup-item">
+            <img src="Images/Buttons/Left.png">
+            <p>Selected item</p>
+        </div>
+        <div class="popup-item">
+            <img src="Images/Buttons/Del.png">
+            <p>Delete selected item</p>
+        </div>
+        <img class="close" id="close" src="Images/cross.png">
+    </div>
+
+    <div class="chapter-popup" id="chapter-popup" style="display: none;">
+        <p>Enter chapter number</p>
+        <input type="number" id="chapter-poput-input" placeholder="Chapter number....">
+        <div>
+            <button type="submit" id="chapter-poput-submit">Submit</button>
+            <button type="reset" id="chapter-poput-cancel">Cancel</button>
+        </div>
+    </div>
+
     <script src="Classes/Entities/Form.js"></script>
     <script src="Classes/Entities/Block.js"></script>
     <script src="Classes/Entities/Vector2.js"></script>
@@ -79,7 +120,7 @@
     <script src="Classes/Export/Entities/AnimationFrame.js"></script>
     <script src="Classes/Export/Entities/CustomizeFrame.js"></script>
     <script src="Classes/Export/Entities/DialogFrame.js"></script>
-    <script src="Classes/Export/Entities/LegacyСhoiceFrame.js"></script>
+    <script src="Classes/Export/Entities/LegacyChoiceFrame.js"></script>
     <script src="Classes/Export/Entities/PropsFrame.js"></script>
     <script src="Classes/Export/Entities/ChoiceFrame.js"></script>
     <script src="Classes/Export/Entities/ChoiceByCharacterFrame.js"></script>

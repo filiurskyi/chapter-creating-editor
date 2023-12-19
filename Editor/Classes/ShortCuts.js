@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('fileInput');
     const workplace = document.getElementById('workplace');
+    const popup = document.getElementById('popup');
 
     document.addEventListener('keydown', function (event) {
         if ((event.ctrlKey || event.metaKey) && (event.key === 's' || event.key === 'S')) {
@@ -22,35 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E')) {
             event.preventDefault();
-            exportToFile();
+            showChapterPopup();
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 'b' || event.key === 'B')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H')) {
             event.preventDefault();
 
-            blocks.sort((a, b) => {
-                const ax = Math.round(a.position.x * cellSize.x) / (cellSize.x);
-                const ay = Math.round(a.position.y * cellSize.x) / (cellSize.x);
-
-                const bx = Math.round(b.position.x * cellSize.x) / (cellSize.x);
-                const by = Math.round(b.position.y * cellSize.x) / (cellSize.x);
-
-                if (ay === by) {
-                    return ax - bx;
-                }
-                return ay - by;
-            });
-
-            blocks.forEach((block, index) => {
-                block.id = index + 1;
-                block.text.textContent = block.id;
-            });
+            popupHelp();
         }
     });
 
     document.getElementById("loadButton").addEventListener('click', load)
 
-    document.getElementById("exportButton").addEventListener('click', exportToFile)
+    document.getElementById("exportButton").addEventListener('click', showChapterPopup)
+    document.getElementById("helpButton").addEventListener('click', popupHelp)
 
     fileInput.addEventListener('change', (event) => {
         const files = event.target.files;
@@ -78,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (original === undefined) return
 
-        const point = new Vector2(mousePosition.x + 250, mousePosition.y + 250)
+        const point = new Vector2(original.position.x + 250, original.position.y + 250)
 
         let adjustedPosition = new Vector2(
             Math.round(point.x / cellSize.x) * cellSize.x,
@@ -99,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         blocks.push(block)
+
+        block.select();
     }
 
     function load() {
@@ -143,21 +131,51 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
     }
 
-    function exportToFile() {
-        let chapter;
-        do {
-            chapter = prompt('Enter chapter number:', 4);
+    function showChapterPopup() {
+        const chapterPopup = document.getElementById('chapter-popup');
 
-            if (chapter == null) return;
+        if (chapterPopup.classList.contains("popup-open")) return;
 
-            if (!isNaN(chapter) && chapter.trim() !== "") {
-                chapter = Number(chapter);
-            } else {
-                alert("Please enter a valid number.");
-                chapter = null;
-            }
-        } while (chapter === null);
+        document.getElementById('chapter-poput-input').value = '';
 
+        chapterPopup.style.display = 'flex';
+        chapterPopup.classList.remove('popup-close');
+        chapterPopup.classList.add('popup-open');
+    }
+
+    document.getElementById('chapter-poput-submit').addEventListener('click', () => {
+        const chapterPopup = document.getElementById('chapter-popup');
+
+        if (chapterPopup.classList.contains("popup-close")) return;
+        const input = document.getElementById('chapter-poput-input').value;
+        console.log(input);
+
+        let num = Number(input);
+        if (num === null || num === undefined || isNaN(num)) num = 0;
+        exportToFile(num);
+
+        chapterPopup.classList.remove('popup-open');
+        chapterPopup.classList.add('popup-close');
+
+        setTimeout(() => {
+            chapterPopup.style.display = 'none';
+        }, 450);
+    });
+
+    document.getElementById('chapter-poput-cancel').addEventListener('click', () => {
+        const chapterPopup = document.getElementById('chapter-popup');
+
+        if (chapterPopup.classList.contains("popup-close")) return;
+
+        chapterPopup.classList.remove('popup-open');
+        chapterPopup.classList.add('popup-close');
+
+        setTimeout(() => {
+            chapterPopup.style.display = 'none';
+        }, 450);
+    });
+
+    function exportToFile(chapter) {
         const json = exportToJson(chapter);
 
         let blob = new Blob([json], { type: "application/json" });
@@ -170,5 +188,26 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    }
+
+    function popupHelp() {
+        if (popup.classList.contains("popup-open")) {
+            closePopup();
+        } else {
+            popup.style.display = 'flex';
+            popup.classList.remove('popup-close');
+            popup.classList.add('popup-open');
+        }
+    }
+
+    document.getElementById('close').addEventListener('click', closePopup)
+
+    function closePopup() {
+        popup.classList.remove('popup-open');
+        popup.classList.add('popup-close');
+
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 450);
     }
 })

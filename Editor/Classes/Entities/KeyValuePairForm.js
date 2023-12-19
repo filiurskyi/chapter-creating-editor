@@ -10,6 +10,11 @@ class KeyValuePairForm {
             let list = [];
             if (fieldTypes.hasOwnProperty(inputText)) {
                 list = fieldTypes[inputText];
+                const isNumber = parametersList[inputText].type === ValueTypes.Integer
+                this.valueForm.input.type = isNumber ? 'number' : 'text';
+            }
+            else {
+                this.valueForm.input.type = 'text';
             }
 
             this.valueForm.list = list;

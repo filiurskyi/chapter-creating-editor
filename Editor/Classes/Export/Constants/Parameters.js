@@ -22,7 +22,8 @@ const parametersList = {
     "clothes_id": { name: "clothes_id", type: ValueTypes.Integer },
     "item-name": { name: "frame_type", type: ValueTypes.String },
     "add": { name: "take", type: ValueTypes.Boolean },
-    "timer": { name: "frame_type", type: ValueTypes.Boolean }
+    "timer": { name: "frame_type", type: ValueTypes.Boolean },
+    "bubble-type": { name: "bubble-type", type: ValueTypes.String }
 };
 
 function tryGetParameterPair(key, rawValue) {
