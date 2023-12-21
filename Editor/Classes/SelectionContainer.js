@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     workplace.onmouseup = function (e) {
+        if (state !== State.SELECTING) return;
+
         state = State.NONE;
         isSelection = false;
         selectionContainer.style.display = 'none';

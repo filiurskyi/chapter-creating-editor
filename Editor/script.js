@@ -30,14 +30,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     document.addEventListener('mouseup', function (e) {
-        if (state === State.BLOCKS_MOVING) {
-            state = State.NONE;
-        }
-
-        if (state === State.ARROW_MOVING) {
-            state = State.NONE;
-        }
-
         if (state === State.ARROW_MOVING && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
                 if (e.target === blocks[i].docElement) {
@@ -54,6 +46,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 arrowToMove.placeArrow()
             }
 
+        }
+
+        if (state === State.BLOCKS_MOVING) {
+            state = State.NONE;
+        }
+
+        if (state === State.ARROW_MOVING) {
             state = State.NONE;
         }
     });
@@ -83,4 +82,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             })
         }
     });
+
+    function callForever() {
+        console.log(state);
+        setTimeout(callForever, 100);
+    }
+
+    // callForever();
 })
