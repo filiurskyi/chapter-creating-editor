@@ -123,7 +123,7 @@ body {
 
 .selected {
     box-shadow: 0 0 5px 1px #4A87FF;
-    z-index: 100;
+    z-index: 50;
 }
 
 .add-button {
@@ -288,7 +288,7 @@ body::-webkit-scrollbar {
     height: 20px;
     position: absolute;
     background-color: #111824;
-    z-index: 150;
+    z-index: 10;
     padding: 10px 10px;
     transform: translateY(-10px);
 }
@@ -550,4 +550,11 @@ input[type="number"]::-webkit-inner-spin-button {
         transform: scale(0) translateX(-50%) translateY(-50%);
         opacity: 0.5;
     }
+}
+
+.selection-container {
+    position: absolute;
+    background-color: rgb(255, 255, 255, 0.25);
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    z-index: 51;
 }

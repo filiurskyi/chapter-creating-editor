@@ -54,39 +54,44 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("saveButton").addEventListener('click', save)
 
     function duplicate() {
-        let original;
-
+        const dupBlocks = []
         blocks.forEach(b => {
+            console.log(b.docElement.classList);
+
             if (b.docElement.classList.contains('selected')) {
-                original = b
+                const original = b
+
+                const point = new Vector2(original.position.x + 250, original.position.y + 250)
+
+                let adjustedPosition = new Vector2(
+                    Math.round(point.x / cellSize.x) * cellSize.x,
+                    Math.round(point.y / cellSize.y) * cellSize.y
+                );
+
+                let block = new Block(adjustedPosition, blockSize, workplace, blocks.length)
+                block.formsList = []
+                block.arrowsList = []
+
+                block.header.input.value = original.header.input.value
+
+                original.formsList.forEach(form => {
+                    const newForm = new KeyValuePairForm(block.docElement, fieldTypes, block.addButton, block.formsList.length)
+                    newForm.keyForm.input.value = form.keyForm.input.value
+                    newForm.valueForm.input.value = form.valueForm.input.value
+                    block.formsList.push(newForm)
+                });
+
+                dupBlocks.push(block);
             }
         })
 
-        if (original === undefined) return
+        blocks.forEach(b => b.docElement.classList.remove('selected'));
+        arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
 
-        const point = new Vector2(original.position.x + 250, original.position.y + 250)
-
-        let adjustedPosition = new Vector2(
-            Math.round(point.x / cellSize.x) * cellSize.x,
-            Math.round(point.y / cellSize.y) * cellSize.y
-        );
-
-        let block = new Block(adjustedPosition, blockSize, workplace, blocks.length)
-        block.formsList = []
-        block.arrowsList = []
-
-        block.header.input.value = original.header.input.value
-
-        original.formsList.forEach(form => {
-            const newForm = new KeyValuePairForm(block.docElement, fieldTypes, block.addButton, block.formsList.length)
-            newForm.keyForm.input.value = form.keyForm.input.value
-            newForm.valueForm.input.value = form.valueForm.input.value
-            block.formsList.push(newForm)
+        dupBlocks.forEach(b => {
+            b.docElement.classList.add('selected');
+            blocks.push(b);
         });
-
-        blocks.push(block)
-
-        block.select();
     }
 
     function load() {

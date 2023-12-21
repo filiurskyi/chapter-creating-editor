@@ -29,14 +29,6 @@ class Block {
         this.avatarPlaceholder.style.borderRadius = "50%"
         this.docElement.appendChild(this.avatarPlaceholder);
 
-        this.text = document.createElement('p');
-        this.text.textContent = this.id;
-        this.text.style.position = "absolute"
-        this.text.style.top = "15px"
-        this.text.style.left = "25px"
-        this.text.style.color = 'white'
-        // this.docElement.appendChild(this.text);
-
         this.addButton = document.createElement('button');
         this.addButton.textContent = '+ Add';
         this.addButton.classList.add('add-button');
@@ -65,7 +57,8 @@ class Block {
         this.arrowsList = []
 
         this.addButton.addEventListener('click', () => {
-            this.formsList.push(new KeyValuePairForm(this.docElement, Object.keys(fieldTypes), this.addButton, this.formsList.length));
+            const keyValuePairForm = new KeyValuePairForm(this, Object.keys(fieldTypes), this.addButton, this.formsList.length)
+            this.formsList.push(keyValuePairForm);
             this.updateArrows()
         });
 
@@ -73,23 +66,24 @@ class Block {
             event.preventDefault();
         });
 
-        this.docElement.addEventListener('click', (e) => {
-            this.select();
-        });
-
-        this.select();
-
         this.docElement.addEventListener('mousedown', (e) => {
             if (e.button === 0) {
-                if (e.target === this.bottomPoint) {
+                if (e.target === this.bottomPoint && state === State.NONE) {
                     arrowToMove = new Arrow(workplace, this)
                     arrowToMove.setFrom(this.bottomPoint)
+                    state = State.ARROW_MOVING;
                     return
                 }
 
                 if (e.target !== this.docElement) return
 
-                blockToMove = this;
+                if (state === State.NONE) {
+                    state = State.BLOCKS_MOVING;
+                }
+                if (this.docElement.classList.contains('selected')) return;
+
+                this.select();
+                this.changeColor(selectedColor)
             }
         })
     }

@@ -1,26 +1,30 @@
 class KeyValuePairForm {
-    constructor(container, listKey, insertBeforeItem, id) {
+    constructor(block, listKey, insertBeforeItem, id) {
         let opened = false;
         this.form = document.createElement('div');
         this.form.classList.add('key-value-pair-form')
 
-        this.inputEvent = () => {
+        this.inputEvent = (value) => {
             const inputText = this.keyForm.input.value;
 
             let list = [];
             if (fieldTypes.hasOwnProperty(inputText)) {
                 list = fieldTypes[inputText];
-                const isNumber = parametersList[inputText].type === ValueTypes.Integer
-                this.valueForm.input.type = isNumber ? 'number' : 'text';
+                if (parametersList.hasOwnProperty(inputText)) {
+                    const isNumber = parametersList[inputText].type === ValueTypes.Integer
+                    this.valueForm.input.type = isNumber ? 'number' : 'text';
+                }
             }
             else {
                 this.valueForm.input.type = 'text';
             }
 
             this.valueForm.list = list;
+
+            setAvatarImage();
         }
 
-        container.insertBefore(this.form, insertBeforeItem);
+        block.docElement.insertBefore(this.form, insertBeforeItem);
 
         this.keyForm = new Form(this.form, listKey, null, id, 14)
         this.keyForm.form.style.marginRight = "40px"
@@ -37,7 +41,7 @@ class KeyValuePairForm {
         background.appendChild(resize)
 
         const textarea = document.createElement('textarea')
-        container.appendChild(textarea)
+        block.docElement.appendChild(textarea)
         textarea.classList.add('textarea-display-none')
 
         this.keyForm.form.addEventListener('input', () => {
@@ -72,8 +76,21 @@ class KeyValuePairForm {
         background.appendChild(remove)
 
         remove.addEventListener('click', () => {
-            this.form.remove()
+            block.formsList = block.formsList.filter(item => item !== this)
+            setAvatarImage();
+            this.form.remove();
         })
+
+        const setAvatarImage = () => {
+            block.avatarPlaceholder.src = 'Images/placeholder.png'
+            block.formsList.forEach(f => {
+                if (f.keyForm.input.value === 'character') {
+                    if (characterImages.hasOwnProperty(f.valueForm.input.value)) {
+                        block.avatarPlaceholder.src = characterImages[f.valueForm.input.value];
+                    }
+                }
+            });
+        }
     }
 
     toJSON() {

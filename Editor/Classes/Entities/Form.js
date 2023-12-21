@@ -73,6 +73,9 @@ class Form {
                 divElement.addEventListener('click', () => {
                     input.value = item;
                     this.autocompleteList.innerHTML = '';
+                    if (this.method !== null) {
+                        this.method(item)
+                    }
                 });
                 this.autocompleteList.appendChild(divElement);
             }

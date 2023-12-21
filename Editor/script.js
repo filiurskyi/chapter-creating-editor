@@ -11,25 +11,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
         newMousePosition.x /= scale
         newMousePosition.y /= scale
 
-        let delta = newMousePosition.subtract(mousePosition)
 
-        mousePosition = newMousePosition
-
-        if (arrowToMove != null) {
+        if (arrowToMove != null && state === State.ARROW_MOVING) {
             arrowToMove.placeArrow(new Vector2(e.clientX - 5, e.clientY - 5))
         }
 
-        if (blockToMove == null) return;
+        if (state === State.BLOCKS_MOVING) {
+            let delta = newMousePosition.subtract(mousePosition)
 
-        blockToMove.placeToMousePosition(delta, cellSize)
+            blocks.forEach(b => {
+                if (b.docElement.classList.contains('selected')) {
+                    b.placeToMousePosition(delta, cellSize)
+                }
+            })
+        }
+
+        mousePosition = newMousePosition
     });
 
     document.addEventListener('mouseup', function (e) {
-        if (blockToMove && e.button === 0) {
-            blockToMove = null
+        if (state === State.BLOCKS_MOVING) {
+            state = State.NONE;
         }
 
-        if (arrowToMove && e.button === 0) {
+        if (state === State.ARROW_MOVING) {
+            state = State.NONE;
+        }
+
+        if (state === State.ARROW_MOVING && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
                 if (e.target === blocks[i].docElement) {
                     arrowToMove.setTo(blocks[i].topPoint, blocks[i])
@@ -44,14 +53,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 arrows.push(arrowToMove)
                 arrowToMove.placeArrow()
             }
-            arrowToMove = null
+
+            state = State.NONE;
         }
     });
 
     document.addEventListener('mousedown', function (e) {
-        if (e.button === 0) {
+        if (e.button === 0 && state === State.NONE) {
             blocks.forEach(b => b.docElement.classList.remove('selected'));
-
             arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
         }
         else if (e.button === 1) {
