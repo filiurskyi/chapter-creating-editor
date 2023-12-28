@@ -54,15 +54,44 @@ document.addEventListener('DOMContentLoaded', () => {
         blocks.forEach(b => b.docElement.classList.remove('selected'));
         arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
 
+        let lowerY = startSelection.y;
+        let upperY = mousePosition.y;
+
+        let lowerX = startSelection.x;
+        let upperX = mousePosition.x;
+
+        let temp;
+        if (lowerX > upperX) {
+            temp = lowerX;
+            lowerX = upperX;
+            upperX = temp;
+        }
+        if (lowerY > upperY) {
+            temp = lowerY;
+            lowerY = upperY;
+            upperY = temp;
+        }
+
         blocks.forEach(b => {
+            const rect = b.docElement.getBoundingClientRect();
+            const position = new Vector2(b.position.x, b.position.y + (rect.height - b.size.y) / 2);
+            // const corners = [];
+            // corners.push(position.add(new Vector2(rect.height / 2, rect.width / 2)));
+            // corners.push(position.add(new Vector2(rect.height / 2, -rect.width / 2)));
+            // corners.push(position.add(new Vector2(-rect.height / 2, rect.width / 2)));
+            // corners.push(position.add(new Vector2(-rect.height / 2, -rect.width / 2)));
+
+            // for (let i = 0; i < 4; i++) {
             if (
-                b.position.x >= left &&
-                b.position.y >= top &&
-                b.position.x <= (left + size.x) &&
-                b.position.y <= (top + size.y)
+                position.x >= lowerX &&
+                position.y >= lowerY &&
+                position.x <= upperX &&
+                position.y <= upperY
             ) {
                 b.docElement.classList.add('selected');
+                // i = 5;
             }
+            // }
         });
     }
 

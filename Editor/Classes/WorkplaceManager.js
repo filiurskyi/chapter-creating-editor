@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         minScale = 0.1,
         maxScale = 1;
 
-    const workplace = document.getElementById('workplace')
     zoom.style.minWidth = workplaceSize.x + 'vw'
     zoom.style.minHeight = workplaceSize.y + 'vh'
 
@@ -35,10 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom.onmousedown = function (e) {
         if (e.target === zoom)
             e.preventDefault();
+
         start = { x: e.clientX - pointX, y: e.clientY - pointY };
         panning = true;
 
-        if (isCtrlPressed && e.buttons === 1) zoom.classList.add('grabbing')
+        if (e.buttons === 4) zoom.classList.add('grabbing')
     }
 
     zoom.onmouseup = function (e) {
@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     zoom.onmousemove = function (e) {
         if (e.target === zoom)
             e.preventDefault();
-        if (!isCtrlPressed) return;
+
         if (!panning) return;
-        if (e.buttons !== 1) return;
+        if (e.buttons !== 4) return;
 
         pointX = (e.clientX - start.x)
         pointY = (e.clientY - start.y)
@@ -71,10 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (isScrollable == false || isCtrlPressed)
-            e.preventDefault();
+        if (isScrollable) return;
 
-        if (!isCtrlPressed) return;
+        e.preventDefault();
 
         var xs = (e.clientX - pointX) / scale,
             ys = (e.clientY - pointY) / scale,

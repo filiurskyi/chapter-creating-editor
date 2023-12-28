@@ -32,18 +32,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('mouseup', function (e) {
         if (state === State.ARROW_MOVING && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
-                if (e.target === blocks[i].docElement) {
+                if (e.target === blocks[i].arrowTrigger) {
                     arrowToMove.setTo(blocks[i].topPoint, blocks[i])
                     blocks[i].arrowsList.push(arrowToMove)
                 }
             }
+
+            blocks.forEach(b => {
+                b.arrowTrigger.style.display = 'none';
+            });
+
             if (arrowToMove.to == null) {
-                arrowToMove.deleteArrow()
+                invokeContextMenu();
             }
             else {
                 arrowToMove.fromBlock.arrowsList.push(arrowToMove)
                 arrows.push(arrowToMove)
                 arrowToMove.placeArrow()
+
+                state = State.NONE;
             }
 
         }
@@ -51,14 +58,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (state === State.BLOCKS_MOVING) {
             state = State.NONE;
         }
-
-        if (state === State.ARROW_MOVING) {
-            state = State.NONE;
-        }
     });
 
     document.addEventListener('mousedown', function (e) {
-        if (e.button === 0 && state === State.NONE) {
+        if (e.button === 0 && state === State.NONE && e.target === workplace) {
             blocks.forEach(b => b.docElement.classList.remove('selected'));
             arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
         }
@@ -76,6 +79,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             })
 
             arrows.forEach(a => {
+                console.log(a.arrowParts[0].classList);
                 if (a.arrowParts[0].classList.contains('selected')) {
                     a.deleteArrow()
                 }

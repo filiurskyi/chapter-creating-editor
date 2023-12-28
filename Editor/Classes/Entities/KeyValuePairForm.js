@@ -82,11 +82,14 @@ class KeyValuePairForm {
         })
 
         const setAvatarImage = () => {
-            block.avatarPlaceholder.src = 'Images/placeholder.png'
+            block.avatarPlaceholder.style.display = "none";
             block.formsList.forEach(f => {
                 if (f.keyForm.input.value === 'character') {
                     if (characterImages.hasOwnProperty(f.valueForm.input.value)) {
-                        block.avatarPlaceholder.src = characterImages[f.valueForm.input.value];
+                        if (characterImages[f.valueForm.input.value] !== "") {
+                            block.avatarPlaceholder.style.display = "block";
+                            block.avatarPlaceholder.src = characterImages[f.valueForm.input.value];
+                        }
                     }
                 }
             });

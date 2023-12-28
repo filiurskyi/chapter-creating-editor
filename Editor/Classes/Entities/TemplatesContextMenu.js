@@ -1,8 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let lastMousePosition
+let lastMousePosition;
+const contextMenu = document.getElementById('template-context-menu')
+let reservedArrow;
+const divList = [];
 
+function invokeContextMenu() {
+    if (state !== State.NONE && state !== State.ARROW_MOVING) return;
+
+    lastMousePosition = mousePosition
+
+    contextMenu.style.display = 'block'
+    contextMenu.style.left = mousePosition.x + "px"
+    contextMenu.style.top = mousePosition.y + "px"
+
+    contextMenu.style.transformOrigin = '0% 0%';
+    contextMenu.style.transform = 'scale(' + 1 / scale + ')';
+
+    reservedArrow = state === State.ARROW_MOVING ? arrowToMove : null;
+    arrowToMove = null;
+
+    setTimeout(() => state = State.TEMPLATE_SELECTING, 10);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
     const workplace = document.getElementById('workplace')
-    const contextMenu = document.getElementById('template-context-menu')
     contextMenu.style.display = "none"
     contextMenu.style.overflowY = 'auto';
 
@@ -18,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         div.textContent = type
         contextMenu.appendChild(div)
         scrollable.push(div);
+        divList.push(div);
+
         div.addEventListener('click', (e) => {
             contextMenu.style.display = 'none'
             if (type == 'Dialog') dialogTemplate()
@@ -36,21 +58,23 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     document.addEventListener('click', (e) => {
-        contextMenu.style.display = 'none'
+        if (state !== State.TEMPLATE_SELECTING) return;
+
+        if (reservedArrow != null) {
+            reservedArrow.deleteArrow();
+            reservedArrow = null;
+        }
+
+        contextMenu.style.display = 'none';
+
+        state = State.NONE;
     });
 
     document.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         if (e.button === 2) {
             if (e.target === workplace) {
-                lastMousePosition = mousePosition
-
-                contextMenu.style.display = 'block'
-                contextMenu.style.left = mousePosition.x + "px"
-                contextMenu.style.top = mousePosition.y + "px"
-
-                contextMenu.style.transformOrigin = '0% 0%';
-                contextMenu.style.transform = 'scale(' + 1 / scale + ')';
+                invokeContextMenu();
             }
         }
     });
@@ -62,7 +86,19 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         const id = blocks.length == 0 ? 0 : blocks[blocks.length - 1].id + 1
         let block = new Block(adjustedPosition, blockSize, workplace)
+
+        if (reservedArrow !== null) {
+            reservedArrow.setTo(block.topPoint, block)
+            block.arrowsList.push(reservedArrow)
+            reservedArrow.fromBlock.arrowsList.push(reservedArrow)
+            arrows.push(reservedArrow)
+            reservedArrow.placeArrow()
+            reservedArrow = null;
+        }
+
         blocks.push(block)
+
+        state = State.NONE;
 
         return block
     }

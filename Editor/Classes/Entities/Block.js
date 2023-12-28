@@ -41,6 +41,16 @@ class Block {
         this.bottomPoint = document.createElement('div');
         this.bottomPoint.classList.add('point');
 
+        this.arrowTrigger = document.createElement('div');
+        this.arrowTrigger.style.position = 'absolute';
+        this.arrowTrigger.style.zIndex = 1000;
+        this.arrowTrigger.style.top = 0;
+        this.arrowTrigger.style.left = 0;
+        this.arrowTrigger.style.right = 0;
+        this.arrowTrigger.style.bottom = 0;
+        this.arrowTrigger.style.display = 'none';
+
+        this.docElement.appendChild(this.arrowTrigger);
         this.docElement.appendChild(this.topPoint);
         this.docElement.appendChild(this.addButton);
         this.docElement.appendChild(point);
@@ -72,7 +82,11 @@ class Block {
                     arrowToMove = new Arrow(workplace, this)
                     arrowToMove.setFrom(this.bottomPoint)
                     state = State.ARROW_MOVING;
-                    return
+
+                    blocks.forEach(b => {
+                        b.arrowTrigger.style.display = 'block';
+                    });
+                    return;
                 }
 
                 if (e.target !== this.docElement) return
@@ -80,10 +94,18 @@ class Block {
                 if (state === State.NONE) {
                     state = State.BLOCKS_MOVING;
                 }
-                if (this.docElement.classList.contains('selected')) return;
+                if (e.shiftKey) {
+                    if (this.docElement.classList.contains('selected')) {
+                        this.docElement.classList.remove('selected');
+                    } else {
+                        this.docElement.classList.add('selected');
+                    }
+                } else {
+                    if (!this.docElement.classList.contains('selected'))
+                        this.select();
+                }
 
-                this.select();
-                this.changeColor(selectedColor)
+                this.changeColor(selectedColor);
             }
         })
     }

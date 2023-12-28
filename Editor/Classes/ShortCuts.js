@@ -1,35 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const fileInput = document.getElementById('fileInput');
+    const fileInputToLoad = document.getElementById('fileInputToLoad');
     const workplace = document.getElementById('workplace');
     const popup = document.getElementById('popup');
 
     document.addEventListener('keydown', function (event) {
-        if ((event.ctrlKey || event.metaKey) && (event.key === 's' || event.key === 'S')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 's' || event.key === 'S' || event.key === 'ы' || event.key === 'Ы')) {
             event.preventDefault();
             save();
             return;
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 'o' || event.key === 'O')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'o' || event.key === 'O' || event.key === 'щ' || event.key === 'Щ')) {
             event.preventDefault();
             load();
             return
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 'd' || event.key === 'D')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'd' || event.key === 'D' || event.key === 'в' || event.key === 'В')) {
             event.preventDefault();
             duplicate();
+            return;
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E' || event.key === 'у' || event.key === 'У')) {
             event.preventDefault();
             showChapterPopup();
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H' || event.key === 'р' || event.key === 'Р')) {
             event.preventDefault();
 
             popupHelp();
+        }
+
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'r' || event.key === 'R' || event.key === 'к' || event.key === 'К')) {
+            event.preventDefault();
         }
     });
 
@@ -38,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("exportButton").addEventListener('click', showChapterPopup)
     document.getElementById("helpButton").addEventListener('click', popupHelp)
 
-    fileInput.addEventListener('change', (event) => {
+    fileInputToLoad.addEventListener('change', (event) => {
         const files = event.target.files;
         const reader = new FileReader();
 
@@ -75,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 block.header.input.value = original.header.input.value
 
                 original.formsList.forEach(form => {
-                    const newForm = new KeyValuePairForm(block.docElement, fieldTypes, block.addButton, block.formsList.length)
+                    const newForm = new KeyValuePairForm(block, fieldTypes, block.addButton, block.formsList.length)
                     newForm.keyForm.input.value = form.keyForm.input.value
                     newForm.valueForm.input.value = form.valueForm.input.value
                     block.formsList.push(newForm)
@@ -95,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function load() {
-        fileInput.click();
+        fileInputToLoad.click();
     }
 
     function save() {
@@ -115,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         blocks.forEach((block, index) => {
             block.id = index + 1;
-            block.text.textContent = block.id;
         });
 
         let data = {
