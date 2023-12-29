@@ -15,7 +15,6 @@ function exportToJson(chapter) {
 
     blocks.forEach((block, index) => {
         block.id = index + 1;
-        block.text.textContent = block.id;
     });
 
     let data = {
@@ -82,8 +81,6 @@ function exportToJson(chapter) {
     }
 
     const indexes = getSortedArrowsIndexes(parsedData.arrows[0]);
-
-    // console.log(indexes);
 
     const sortedArrows = [];
     for (let i = 0; i < indexes.length; i++) {

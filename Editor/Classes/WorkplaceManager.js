@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         start = { x: e.clientX - pointX, y: e.clientY - pointY };
         panning = true;
 
-        if (e.buttons === 4) zoom.classList.add('grabbing')
+        if (e.buttons === 4 || (isCtrlPressed && e.buttons === 1)) zoom.classList.add('grabbing')
     }
 
     zoom.onmouseup = function (e) {
@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
         if (!panning) return;
-        if (e.buttons !== 4) return;
-
-        pointX = (e.clientX - start.x)
-        pointY = (e.clientY - start.y)
-        setTransform();
+        if (e.buttons === 4 || (isCtrlPressed && e.buttons === 1)) {
+            pointX = (e.clientX - start.x)
+            pointY = (e.clientY - start.y)
+            setTransform();
+        }
     }
 
     zoom.onwheel = function (e) {

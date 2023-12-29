@@ -3,12 +3,17 @@ class Form {
         this.form = document.createElement('div');
         this.form.classList.add('autocomplete');
 
-        this.input = document.createElement('input');
+        this.input = document.createElement("span");
+        this.input.className = "textarea";
+        this.input.setAttribute("role", "textbox");
+        this.input.setAttribute("contenteditable", "");
         this.input.id = 'formInput' + id;
         this.input.classList.add('formInput')
-        this.input.type = 'text';
         this.input.placeholder = 'None';
         this.input.style.fontSize = fontSize + "px"
+        this.input.style.minHeight = (fontSize + 1) + "px"
+        this.input.style.lineHeight = (fontSize + 1) + "px"
+        this.input.textContent = "None";
 
         this.image = document.createElement('img');
         this.image.src = 'Images/tip.png';
@@ -46,7 +51,7 @@ class Form {
                 this.input.style.borderBottom = ""
                 this.autocompleteList.innerHTML = '';
                 this.image.style.transform = "rotate(180deg)"
-                if (method) method(this.input.value)
+                if (method) method(this.input.textContent)
             }
         });
 
@@ -57,11 +62,24 @@ class Form {
                 e.preventDefault();
             }
         }, { passive: false });
+
+
+        this.input.addEventListener('focus', function () {
+            if (this.textContent === "None") {
+                this.textContent = "";
+            }
+        });
+
+        this.input.addEventListener('blur', function () {
+            if (this.textContent.trim() === "") {
+                this.textContent = "None";
+            }
+        });
     }
 
     typeEvent(input) {
         input.style.borderBottom = "2px solid"
-        const inputText = input.value;
+        const inputText = input.textContent;
         this.autocompleteList.innerHTML = '';
         this.image.style.transform = "rotate(0deg)"
 
@@ -71,7 +89,7 @@ class Form {
                 scrollable.push(divElement)
                 divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
                 divElement.addEventListener('click', () => {
-                    input.value = item;
+                    input.textContent = item;
                     this.autocompleteList.innerHTML = '';
                     if (this.method !== null) {
                         this.method(item)
@@ -87,7 +105,7 @@ class Form {
 
     toJSON() {
         return {
-            input: this.input.value
+            input: this.input.textContent
         };
     }
 }

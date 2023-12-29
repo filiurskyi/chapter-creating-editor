@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((event.ctrlKey || event.metaKey) && (event.key === 'o' || event.key === 'O' || event.key === 'щ' || event.key === 'Щ')) {
             event.preventDefault();
             load();
-            return
+            return;
         }
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'd' || event.key === 'D' || event.key === 'в' || event.key === 'В')) {
@@ -25,16 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if ((event.ctrlKey || event.metaKey) && (event.key === 'e' || event.key === 'E' || event.key === 'у' || event.key === 'У')) {
             event.preventDefault();
             showChapterPopup();
+            return;
         }
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H' || event.key === 'р' || event.key === 'Р')) {
             event.preventDefault();
-
             popupHelp();
+            return;
         }
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'r' || event.key === 'R' || event.key === 'к' || event.key === 'К')) {
             event.preventDefault();
+            return;
         }
     });
 
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = (e) => {
             const text = e.target.result;
             let parsedData = JSON.parse(text);
-            fromJSONConvert(parsedData, blocks, arrows, blockSize, workplace)
+            fromJSONConvert(parsedData, workplace)
         };
 
         reader.readAsText(files[0]);
@@ -61,8 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function duplicate() {
         const dupBlocks = []
         blocks.forEach(b => {
-            console.log(b.docElement.classList);
-
             if (b.docElement.classList.contains('selected')) {
                 const original = b
 
@@ -77,12 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 block.formsList = []
                 block.arrowsList = []
 
-                block.header.input.value = original.header.input.value
+                block.header.input.textContent = original.header.input.textContent
 
                 original.formsList.forEach(form => {
                     const newForm = new KeyValuePairForm(block, fieldTypes, block.addButton, block.formsList.length)
-                    newForm.keyForm.input.value = form.keyForm.input.value
-                    newForm.valueForm.input.value = form.valueForm.input.value
+                    newForm.keyForm.input.textContent = form.keyForm.input.textContent
+                    newForm.valueForm.input.textContent = form.valueForm.input.textContent
                     block.formsList.push(newForm)
                 });
 

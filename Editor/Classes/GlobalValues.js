@@ -10,7 +10,7 @@ let blocks = [];
 let arrows = [];
 let scrollable = [];
 let arrowToMove;
-const blockSize = new Vector2(440, 50)
+const blockSize = new Vector2(540, 50)
 const startCellSize = new Vector2(25, 25)
 let cellSize = new Vector2(25, 25)
 let mousePosition = new Vector2(0, 0)

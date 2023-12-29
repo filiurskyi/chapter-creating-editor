@@ -5,31 +5,26 @@ class KeyValuePairForm {
         this.form.classList.add('key-value-pair-form')
 
         this.inputEvent = (value) => {
-            const inputText = this.keyForm.input.value;
+            const inputText = this.keyForm.input.textContent;
 
             let list = [];
             if (fieldTypes.hasOwnProperty(inputText)) {
                 list = fieldTypes[inputText];
-                if (parametersList.hasOwnProperty(inputText)) {
-                    const isNumber = parametersList[inputText].type === ValueTypes.Integer
-                    this.valueForm.input.type = isNumber ? 'number' : 'text';
-                }
-            }
-            else {
-                this.valueForm.input.type = 'text';
             }
 
             this.valueForm.list = list;
 
             setAvatarImage();
+
+            block.updateArrows();
         }
 
         block.docElement.insertBefore(this.form, insertBeforeItem);
 
         this.keyForm = new Form(this.form, listKey, null, id, 14)
-        this.keyForm.form.style.marginRight = "40px"
+        this.keyForm.form.style.marginRight = "50px"
         this.valueForm = new Form(this.form, [], null, id, 14, this.inputEvent)
-        this.valueForm.form.style.marginRight = "25px"
+
 
         const background = document.createElement('div');
         background.classList.add('options')
@@ -49,7 +44,7 @@ class KeyValuePairForm {
         });
 
         resize.addEventListener('click', (e) => {
-            textarea.value = this.valueForm.input.value;
+            textarea.value = this.valueForm.input.textContent;
             textarea.classList.remove('textarea-display-none')
 
             textarea.classList.add('textarea-grow-up')
@@ -61,7 +56,7 @@ class KeyValuePairForm {
             if (e.target !== textarea && e.target !== resize) {
 
                 if (opened)
-                    this.valueForm.input.value = textarea.value
+                    this.valueForm.input.textContent = textarea.value
 
                 textarea.classList.remove('textarea-grow-up')
                 textarea.classList.add('textarea-grow-down')
@@ -84,11 +79,11 @@ class KeyValuePairForm {
         const setAvatarImage = () => {
             block.avatarPlaceholder.style.display = "none";
             block.formsList.forEach(f => {
-                if (f.keyForm.input.value === 'character') {
-                    if (characterImages.hasOwnProperty(f.valueForm.input.value)) {
-                        if (characterImages[f.valueForm.input.value] !== "") {
+                if (f.keyForm.input.textContent === 'character') {
+                    if (characterImages.hasOwnProperty(f.valueForm.input.textContent)) {
+                        if (characterImages[f.valueForm.input.textContent] !== "") {
                             block.avatarPlaceholder.style.display = "block";
-                            block.avatarPlaceholder.src = characterImages[f.valueForm.input.value];
+                            block.avatarPlaceholder.src = characterImages[f.valueForm.input.textContent];
                         }
                     }
                 }

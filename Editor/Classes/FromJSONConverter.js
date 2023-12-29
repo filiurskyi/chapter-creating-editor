@@ -1,4 +1,4 @@
-function fromJSONConvert(jsonData, blocks, arrows, size, container) {
+function fromJSONConvert(jsonData, container) {
     blocks.forEach(block => {
         block.remove();
     })
@@ -7,16 +7,19 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         arrow.deleteArrow();
     })
 
+    blocks = []
+    arrows = []
+
     jsonData.blocks.forEach(blockInfo => {
         const position = new Vector2(blockInfo.position.x, blockInfo.position.y)
-        const block = new Block(position, size, container)
-        block.header.input.value = blockInfo.header.input
+        const block = new Block(position, blockSize, container)
+        block.header.input.textContent = blockInfo.header.input
         block.id = blockInfo.id
 
         blockInfo.formsList.forEach(formInfo => {
             const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-            keyValuePairForm.keyForm.input.value = formInfo.key.input
-            keyValuePairForm.valueForm.input.value = formInfo.value.input
+            keyValuePairForm.keyForm.input.textContent = formInfo.key.input === "" ? "None" : formInfo.key.input
+            keyValuePairForm.valueForm.input.textContent = formInfo.value.input === "" ? "None" : formInfo.value.input
             block.formsList.push(keyValuePairForm)
         })
 
@@ -27,7 +30,7 @@ function fromJSONConvert(jsonData, blocks, arrows, size, container) {
         const fromBlock = getBlockById(arrowInfo.from, blocks)
         const toBlock = getBlockById(arrowInfo.to, blocks)
         const arrow = new Arrow(container, fromBlock)
-        arrow.form.input.value = arrowInfo.value.input
+        arrow.form.input.textContent = arrowInfo.value.input === "" ? "None" : arrowInfo.value.input
         arrow.setFrom(fromBlock.bottomPoint)
         arrow.setTo(toBlock.topPoint, toBlock)
         arrow.placeArrow()

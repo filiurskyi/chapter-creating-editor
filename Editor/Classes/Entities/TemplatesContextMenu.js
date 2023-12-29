@@ -106,25 +106,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function dialogTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Dialog"
+        block.header.input.textContent = "Dialog"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "character"
+        keyValuePairForm.keyForm.input.textContent = "character"
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "location"
+        keyValuePairForm1.keyForm.input.textContent = "location"
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
 
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm2.keyForm.input.value = "text"
+        keyValuePairForm2.keyForm.input.textContent = "text"
         keyValuePairForm2.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm2)
 
         const keyValuePairForm3 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm3.keyForm.input.value = "emotion"
+        keyValuePairForm3.keyForm.input.textContent = "emotion"
         keyValuePairForm3.valueForm.list = fieldTypes["emotion"]
         block.formsList.push(keyValuePairForm3)
     }
@@ -132,15 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function textTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Text"
+        block.header.input.textContent = "Text"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "location"
+        keyValuePairForm.keyForm.input.textContent = "location"
         keyValuePairForm.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "text"
+        keyValuePairForm1.keyForm.input.textContent = "text"
         keyValuePairForm1.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm1)
     }
@@ -148,15 +148,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function bubbleTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Bubble"
+        block.header.input.textContent = "Bubble"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "text"
+        keyValuePairForm.keyForm.input.textContent = "text"
         keyValuePairForm.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "bubble-type"
+        keyValuePairForm1.keyForm.input.textContent = "bubble-type"
         keyValuePairForm1.valueForm.list = fieldTypes["bubble-type"]
         block.formsList.push(keyValuePairForm1)
     }
@@ -164,20 +164,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function customizeTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Customize"
+        block.header.input.textContent = "Customize"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "character"
+        keyValuePairForm.keyForm.input.textContent = "character"
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "location"
+        keyValuePairForm1.keyForm.input.textContent = "location"
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
 
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm2.keyForm.input.value = "outfit-set"
+        keyValuePairForm2.keyForm.input.textContent = "outfit-set"
         keyValuePairForm2.valueForm.list = fieldTypes["outfit-set"]
         block.formsList.push(keyValuePairForm2)
     }
@@ -185,15 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function animationTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Animation"
+        block.header.input.textContent = "Animation"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "animation"
+        keyValuePairForm.keyForm.input.textContent = "animation"
         keyValuePairForm.valueForm.list = fieldTypes["animation"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "location"
+        keyValuePairForm1.keyForm.input.textContent = "location"
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
     }
@@ -201,15 +201,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function itemTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Item"
+        block.header.input.textContent = "Item"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "item-name"
+        keyValuePairForm.keyForm.input.textContent = "item-name"
         keyValuePairForm.valueForm.list = fieldTypes["item-name"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "add"
+        keyValuePairForm1.keyForm.input.textContent = "add"
         keyValuePairForm1.valueForm.list = fieldTypes["add"]
         block.formsList.push(keyValuePairForm1)
     }
@@ -217,15 +217,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function loveTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Love"
+        block.header.input.textContent = "Love"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "character"
+        keyValuePairForm.keyForm.input.textContent = "character"
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "add"
+        keyValuePairForm1.keyForm.input.textContent = "add"
         keyValuePairForm1.valueForm.list = fieldTypes["add"]
         block.formsList.push(keyValuePairForm1)
     }
@@ -233,15 +233,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function optionTemplate(position = lastMousePosition) {
         const block = createBlock(position)
 
-        block.header.input.value = "Option"
+        block.header.input.textContent = "Option"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "text"
+        keyValuePairForm.keyForm.input.textContent = "text"
         keyValuePairForm.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "premium"
+        keyValuePairForm1.keyForm.input.textContent = "premium"
         keyValuePairForm1.valueForm.list = fieldTypes["premium"]
         block.formsList.push(keyValuePairForm1)
 
@@ -251,10 +251,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function itemCheckTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Item-check"
+        block.header.input.textContent = "Item-check"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "item-name"
+        keyValuePairForm.keyForm.input.textContent = "item-name"
         keyValuePairForm.valueForm.list = fieldTypes["item-name"]
         block.formsList.push(keyValuePairForm)
 
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const block1 = createBlock(new Vector2(lastMousePosition.x + 250, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
-        arrow0.form.input.value = "0"
+        arrow0.form.input.textContent = "0"
         arrow0.setFrom(block.bottomPoint)
         arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
-        arrow1.form.input.value = "1"
+        arrow1.form.input.textContent = "1"
         arrow1.setFrom(block.bottomPoint)
         arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
@@ -283,15 +283,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function choiceTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Choice"
+        block.header.input.textContent = "Choice"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "text"
+        keyValuePairForm.keyForm.input.textContent = "text"
         keyValuePairForm.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "location"
+        keyValuePairForm1.keyForm.input.textContent = "location"
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
 
@@ -327,15 +327,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function choiceByCharacterTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Choice-by-character"
+        block.header.input.textContent = "Choice-by-character"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.value = "character"
+        keyValuePairForm.keyForm.input.textContent = "character"
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.value = "outfit-set"
+        keyValuePairForm1.keyForm.input.textContent = "outfit-set"
         keyValuePairForm1.valueForm.list = fieldTypes["outfit-set"]
         block.formsList.push(keyValuePairForm1)
 
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
-        arrow0.form.input.value = "0"
+        arrow0.form.input.textContent = "0"
         arrow0.setFrom(block.bottomPoint)
         arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
-        arrow1.form.input.value = "clothes-id1"
+        arrow1.form.input.textContent = "clothes-id1"
         arrow1.setFrom(block.bottomPoint)
         arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
         const arrow2 = new Arrow(workplace, block)
-        arrow2.form.input.value = "clothes-id2"
+        arrow2.form.input.textContent = "clothes-id2"
         arrow2.setFrom(block.bottomPoint)
         arrow2.setTo(block2.topPoint, block2)
         arrow2.placeArrow()
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function choiceByChoiceTemplate() {
         const block = createBlock()
 
-        block.header.input.value = "Choice-by-choice"
+        block.header.input.textContent = "Choice-by-choice"
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const block3 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 200))
 
         const arrow0 = new Arrow(workplace, block)
-        arrow0.form.input.value = "0"
+        arrow0.form.input.textContent = "0"
         arrow0.setFrom(block.bottomPoint)
         arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows.push(arrow2)
 
         const arrow3 = new Arrow(workplace, block)
-        arrow3.form.input.value = "cbc"
+        arrow3.form.input.textContent = "cbc"
         arrow3.setFrom(block.bottomPoint)
         arrow3.setTo(block3.topPoint, block3)
         arrow3.placeArrow()
