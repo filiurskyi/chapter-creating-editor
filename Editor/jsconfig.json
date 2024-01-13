@@ -19,6 +19,7 @@
         "Classes/GlobalValues.js",
         "Classes/ShortCuts.js",
         "Classes/SelectionContainer.js",
+        "Classes/LOD.js",
         "Classes/Export/Exporter.js",
         "Classes/Export/Constants/Parameters.js",
         "Classes/Export/Entities/Converter.js",

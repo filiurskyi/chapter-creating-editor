@@ -6,6 +6,12 @@ const State = {
     TEMPLATE_SELECTING: 'TEMPLATE_SELECTING',
 }
 
+const Visibility = {
+    VISIBLE: 'VISIBLE',
+    PARTIALLY_VISIBLE: 'PARTIALLY_VISIBLE',
+    INVISIBLE: 'INVISIBLE'
+}
+
 let blocks = [];
 let arrows = [];
 let scrollable = [];

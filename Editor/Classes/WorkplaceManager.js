@@ -1,12 +1,13 @@
-let dots = []
-const dotsSize = new Vector2(5, 5)
+let lastAddedBlock;
+let pointX;
+let pointY;
 
 document.addEventListener('DOMContentLoaded', () => {
     const workplaceSize = new Vector2(10000, 10000)
     let isCtrlPressed = false;
+    pointX = -workplaceSize.x * screen.width / 200;
+    pointY = -workplaceSize.y * screen.height / 200;
     var panning = false,
-        pointX = -workplaceSize.x * screen.width / 200,
-        pointY = -workplaceSize.y * screen.height / 200,
         start = { x: 0, y: 0 },
         zoom = document.getElementById("zoom"),
         minScale = 0.1,
@@ -26,10 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isCtrlPressed = false;
         }
     });
-
-    function setTransform() {
-        zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
-    }
 
     zoom.onmousedown = function (e) {
         if (e.target === zoom)
@@ -75,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         e.preventDefault();
 
+        if (panning) return;
+
         var xs = (e.clientX - pointX) / scale,
             ys = (e.clientY - pointY) / scale,
             delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
@@ -88,5 +87,61 @@ document.addEventListener('DOMContentLoaded', () => {
         setTransform();
     }
 
+    document.getElementById("target").onclick = function (e) {
+        if (lastAddedBlock === null || lastAddedBlock === undefined) return;
+
+        const targetPosition = lastAddedBlock.position;
+
+        moveViewportTo(targetPosition);
+    };
+
     setTransform();
 })
+
+function setTransform() {
+    zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
+    setLOD();
+}
+
+function moveViewportTo(targetPosition) {
+    scale = 1.0;
+
+    pointX = -targetPosition.x + screen.width / 2;
+    pointY = -targetPosition.y + screen.height / 2;
+
+    setTransform();
+}
+
+function setLOD() {
+    const width = window.innerWidth || document.documentElement.clientWidth;
+    const height = window.innerHeight || document.documentElement.clientHeight;
+
+    let leftTopVisibleCorner = new Vector2(-pointX / scale, -pointY / scale);
+    let rightBottomVisibleCorner = new Vector2((width - pointX) / scale, (height - pointY) / scale);
+
+    leftTopVisibleCorner = leftTopVisibleCorner.multiply(0.99);
+    rightBottomVisibleCorner = rightBottomVisibleCorner.multiply(1.01);
+
+    const visible = [];
+    const invisible = [];
+
+    blocks.forEach(b => {
+        if (b.position.x >= leftTopVisibleCorner.x && b.position.x <= rightBottomVisibleCorner.x &&
+            b.position.y >= leftTopVisibleCorner.y && b.position.y <= rightBottomVisibleCorner.y) {
+            visible.push(b);
+        }
+        else {
+            invisible.push(b);
+        }
+    });
+
+    visible.forEach(b => {
+        b.setVisible(scale <= 0.15 ? Visibility.PARTIALLY_VISIBLE : Visibility.VISIBLE);
+    });
+
+    invisible.forEach(b => {
+        b.setVisible(Visibility.INVISIBLE);
+    });
+
+    // console.log(visible.length, invisible.length);
+} 

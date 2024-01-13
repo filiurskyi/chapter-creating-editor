@@ -41,10 +41,9 @@ function fromJSONConvert(jsonData, container) {
         arrows.push(arrow)
     });
 
-    // var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-    // var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    // window.scrollBy(-100000, -100000);
-    // window.scrollBy(blocks[0].position.x - viewportWidth / 2, blocks[0].position.y - viewportHeight / 2);
+    lastAddedBlock = blocks[blocks.length - 1];
+
+    moveViewportTo(blocks[blocks.length - 1].position);
 }
 
 function getBlockById(id, blocks) {

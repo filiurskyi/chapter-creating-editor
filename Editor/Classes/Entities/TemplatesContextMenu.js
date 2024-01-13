@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             reservedArrow = null;
         }
 
+        lastAddedBlock = block;
+
         blocks.push(block)
 
         state = State.NONE;

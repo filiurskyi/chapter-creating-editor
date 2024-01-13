@@ -165,6 +165,51 @@ class Block {
         this.docElement.classList.add('selected');
     }
 
+    setVisible(visibility) {
+        switch (visibility) {
+            case Visibility.VISIBLE:
+                this.docElement.classList.remove('invisible');
+                this.avatarPlaceholder.classList.remove('invisible');
+                this.addButton.classList.remove('invisible');
+                this.formsList.forEach(f => {
+                    f.form.classList.remove('invisible');
+                });
+                this.arrowsList.forEach(a => {
+                    a.docElement.classList.remove('invisible');
+                    a.form.form.classList.remove('invisible');
+                });
+                break;
+            case Visibility.PARTIALLY_VISIBLE:
+                this.docElement.classList.remove('invisible');
+                this.avatarPlaceholder.classList.add('invisible');
+                this.addButton.classList.add('invisible');
+                this.formsList.forEach(f => {
+                    f.form.classList.add('invisible');
+                });
+                this.arrowsList.forEach(a => {
+                    a.docElement.classList.add('invisible');
+                    a.form.form.classList.add('invisible');
+                });
+                break;
+            case Visibility.INVISIBLE:
+                this.docElement.classList.add('invisible');
+                this.avatarPlaceholder.classList.add('invisible');
+                this.addButton.classList.add('invisible');
+                this.formsList.forEach(f => {
+                    f.form.classList.add('invisible');
+                });
+                this.arrowsList.forEach(a => {
+                    a.docElement.classList.add('invisible');
+                    a.form.form.classList.add('invisible');
+                });
+                break;
+            default:
+                break;
+        }
+
+        this.updateArrows();
+    }
+
     toJSON() {
         return {
             id: this.id,

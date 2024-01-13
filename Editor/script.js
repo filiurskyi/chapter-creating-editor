@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             })
         }
 
-        mousePosition = newMousePosition
+        mousePosition = newMousePosition;
     });
 
     document.addEventListener('mouseup', function (e) {
