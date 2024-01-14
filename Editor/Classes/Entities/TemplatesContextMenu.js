@@ -48,7 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Animation') animationTemplate()
             else if (type == 'Item') itemTemplate()
             else if (type == 'Love') loveTemplate()
+            else if (type == 'Lucky') luckTemplate()
             else if (type == 'Option') optionTemplate()
+            else if (type == 'Love-fork') loveForkTemplate()
+            else if (type == 'Max-love') maxLoveTemplate()
             else if (type == 'Item-check') itemCheckTemplate()
             else if (type == 'Choice') choiceTemplate()
             else if (type == 'Choice-by-character') choiceByCharacterTemplate()
@@ -232,6 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
         block.formsList.push(keyValuePairForm1)
     }
 
+    function luckTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Lucky"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "character"
+        keyValuePairForm.valueForm.list = fieldTypes["character"]
+        block.formsList.push(keyValuePairForm)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "add"
+        keyValuePairForm1.valueForm.list = fieldTypes["add"]
+        block.formsList.push(keyValuePairForm1)
+    }
+
     function optionTemplate(position = lastMousePosition) {
         const block = createBlock(position)
 
@@ -260,11 +279,70 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.valueForm.list = fieldTypes["item-name"]
         block.formsList.push(keyValuePairForm)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 250, lastMousePosition.y + 500))
-        const block1 = createBlock(new Vector2(lastMousePosition.x + 250, lastMousePosition.y + 500))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.textContent = "0"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "1"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
+    }
+
+    function maxLoveTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Max-love"
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "character1"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "character2"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
+    }
+
+    function loveForkTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Love-fork"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "character"
+        keyValuePairForm.valueForm.list = fieldTypes["character"]
+        block.formsList.push(keyValuePairForm)
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "-1"
         arrow0.setFrom(block.bottomPoint)
         arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
@@ -297,9 +375,9 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block0 = optionTemplate(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
+        const block2 = optionTemplate(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.setFrom(block.bottomPoint)
@@ -341,9 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.valueForm.list = fieldTypes["outfit-set"]
         block.formsList.push(keyValuePairForm1)
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.textContent = "0"
@@ -377,10 +455,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         block.header.input.textContent = "Choice-by-choice"
 
-        const block0 = createBlock(new Vector2(lastMousePosition.x - 500, lastMousePosition.y + 500))
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
-        const block2 = createBlock(new Vector2(lastMousePosition.x + 500, lastMousePosition.y + 500))
-        const block3 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 200))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
+        const block3 = createBlock(new Vector2(lastMousePosition.x - 1000, lastMousePosition.y + 200))
 
         const arrow0 = new Arrow(workplace, block)
         arrow0.form.input.textContent = "0"

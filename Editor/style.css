@@ -152,6 +152,7 @@ body {
 
 .formInput {
     width: 100%;
+    max-width: 100%;
     background-color: transparent;
     border: none;
     color: #fff;
@@ -171,6 +172,7 @@ body {
     /* overflow: hidden; */
     resize: none;
     width: 100%;
+    max-width: 100%;
 }
 
 .autocomplete-items {
@@ -233,6 +235,7 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: space-between;
     max-width: 94%;
+    width: 94%;
     background-color: #1c222d;
     margin: 1%;
 }
@@ -288,8 +291,10 @@ body::-webkit-scrollbar {
 .arrow-form {
     border: 1px solid #3b4860;
     border-radius: 100px;
-    width: 75px;
-    height: 20px;
+    min-width: 75px;
+    min-height: 20px;
+    width: fit-content;
+    height: fit-content;
     position: absolute;
     background-color: #111824;
     z-index: 10;

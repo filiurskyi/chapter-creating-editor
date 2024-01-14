@@ -26,6 +26,9 @@ class JSONGenerator {
             new BubbleFrame(),
             new LoveFrame(),
             new ItemCheckFrame(),
+            new MaxLoveFrame(),
+            new LoveForkFrame(),
+            new LuckyFrame(),
         ];
 
         this.bannedIndexes = new Set();

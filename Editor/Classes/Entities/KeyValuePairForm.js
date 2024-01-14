@@ -25,7 +25,6 @@ class KeyValuePairForm {
         this.keyForm.form.style.marginRight = "50px"
         this.valueForm = new Form(this.form, [], null, id, 14, this.inputEvent)
 
-
         const background = document.createElement('div');
         background.classList.add('options')
         this.form.appendChild(background)

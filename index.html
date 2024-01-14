@@ -36,10 +36,14 @@
 </head>
 
 <body>
-    <img src="Editor/Images/logo.png">
+    <img id="logo" src="Editor/Images/logo.png" style="display: none;">
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => window.location.href = 'Editor/index.html', 900);
+            document.getElementById("logo").style.display = "block";
+
+            setTimeout(() => {
+                window.location.href = 'Editor/index.html';
+            }, 900);
         });
     </script>
 </body>
