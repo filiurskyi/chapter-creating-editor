@@ -9,4 +9,5 @@ const fieldTypes = {
     "item-name": ["rose", "key", "crown", "ring", "Levet", "witch_meet", "crystal_of_invisibility", "info_witch", "wristband_siu"],
     "premium": ["true", "false"],
     "bubble-type": ["small", "big"],
+    "luck_check": [0, 1, 2, 3],
 };
