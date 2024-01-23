@@ -34,6 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if ((event.ctrlKey || event.metaKey) && (event.key === 't' || event.key === 'T' || event.key === 'е' || event.key === 'Е')) {
+            event.preventDefault();
+            settingsPopup();
+            return;
+        }
+
         if ((event.ctrlKey || event.metaKey) && (event.key === 'r' || event.key === 'R' || event.key === 'к' || event.key === 'К')) {
             event.preventDefault();
             return;
@@ -218,5 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             popup.style.display = 'none';
         }, 450);
+    }
+
+    function settingsPopup() {
+
     }
 })
