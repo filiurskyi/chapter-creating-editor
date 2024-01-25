@@ -18,7 +18,7 @@ class ChoiceFrame extends Converter {
         let finalFields = [];
         let isTimerChoice = false;
         fields.forEach(field => {
-            if (field.key === "timer") {
+            if (field.key.toLowerCase() === "timer") {
                 isTimerChoice = field.value.toLowerCase() === "true";
             } else {
                 finalFields.push(field);

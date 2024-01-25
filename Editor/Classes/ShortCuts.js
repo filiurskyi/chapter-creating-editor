@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'i' || event.key === 'I' || event.key === 'ш' || event.key === 'Ш')) {
+            event.preventDefault();
+            statsPopupOpen();
+            return;
+        }
+
         if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H' || event.key === 'р' || event.key === 'Р')) {
             event.preventDefault();
             popupHelp();
@@ -49,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("loadButton").addEventListener('click', load)
 
     document.getElementById("exportButton").addEventListener('click', showChapterPopup)
+    document.getElementById("stats-export").addEventListener('click', showChapterPopup)
+
     document.getElementById("helpButton").addEventListener('click', popupHelp)
 
     fileInputToLoad.addEventListener('change', (event) => {
@@ -224,6 +232,27 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             popup.style.display = 'none';
         }, 450);
+    }
+
+    document.getElementById("statButton").addEventListener('click', statsPopupOpen)
+
+    function statsPopupOpen() {
+        document.getElementById("stats").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("stats-window").classList.remove("window-close");
+            document.getElementById("stats-window").classList.add("window-open");
+        }, 1)
+    }
+
+    document.getElementById('stats-close').addEventListener('click', statsPopupClose)
+
+    function statsPopupClose() {
+        document.getElementById("stats-window").classList.add("window-close");
+        document.getElementById("stats-window").classList.remove("window-open");
+
+        setTimeout(() => {
+            document.getElementById("stats").style.display = "none";
+        }, 300)
     }
 
     function settingsPopup() {

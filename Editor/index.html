@@ -114,6 +114,30 @@
         </div>
     </div>
 
+    <div class="stats" id="stats" style="display: none;">
+        <div class="window window-close" id="stats-window">
+            <div class="stats-header">
+                <p>Statistics</p>
+                <img src="Images/Icons/good.png" class="icon" id="stat-icon">
+                <img src="Images/Icons/arrow.png" class="stats-arrow">
+                <button id="stats-export" class="stats-export">
+                    <img src="Images/export.png">
+                    <p>Export .json</p>
+                </button>
+                <img class="close" id="stats-close" src="Images/cross.png">
+            </div>
+            <div class="stats-main">
+                <div class="stats-main-header">
+                    <p id="stat-metrics">Metrics</p>
+                    <p id="stat-console">Console</p>
+                    <p id="stat-list">Check list</p>
+                </div>
+                <div class="stats-main-body" id="stats-main-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen"></div>
 
     <script src="Classes/Entities/Form.js"></script>
     <script src="Classes/Entities/Block.js"></script>
@@ -125,6 +149,7 @@
     <script src="Classes/Constants/FieldTypes.js"></script>
     <script src="Classes/Constants/ArrowTypes.js"></script>
     <script src="Classes/Constants/CharacterImages.js"></script>
+    <script src="Classes/Constants/MetricsList.js"></script>
     <script src="Classes/WorkplaceManager.js"></script>
     <script src="Classes/FromJSONConverter.js"></script>
     <script src="Classes/GlobalValues.js"></script>
@@ -150,6 +175,7 @@
     <script src="Classes/Export/Entities/MaxLoveFrame.js"></script>
     <script src="Classes/Export/Entities/LoveForkFrame.js"></script>
     <script src="Classes/Export/JSONGenerator.js"></script>
+    <script src="Classes/StatisticsManager.js"></script>
     <script src="script.js"></script>
 </body>
 

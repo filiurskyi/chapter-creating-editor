@@ -1,21 +1,5 @@
 function exportToJson(chapter) {
-    blocks.sort((a, b) => {
-        const scaleRate = 3;
-        const ax = Math.round(a.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
-        const ay = Math.round(a.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
-
-        const bx = Math.round(b.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
-        const by = Math.round(b.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
-
-        if (ay === by) {
-            return ax - bx;
-        }
-        return ay - by;
-    });
-
-    blocks.forEach((block, index) => {
-        block.id = index + 1;
-    });
+    generateId();
 
     let data = {
         blocks: blocks,
@@ -132,4 +116,24 @@ function getDuplicate(arrowsList, arrow, type1, type2) {
     });
 
     return duplicateArrows;
+}
+
+function generateId() {
+    blocks.sort((a, b) => {
+        const scaleRate = 3;
+        const ax = Math.round(a.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+        const ay = Math.round(a.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+        const bx = Math.round(b.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+        const by = Math.round(b.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+        if (ay === by) {
+            return ax - bx;
+        }
+        return ay - by;
+    });
+
+    blocks.forEach((block, index) => {
+        block.id = index + 1;
+    });
 }

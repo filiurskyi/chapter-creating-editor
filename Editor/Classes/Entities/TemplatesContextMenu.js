@@ -241,14 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
         block.header.input.textContent = "Lucky"
 
         const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.textContent = "character"
-        keyValuePairForm.valueForm.list = fieldTypes["character"]
+        keyValuePairForm.keyForm.input.textContent = "add"
+        keyValuePairForm.valueForm.list = fieldTypes["add"]
         block.formsList.push(keyValuePairForm)
-
-        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.textContent = "add"
-        keyValuePairForm1.valueForm.list = fieldTypes["add"]
-        block.formsList.push(keyValuePairForm1)
     }
 
     function optionTemplate(position = lastMousePosition) {

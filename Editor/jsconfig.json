@@ -39,6 +39,8 @@
         "Classes/Export/Entities/LoveForkFrame.js",
         "Classes/Export/Exporter.js",
         "Classes/Export/JSONGenerator.js",
+        "Classes/StatisticsManager.js",
+        "Classes/Constants/MetricsList.js",
         "script.js"
     ],
     "exclude": [

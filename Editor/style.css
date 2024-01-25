@@ -5,6 +5,16 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.loading-screen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #1c222d;
+    z-index: 1000;
+}
+
 body {
     color: #1c222d;
 }
@@ -472,7 +482,7 @@ body::-webkit-scrollbar {
     background-color: #111824;
     border: 1px solid #4A87FF;
     border-radius: 50px;
-    z-index: 200;
+    z-index: 202;
     width: 500px;
     height: 250px;
     display: flex;
@@ -633,4 +643,183 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .invisible {
     display: none;
+}
+
+.stats {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 201;
+    margin: 0;
+    padding: 0;
+}
+
+.stats>.window {
+    background-color: #111824;
+    width: 50%;
+    height: 100%;
+    border: 1px solid #4A87FF;
+    transition: transform 0.3s ease-in-out;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats>.window-open {
+    transform: translateX(100%);
+}
+
+.stats>.window-close {
+    transform: translateX(200%);
+}
+
+.stats>.window>.stats-header {
+    display: flex;
+    width: 96%;
+    height: 100px;
+    align-items: center;
+    margin: 0;
+    margin-left: 2%;
+}
+
+.stats>.window>.stats-header>p {
+    color: #fff;
+    font-size: 32px;
+    margin-left: 25px;
+    text-align: center;
+}
+
+.stats>.window>.stats-header>img {
+    margin-left: 25px;
+    height: 20px;
+}
+
+.stats>.window>.stats-header>.icon {
+    height: 35px;
+}
+
+.stats>.window>.stats-header>.close {
+    position: static;
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+}
+
+.stats>.window>.stats-header>.stats-export {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 15px;
+    background-color: rgb(255, 255, 255, 0);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    transition: all ease-in-out 0.15s;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stats>.window>.stats-header>.stats-export>img {
+    width: 25px;
+    margin-right: 15px;
+    transition: all ease-in-out 0.15s;
+}
+
+.stats>.window>.stats-header>.stats-export:hover {
+    background-color: #1c222d;
+}
+
+.stats>.window>.stats-header>.stats-export:active {
+    background-color: #3b4860;
+}
+
+.stats>.window>.stats-header>.stats-export:hover>img {
+    transform: scale(1.5);
+}
+
+.stats>.window>.stats-header>.stats-export:active>img {
+    transform: scale(0.75);
+}
+
+.stats>.window>.stats-main {
+    background-color: #1c222d;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.stats>.window>.stats-main>.stats-main-header {
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+}
+
+.stats>.window>.stats-main>.stats-main-header>p {
+    color: #fff;
+    font-size: 20px;
+    flex-grow: 1;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
+.stats>.window>.stats-main>.stats-main-header>.unactive {
+    background-color: #212e44;
+    border-bottom: 1px solid #4A87FF;
+}
+
+.stats>.window>.stats-main>.stats-main-header>.active {
+    background-color: #263859;
+    border-top: 1px solid #4A87FF;
+    border-left: 1px solid #4A87FF;
+    border-right: 1px solid #4A87FF;
+}
+
+.stats>.window>.stats-main>.stats-main-body {
+    flex-grow: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field {
+    width: 500px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #fff;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>img {
+    height: 100%;
+    padding-right: 20px;
+    padding-left: 10px;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2) {
+    margin-left: auto;
+}
+
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(1) {
+    max-width: 300px;
+    min-width: 300px;
+    flex-grow: 0;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.odd {
+    background-color: #1c222d;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.pair {
+    background-color: #212e44;
 }

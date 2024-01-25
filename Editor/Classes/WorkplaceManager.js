@@ -96,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setTransform();
+
+    setTimeout(() => {
+        document.getElementById("loading-screen").remove();
+    }, 100);
 })
 
 function setTransform() {
@@ -142,6 +146,4 @@ function setLOD() {
     invisible.forEach(b => {
         b.setVisible(Visibility.INVISIBLE);
     });
-
-    // console.log(visible.length, invisible.length);
 } 
