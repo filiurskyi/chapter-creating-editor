@@ -99,6 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
         document.getElementById("loading-screen").remove();
+        const imgElements = document.querySelectorAll('img');
+
+        imgElements.forEach((img) => {
+            img.setAttribute('draggable', 'false');
+        });
     }, 100);
 })
 

@@ -22,6 +22,7 @@ class Form {
         this.image.style.marginRight = "10px"
         this.image.style.transition = "transform ease-in-out 0.3s"
         this.image.style.transform = "rotate(180deg)"
+        this.image.draggable = false
 
         this.autocompleteList = document.createElement('div');
         this.autocompleteList.classList.add('autocomplete-items');

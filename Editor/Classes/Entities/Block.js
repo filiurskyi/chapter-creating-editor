@@ -27,6 +27,7 @@ class Block {
         this.avatarPlaceholder.style.right = "25px"
         this.avatarPlaceholder.style.cursor = "pointer"
         this.avatarPlaceholder.style.borderRadius = "50%"
+        this.avatarPlaceholder.draggable = false;
         this.docElement.appendChild(this.avatarPlaceholder);
 
         this.addButton = document.createElement('button');

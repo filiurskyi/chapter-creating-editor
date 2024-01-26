@@ -680,7 +680,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .stats>.window>.stats-header {
     display: flex;
     width: 96%;
-    height: 100px;
+    max-height: 100px;
+    min-height: 100px;
     align-items: center;
     margin: 0;
     margin-left: 2%;
@@ -757,7 +758,6 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
     padding: 0;
     display: flex;
-
 }
 
 .stats>.window>.stats-main>.stats-main-header>p {
@@ -787,7 +787,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 50px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .stats>.window>.stats-main>.stats-main-body>.stat-field {
@@ -807,8 +807,13 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .stats>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2) {
     margin-left: auto;
+    transition: transform 0.15s ease-in-out;
+    transform-origin: center;
 }
 
+.stats>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2):hover {
+    transform: scale(1.25);
+}
 
 .stats>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(1) {
     max-width: 300px;

@@ -32,6 +32,7 @@ class KeyValuePairForm {
         const resize = document.createElement('img')
         resize.src = 'Images/resize.png'
         resize.classList.add('resize')
+        resize.draggable = false
         background.appendChild(resize)
 
         const textarea = document.createElement('textarea')
@@ -66,6 +67,7 @@ class KeyValuePairForm {
         const remove = document.createElement('img')
         remove.src = 'Images/cross.png'
         remove.classList.add('cross')
+        remove.draggable = false
 
         background.appendChild(remove)
 
