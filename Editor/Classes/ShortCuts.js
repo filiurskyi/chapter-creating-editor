@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let data = {
             blocks: blocks,
             arrows: arrows,
+            checkList: checkList,
         };
 
         let jsonString = JSON.stringify(data);

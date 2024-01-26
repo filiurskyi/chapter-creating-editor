@@ -617,6 +617,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 3px;
     transition: background-color 0.1s ease-in-out;
     z-index: 200;
+    cursor: pointer;
 }
 
 .target:hover {
@@ -708,6 +709,7 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 25px;
     height: 25px;
     margin-left: auto;
+    cursor: pointer;
 }
 
 .stats>.window>.stats-header>.stats-export {
@@ -723,6 +725,7 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 .stats>.window>.stats-header>.stats-export>img {
@@ -791,6 +794,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .stats>.window>.stats-main>.stats-main-body>.stat-field {
+    position: relative;
     width: 500px;
     height: 25px;
     display: flex;
@@ -809,6 +813,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: auto;
     transition: transform 0.15s ease-in-out;
     transform-origin: center;
+    cursor: pointer;
 }
 
 .stats>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2):hover {
@@ -821,10 +826,60 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-grow: 0;
 }
 
+.stats>.window>.stats-main>.stats-main-body>.stat-field>input {
+    flex-grow: 1;
+    background-color: transparent;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>input:focus {
+    outline: none;
+    border-bottom: 1px solid #fff;
+}
+
 .stats>.window>.stats-main>.stats-main-body>.odd {
     background-color: #1c222d;
 }
 
 .stats>.window>.stats-main>.stats-main-body>.pair {
     background-color: #212e44;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>.checklist-delete {
+    height: 50%;
+    padding-right: 10px;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>.checklist-icon {
+    cursor: pointer;
+    transition: transform 0.15s ease-in-out;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>.checklist-icon:hover {
+    transform: scale(1.25);
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>.checklist-add {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    padding: 5px;
+    right: -50px;
+    transition: transform 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.stats>.window>.stats-main>.stats-main-body>.stat-field>.checklist-add:hover {
+    transform: scale(1.25);
 }

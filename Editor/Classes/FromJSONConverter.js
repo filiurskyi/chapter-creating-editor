@@ -44,6 +44,8 @@ function fromJSONConvert(jsonData, container) {
     lastAddedBlock = blocks[blocks.length - 1];
 
     moveViewportTo(blocks[blocks.length - 1].position);
+
+    checkList = jsonData.checkList;
 }
 
 function getBlockById(id, blocks) {
