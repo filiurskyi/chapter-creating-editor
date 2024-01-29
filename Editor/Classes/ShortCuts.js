@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if ((event.ctrlKey || event.metaKey) && (event.key === 't' || event.key === 'T' || event.key === 'е' || event.key === 'Е')) {
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'u' || event.key === 'U' || event.key === 'г' || event.key === 'Г')) {
             event.preventDefault();
-            settingsPopup();
+            customizePopupOpen();
             return;
         }
 
@@ -58,6 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("stats-export").addEventListener('click', showChapterPopup)
 
     document.getElementById("helpButton").addEventListener('click', popupHelp)
+
+    document.getElementById("customizeButton").addEventListener('click', customizePopupOpen)
+
 
     fileInputToLoad.addEventListener('change', (event) => {
         const files = event.target.files;
@@ -153,6 +156,47 @@ document.addEventListener('DOMContentLoaded', () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    }
+
+    function showWarningPopup() {
+        // let iconState;
+
+        // let newState1 = getMetrics(body, () => { }, () => { });
+        // let newState2 = getConsoleErrors(body, () => { }, () => { });
+
+        // const ranks = {
+        //     GOOD: 1,
+        //     WARNING: 2,
+        //     ERROR: 3
+        // };
+
+        // if (ranks[newState1] > ranks[newState2]) {
+        //     iconState = newState1;
+        // } else if (ranks[newState1] < ranks[newState2]) {
+        //     iconState = newState2;
+        // } else {
+        //     iconState = newState2;
+        // }
+
+        // console.log(iconState);
+
+        // if (iconState === StatState.GOOD) {
+        showChapterPopup();
+        return;
+        // }
+
+        // const icon = document.getElementById("errors-warning-popup-img");
+
+        // switch (iconState) {
+        //     case StatState.WARNING:
+        //         icon.src = "Images/Icons/warning.png";
+        //         break;
+        //     case StatState.ERROR:
+        //         icon.src = "Images/Icons/error.png";
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 
     function showChapterPopup() {
@@ -256,7 +300,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300)
     }
 
-    function settingsPopup() {
-
+    function customizePopupOpen() {
+        document.getElementById("customize").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("customize-window").classList.remove("window-close");
+            document.getElementById("customize-window").classList.add("window-open");
+        }, 1)
     }
+
+    document.getElementById('customize-close').addEventListener('click', customizePopupClose)
+
+    function customizePopupClose() {
+        document.getElementById("customize-window").classList.add("window-close");
+        document.getElementById("customize-window").classList.remove("window-open");
+
+        setTimeout(() => {
+            document.getElementById("customize").style.display = "none";
+        }, 300)
+    }
+
+
 })

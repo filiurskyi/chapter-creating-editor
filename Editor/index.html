@@ -59,11 +59,11 @@
                 <p>Ctrl+H</p>
             </div>
         </button>
-        <button id="settingsButton" class="headerButton">
+        <button id="customizeButton" class="headerButton">
             <img src="Images/settings.png">
             <div>
-                <h3>Settings</h3>
-                <p>Ctrl+T</p>
+                <h3>Customize</h3>
+                <p>Ctrl+U</p>
             </div>
         </button>
     </div>
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div class="stats" id="stats" style="display: none;">
+    <div class="black-panel" id="stats" style="display: none;">
         <div class="window window-close" id="stats-window">
             <div class="stats-header">
                 <p>Statistics</p>
@@ -137,7 +137,20 @@
         </div>
     </div>
 
+    <div class="black-panel" id="customize" style="display: none;">
+        <div class="window window-close customize" id="customize-window">
+            <div class="customize-header">
+                <p>Customize</p>
+                <img class="close" id="customize-close" src="Images/cross.png">
+            </div>
+            <div class="customize-body" id="customize-body">
+                <div class="customize-body-content" id="customize-body-content"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="loading-screen" id="loading-screen"></div>
+    <div class="tooltip" id="tooltip"></div>
 
     <script src="Classes/Entities/Form.js"></script>
     <script src="Classes/Entities/Block.js"></script>
@@ -149,10 +162,11 @@
     <script src="Classes/Constants/FieldTypes.js"></script>
     <script src="Classes/Constants/ArrowTypes.js"></script>
     <script src="Classes/Constants/CharacterImages.js"></script>
+    <script src="Classes/Constants/Colors.js"></script>
+    <script src="Classes/GlobalValues.js"></script>
     <script src="Classes/Constants/MetricsList.js"></script>
     <script src="Classes/WorkplaceManager.js"></script>
     <script src="Classes/FromJSONConverter.js"></script>
-    <script src="Classes/GlobalValues.js"></script>
     <script src="Classes/ShortCuts.js"></script>
     <script src="Classes/SelectionContainer.js"></script>
     <script src="Classes/Export/Exporter.js"></script>
@@ -175,7 +189,11 @@
     <script src="Classes/Export/Entities/MaxLoveFrame.js"></script>
     <script src="Classes/Export/Entities/LoveForkFrame.js"></script>
     <script src="Classes/Export/JSONGenerator.js"></script>
-    <script src="Classes/StatisticsManager.js"></script>
+    <script src="Classes/Statistics/StatisticsManager.js"></script>
+    <script src="Classes/Statistics/Metrics.js"></script>
+    <script src="Classes/Statistics/Console.js"></script>
+    <script src="Classes/Statistics/CheckList.js"></script>
+    <script src="Classes/CustomizeManager.js"></script>
     <script src="script.js"></script>
 </body>
 

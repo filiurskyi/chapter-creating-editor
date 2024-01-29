@@ -12,6 +12,12 @@ const Visibility = {
     INVISIBLE: 'INVISIBLE'
 }
 
+const StatState = {
+    GOOD: 'GOOD',
+    WARNING: 'WARNING',
+    ERROR: 'ERROR'
+}
+
 let blocks = [];
 let arrows = [];
 let scrollable = [];
