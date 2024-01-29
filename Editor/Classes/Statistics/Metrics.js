@@ -147,21 +147,18 @@ function getMetrics(body, showTooltipMethod, hideTooltipMethod) {
 
         const name = document.createElement('p');
         name.textContent = metricsList[i][0];
-        name.addEventListener('mouseover', (e) => {
-            showTooltipMethod(metricsList[i][6], new Vector2(e.clientX, e.clientY));
-        });
-
-        name.addEventListener('mouseout', () => {
-            hideTooltipMethod();
-        });
         element.appendChild(name);
 
         const value = document.createElement('p');
         value.textContent = values[i];
         element.appendChild(value);
 
+        const borders = document.createElement('p');
+        borders.textContent = metricsList[i][2] + " - " + (metricsList[i][3] === Number.MAX_VALUE ? "Infinity" : metricsList[i][3]);
+        element.appendChild(borders);
+
+        const statArrow = document.createElement('img');
         if (metricsList[i][5] && iStat !== StatState.GOOD) {
-            const statArrow = document.createElement('img');
             statArrow.src = "Images/Icons/link.png";
             statArrow.draggable = false;
             statArrow.addEventListener('click', () => {
@@ -179,6 +176,15 @@ function getMetrics(body, showTooltipMethod, hideTooltipMethod) {
             })
             element.appendChild(statArrow);
         }
+
+        element.addEventListener('mouseover', (e) => {
+            if (e.target !== statArrow)
+                showTooltipMethod(metricsList[i][6], new Vector2(e.clientX, e.clientY));
+        });
+
+        element.addEventListener('mouseout', () => {
+            hideTooltipMethod();
+        });
 
         body.appendChild(element);
     }

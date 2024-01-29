@@ -129,13 +129,7 @@ function getConsoleErrors(body, showTooltipMethod, hideTooltipMethod) {
 
         const name = document.createElement('p');
         name.textContent = error.message;
-        name.addEventListener('mouseover', (e) => {
-            showTooltipMethod(error.tip, new Vector2(e.clientX, e.clientY));
-        });
 
-        name.addEventListener('mouseout', () => {
-            hideTooltipMethod();
-        });
         element.appendChild(name);
 
         const statArrow = document.createElement('img');
@@ -151,6 +145,16 @@ function getConsoleErrors(body, showTooltipMethod, hideTooltipMethod) {
                 document.getElementById("stats").style.display = "none";
             }, 300);
         })
+
+        element.addEventListener('mouseover', (e) => {
+            if (e.target !== statArrow)
+                showTooltipMethod(error.tip, new Vector2(e.clientX, e.clientY));
+        });
+
+        element.addEventListener('mouseout', () => {
+            hideTooltipMethod();
+        });
+
         element.appendChild(statArrow);
 
         body.appendChild(element);

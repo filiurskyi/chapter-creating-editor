@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    document.cookie = 'username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
     const workplace = document.getElementById('workplace')
 
     var rect = workplace.getBoundingClientRect();
@@ -10,7 +12,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let newMousePosition = new Vector2(e.clientX - rect.left, e.clientY - rect.top)
         newMousePosition.x /= scale
         newMousePosition.y /= scale
-
 
         if (arrowToMove != null && state === State.ARROW_MOVING) {
             arrowToMove.placeArrow(new Vector2(e.clientX - 5, e.clientY - 5))

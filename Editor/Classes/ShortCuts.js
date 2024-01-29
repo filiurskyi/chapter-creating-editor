@@ -290,6 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('stats-close').addEventListener('click', statsPopupClose)
+    document.getElementById("stats").addEventListener('click', (e) => {
+        if (e.target.id === "stats")
+            statsPopupClose();
+    })
+
+    document.getElementById("stats").onwheel = function (e) {
+        e.preventDefault();
+    }
 
     function statsPopupClose() {
         document.getElementById("stats-window").classList.add("window-close");
@@ -309,6 +317,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.getElementById('customize-close').addEventListener('click', customizePopupClose)
+
+    document.getElementById("customize").addEventListener('click', (e) => {
+        if (e.target.id === "customize")
+            customizePopupClose();
+    })
+
+    document.getElementById("customize").onwheel = function (e) {
+        e.preventDefault();
+    }
 
     function customizePopupClose() {
         document.getElementById("customize-window").classList.add("window-close");
