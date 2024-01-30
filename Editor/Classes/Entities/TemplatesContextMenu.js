@@ -261,6 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.valueForm.list = fieldTypes["premium"]
         block.formsList.push(keyValuePairForm1)
 
+        const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm2.keyForm.input.textContent = "thought"
+        keyValuePairForm2.valueForm.list = fieldTypes["thought"]
+        block.formsList.push(keyValuePairForm2)
+
         return block
     }
 
@@ -369,6 +374,16 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.textContent = "location"
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
         block.formsList.push(keyValuePairForm1)
+
+        const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm2.keyForm.input.textContent = "emotion"
+        keyValuePairForm2.valueForm.list = fieldTypes["emotion"]
+        block.formsList.push(keyValuePairForm2)
+
+        const keyValuePairForm3 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm3.keyForm.input.textContent = "thought"
+        keyValuePairForm3.valueForm.list = fieldTypes["thought"]
+        block.formsList.push(keyValuePairForm3)
 
         const block0 = optionTemplate(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
