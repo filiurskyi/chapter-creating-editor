@@ -1,4 +1,4 @@
-function getMetrics(body, showTooltipMethod, hideTooltipMethod) {
+function getMetrics(body) {
     const values = [];
     values[0] = blocks.length;
     for (let i = 1; i < metricsList.length; i++) {
@@ -56,7 +56,7 @@ function getMetrics(body, showTooltipMethod, hideTooltipMethod) {
                     values[10]++;
                 }
 
-                if (value !== undefined && backgroundsSet.has(value) === false) {
+                if (frameType !== 'Animation' && value !== undefined && backgroundsSet.has(value) === false) {
                     backgroundsSet.add(value);
                 }
             }
@@ -179,11 +179,11 @@ function getMetrics(body, showTooltipMethod, hideTooltipMethod) {
 
         element.addEventListener('mouseover', (e) => {
             if (e.target !== statArrow)
-                showTooltipMethod(metricsList[i][6], new Vector2(e.clientX, e.clientY));
+                showTooltip(metricsList[i][6], new Vector2(e.clientX, e.clientY));
         });
 
         element.addEventListener('mouseout', () => {
-            hideTooltipMethod();
+            hideTooltip();
         });
 
         body.appendChild(element);

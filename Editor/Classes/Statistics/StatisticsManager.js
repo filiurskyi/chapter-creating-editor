@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('stat-list');
     const icon = document.getElementById('stat-icon');
     const body = document.getElementById('stats-main-body');
-    const tooltip = document.getElementById('tooltip');
 
     document.getElementById('statButton').addEventListener('click', () => setWindow(lastWindow))
 
@@ -54,13 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 metrics.classList.add("active");
                 statConsole.classList.add("unactive");
                 list.classList.add("unactive");
-                iconState = getMetrics(body, showTooltip, hideTooltip);
+                iconState = getMetrics(body);
                 break;
             case Window.CONSOLE:
                 metrics.classList.add("unactive");
                 statConsole.classList.add("active");
                 list.classList.add("unactive");
-                iconState = getConsoleErrors(body, showTooltip, hideTooltip);
+                iconState = getConsoleErrors(body);
                 break;
             case Window.LIST:
                 metrics.classList.add("unactive");
@@ -89,18 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
         lastWindow = window;
     }
 
-    function showTooltip(message, position) {
-        if (message === undefined || message === null) return;
-        if (position === undefined || position === null) return;
 
-        tooltip.textContent = message;
-        tooltip.style.display = 'block';
-
-        tooltip.style.left = `${position.x}px`;
-        tooltip.style.top = `${position.y}px`;
-    }
-
-    function hideTooltip() {
-        tooltip.style.display = 'none';
-    }
 })

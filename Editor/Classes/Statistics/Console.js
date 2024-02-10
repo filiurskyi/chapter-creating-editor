@@ -1,4 +1,4 @@
-function getConsoleErrors(body, showTooltipMethod, hideTooltipMethod) {
+function getConsoleErrors(body) {
     const errors = [];
     blocks.forEach(block => {
         const frameType = block.header.input.textContent;
@@ -148,11 +148,11 @@ function getConsoleErrors(body, showTooltipMethod, hideTooltipMethod) {
 
         element.addEventListener('mouseover', (e) => {
             if (e.target !== statArrow)
-                showTooltipMethod(error.tip, new Vector2(e.clientX, e.clientY));
+                showTooltip(error.tip, new Vector2(e.clientX, e.clientY));
         });
 
         element.addEventListener('mouseout', () => {
-            hideTooltipMethod();
+            hideTooltip();
         });
 
         element.appendChild(statArrow);

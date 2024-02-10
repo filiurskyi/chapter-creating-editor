@@ -14,11 +14,22 @@ class Arrow {
             let element = document.createElement('div')
             this.arrowParts.push(element)
             this.docElement.appendChild(element)
-            element.classList.add('arrow')
+            element.classList.add('arrow');
 
-            element.addEventListener('click', (e) => {
+            const clickZone = document.createElement('div');
+            clickZone.style.position = 'absolute';
+            clickZone.style.top = '-10px';
+            clickZone.style.left = '-10px';
+            clickZone.style.bottom = '-10px';
+            clickZone.style.right = '-10px';
+            clickZone.style.cursor = 'pointer';
+
+            clickZone.addEventListener('click', (e) => {
                 this.select();
             });
+
+            element.appendChild(clickZone);
+
         }
 
         this.docElement.addEventListener('mousedown', (e) => {
@@ -50,6 +61,8 @@ class Arrow {
     setTo(to, toBlock) {
         this.to = to
         this.toBlock = toBlock
+
+        trySetBegin(this.fromBlock)
     }
 
     placeArrow(mouse) {
@@ -152,6 +165,8 @@ class Arrow {
     deleteArrow() {
         arrows = arrows.filter(item => item !== this);
         blocks.forEach(b => b.arrowsList = b.arrowsList.filter(item => item !== this));
+
+        trySetBegin(this.toBlock);
 
         this.docElement.remove();
         this.form.form.remove();

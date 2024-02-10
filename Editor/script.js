@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 if (b.docElement.classList.contains('selected')) {
                     b.placeToMousePosition(delta, cellSize)
                 }
+
+                trySetBegin(b);
             })
         }
 
@@ -34,8 +36,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (state === State.ARROW_MOVING && e.button === 0) {
             for (let i = 0; i < blocks.length; i++) {
                 if (e.target === blocks[i].arrowTrigger) {
-                    arrowToMove.setTo(blocks[i].topPoint, blocks[i])
                     blocks[i].arrowsList.push(arrowToMove)
+                    arrowToMove.setTo(blocks[i].topPoint, blocks[i])
                 }
             }
 

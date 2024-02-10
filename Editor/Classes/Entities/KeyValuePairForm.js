@@ -15,6 +15,8 @@ class KeyValuePairForm {
             this.valueForm.list = list;
 
             setAvatarImage();
+            isPremium();
+            isComment();
 
             block.updateArrows();
         }
@@ -74,6 +76,8 @@ class KeyValuePairForm {
         remove.addEventListener('click', () => {
             block.formsList = block.formsList.filter(item => item !== this)
             setAvatarImage();
+            isPremium();
+            isComment();
             this.form.remove();
         })
 
@@ -90,6 +94,34 @@ class KeyValuePairForm {
                 }
             });
         }
+
+        const isPremium = () => {
+            let isPremium = false;
+            const link = "Images/Icons/premium.png";
+
+            block.formsList.forEach(f => {
+                if (f.keyForm.input.textContent === 'premium') {
+                    if (f.valueForm.input.textContent === 'true') {
+                        isPremium = true;
+                    }
+                }
+            });
+
+            isPremium ? block.addIcon(link) : block.removeIcons(link);
+        };
+
+        const isComment = () => {
+            let isComment = false;
+            const link = "Images/Icons/chat.png";
+
+            block.formsList.forEach(f => {
+                if (f.keyForm.input.textContent === 'comment') {
+                    isComment = true;
+                }
+            });
+
+            isComment ? block.addIcon(link) : block.removeIcons(link);
+        };
     }
 
     toJSON() {

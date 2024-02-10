@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state = State.NONE;
 
+        trySetBegin(block);
+
         return block
     }
 
@@ -118,11 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
-        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.textContent = "location"
-        keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
-
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
         keyValuePairForm2.keyForm.input.textContent = "text"
         keyValuePairForm2.valueForm.list = fieldTypes["text"]
@@ -132,6 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm3.keyForm.input.textContent = "emotion"
         keyValuePairForm3.valueForm.list = fieldTypes["emotion"]
         block.formsList.push(keyValuePairForm3)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "location"
+        keyValuePairForm1.valueForm.list = fieldTypes["location"]
+        block.formsList.push(keyValuePairForm1)
     }
 
     function textTemplate() {
@@ -139,15 +141,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         block.header.input.textContent = "Text"
 
-        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm.keyForm.input.textContent = "location"
-        keyValuePairForm.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm)
-
         const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
         keyValuePairForm1.keyForm.input.textContent = "text"
         keyValuePairForm1.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm1)
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "location"
+        keyValuePairForm.valueForm.list = fieldTypes["location"]
+        block.formsList.push(keyValuePairForm)
     }
 
     function bubbleTemplate() {
@@ -176,15 +178,15 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.valueForm.list = fieldTypes["character"]
         block.formsList.push(keyValuePairForm)
 
-        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.textContent = "location"
-        keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
-
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
         keyValuePairForm2.keyForm.input.textContent = "outfit-set"
         keyValuePairForm2.valueForm.list = fieldTypes["outfit-set"]
         block.formsList.push(keyValuePairForm2)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "location"
+        keyValuePairForm1.valueForm.list = fieldTypes["location"]
+        block.formsList.push(keyValuePairForm1)
     }
 
     function animationTemplate() {
@@ -370,11 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm)
 
-        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
-        keyValuePairForm1.keyForm.input.textContent = "location"
-        keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
-
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
         keyValuePairForm2.keyForm.input.textContent = "emotion"
         keyValuePairForm2.valueForm.list = fieldTypes["emotion"]
@@ -384,6 +381,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm3.keyForm.input.textContent = "thought"
         keyValuePairForm3.valueForm.list = fieldTypes["thought"]
         block.formsList.push(keyValuePairForm3)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "location"
+        keyValuePairForm1.valueForm.list = fieldTypes["location"]
+        block.formsList.push(keyValuePairForm1)
 
         const block0 = optionTemplate(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))

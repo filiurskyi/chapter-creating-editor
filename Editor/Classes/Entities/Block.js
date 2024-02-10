@@ -4,6 +4,8 @@ class Block {
         this.position = position;
         this.id = 0
 
+        this.icons = new Set();
+
         this.docElement = document.createElement('div');
         this.docElement.id = 'frame';
         this.docElement.classList.add('frame');
@@ -29,6 +31,10 @@ class Block {
         this.avatarPlaceholder.style.borderRadius = "50%"
         this.avatarPlaceholder.draggable = false;
         this.docElement.appendChild(this.avatarPlaceholder);
+
+        this.iconContainer = document.createElement('div');
+        this.iconContainer.classList.add('icon-holder');
+        this.docElement.appendChild(this.iconContainer);
 
         this.addButton = document.createElement('button');
         this.addButton.textContent = '+ Add';
@@ -58,7 +64,12 @@ class Block {
         point.appendChild(this.bottomPoint);
         this.header = new Form(this.docElement, [...frameTypes.keys()], this.addButton, -1, 16, (value) => {
             let color = frameTypes.get(value)
-            this.changeColor(color ? color : '#fff')
+            this.changeColor(color ? color : '#fff');
+            const loveLink = "Images/Icons/love.png";
+            const luckyLink = "Images/Icons/luck.png";
+
+            (value === 'Love') ? this.addIcon(loveLink) : this.removeIcons(loveLink);
+            (value === 'Lucky') ? this.addIcon(luckyLink) : this.removeIcons(luckyLink);
         });
         this.header.form.style.marginBottom = '10px';
         this.header.form.style.marginLeft = '10px';
@@ -90,7 +101,7 @@ class Block {
                     return;
                 }
 
-                if (e.target !== this.docElement) return
+                if (e.target !== this.docElement) return;
 
                 if (state === State.NONE) {
                     state = State.BLOCKS_MOVING;
@@ -150,13 +161,39 @@ class Block {
         }
     }
 
+    addIcon(icon) {
+        if (!this.icons.has(icon)) {
+            this.icons.add(icon);
+            this.recalculateIcons();
+        }
+    }
+
+    removeIcons(icon) {
+        if (this.icons.has(icon)) {
+            this.icons.delete(icon);
+            this.recalculateIcons();
+        }
+    }
+
+    recalculateIcons() {
+        this.iconContainer.innerHTML = '';
+        this.icons.forEach(icon => {
+            const img = document.createElement('img');
+            img.src = icon;
+            img.draggable = false;
+            this.iconContainer.appendChild(img);
+        });
+    }
+
     remove() {
-        this.docElement.remove()
+        this.docElement.remove();
         this.arrowsList.forEach(arrow => {
             arrow.deleteArrow()
         })
 
         blocks = blocks.filter(item => item !== this);
+
+        this.docElement = null;
     }
 
     select() {

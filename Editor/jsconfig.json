@@ -46,6 +46,8 @@
         "Classes/Constants/MetricsList.js",
         "Classes/Constants/Colors.js",
         "Classes/CustomizeManager.js",
+        "Classes/Entities/Tooltip.js",
+        "Classes/StoryBorders.js",
         "script.js"
     ],
     "exclude": [
