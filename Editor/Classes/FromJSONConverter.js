@@ -10,11 +10,21 @@ function fromJSONConvert(jsonData, container) {
     blocks = []
     arrows = []
 
+    let firstBlock = true;
+    let delta = 0;
+
     jsonData.blocks.forEach(blockInfo => {
-        const position = new Vector2(blockInfo.position.x, blockInfo.position.y)
+        let position = new Vector2(blockInfo.position.x, blockInfo.position.y - delta)
+
+        if (firstBlock) {
+            position.y = 500;
+            delta = blockInfo.position.y - 500;
+            firstBlock = false;
+        }
+
         const block = new Block(position, blockSize, container)
-        block.header.input.textContent = blockInfo.header.input
-        block.id = blockInfo.id
+        block.header.input.textContent = blockInfo.header.input;
+        block.id = blockInfo.id;
 
         blockInfo.formsList.forEach(formInfo => {
             const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
