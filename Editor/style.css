@@ -456,23 +456,6 @@ body::-webkit-scrollbar {
     font-size: 24px;
 }
 
-.close {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 30px;
-    right: 30px;
-    transition: all ease 0.2s;
-}
-
-.close:hover {
-    transform: scale(1.15);
-}
-
-.close:active {
-    transform: scale(0.75);
-}
-
 .chapter-popup {
     position: fixed;
     top: 50%;
@@ -678,7 +661,7 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: translateX(200%);
 }
 
-.black-panel>.window>.stats-header {
+.black-panel>.window>.side-header {
     display: flex;
     width: 96%;
     max-height: 100px;
@@ -688,32 +671,24 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: 2%;
 }
 
-.black-panel>.window>.stats-header>p {
+.black-panel>.window>.side-header>p {
     color: #fff;
     font-size: 32px;
     margin-left: 25px;
     text-align: center;
 }
 
-.black-panel>.window>.stats-header>img {
+.black-panel>.window>.side-header>img:not(.close):not(.icon) {
     margin-left: 25px;
     height: 20px;
 }
 
-.black-panel>.window>.stats-header>.icon {
+.black-panel>.window>.side-header>.icon {
+    margin-left: 25px;
     height: 35px;
 }
 
-.black-panel>.window>.stats-header>.close {
-    position: static;
-    width: 25px;
-    height: 25px;
-    margin-left: auto;
-    margin-right: 25px;
-    cursor: pointer;
-}
-
-.black-panel>.window>.stats-header>.stats-export {
+.black-panel>.window>.side-header>.header-button {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -726,29 +701,34 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.black-panel>.window>.stats-header>.stats-export>img {
+.black-panel>.window>.side-header>.header-button>img {
     width: 25px;
     margin-right: 15px;
     transition: all ease-in-out 0.15s;
 }
 
-.black-panel>.window>.stats-header>.stats-export:hover {
+.black-panel>.window>.side-header>.header-button:hover {
     background-color: #1c222d;
 }
 
-.black-panel>.window>.stats-header>.stats-export:active {
+.black-panel>.window>.side-header>.header-button:active {
     background-color: #3b4860;
 }
 
-.black-panel>.window>.stats-header>.stats-export:hover>img {
+.black-panel>.window>.side-header>.header-button:hover>img {
     transform: scale(1.5);
 }
 
-.black-panel>.window>.stats-header>.stats-export:active>img {
+.black-panel>.window>.side-header>.header-button:active>img {
     transform: scale(0.75);
+}
+
+.black-panel>.window>.side-header>.help-header-button {
+    margin-left: 100px;
 }
 
 .black-panel>.window>.stats-main {
@@ -1016,4 +996,86 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
     line-height: 100px;
     font-size: 24px;
+}
+
+.close {
+    width: 25px;
+    height: 25px;
+    margin-right: 50px;
+    margin-left: auto;
+    transition: all ease 0.2s;
+    cursor: pointer;
+}
+
+.close:hover {
+    transform: scale(1.15);
+}
+
+.close:active {
+    transform: scale(0.75);
+}
+
+.black-panel>.window>.help-main {
+    background-color: #1c222d;
+    flex-grow: 1;
+    display: flex;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    overflow: hidden;
+}
+
+.black-panel>.window>.help-main>.interactive-list {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.interactive-element {
+    display: flex;
+    width: 100%;
+    height: 65px;
+    align-items: center;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.interactive-element>p {
+    color: #fff;
+    font-size: 20px;
+    width: 40%;
+    margin-right: 10%;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.interactive-element>img {
+    max-height: 35px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.black-panel>.window>.help-main>.interactive-list {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.black-panel>.window>.help-main>.terminator {
+    background-color: #ff4a54;
+    width: 1px;
+    height: 100%;
+    margin-right: 6%;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.interactive-element>p:nth-child(2) {
+    color: #AEC9FF;
+    font-weight: 100;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.change-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.black-panel>.window>.help-main>.interactive-list>.change-list>p {
+    color: #fff;
+    margin-bottom: 15px;
 }

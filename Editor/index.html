@@ -72,37 +72,115 @@
         <img src="Images/target.png">
     </div>
 
-    <div class="popup" id="popup" style="display: none;">
-        <div class="popup-item">
-            <img src="Images/Buttons/Center.png">
-            <p>Drag</p>
+    <div class="black-panel" id="help" style="display: none;">
+        <div class="window window-close" id="help-window">
+            <div class="side-header">
+                <p>Help</p>
+                <a class="header-button help-header-button"
+                    href="https://docs.google.com/document/d/1n1ZzeUs44A2kmLjokA5K4eTSwA4Qu46xhLXFN7OOqLI/edit#heading=h.atk6pn2togi0"
+                    target=”_blank”>
+                    <img src="Images/Icons/link.png">
+                    <p>Documentation</p>
+                </a>
+                <img class="close" id="help-close" src="Images/cross.png">
+            </div>
+            <div class="help-main">
+                <div class="interactive-list">
+                    <div class="interactive-element">
+                        <p>Select</p>
+                        <img src="Images/Buttons/Left.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Select more</p>
+                        <img src="Images/Buttons/Left.png">
+                        <img src="Images/Buttons/plus.png" width="10" height="10">
+                        <img src="Images/Buttons/Shift.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Drag</p>
+                        <img src="Images/Buttons/Center.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Drag</p>
+                        <img src="Images/Buttons/Left.png">
+                        <img src="Images/Buttons/plus.png" width="10" height="10">
+                        <img src="Images/Buttons/Ctrl.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Zoom</p>
+                        <img src="Images/Buttons/Center.png">
+                        <img src="Images/Buttons/Scroll.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Creation menu</p>
+                        <img src="Images/Buttons/Right.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Delete item</p>
+                        <img src="Images/Buttons/Del.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Move to last frame</p>
+                        <img src="Images/target.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Add line</p>
+                        <img src="Images/Buttons/Left.png">
+                        <img src="Images/Buttons/x.png" width="10" height="10">
+                        <img src="Images/Buttons/Circle.png" width="20" height="20">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Full text mode</p>
+                        <img src="Images/Buttons/Resize.png">
+                    </div>
+                    <div class="interactive-element">
+                        <p>Delete key</p>
+                        <img src="Images/Buttons/Delete.png">
+                    </div>
+                </div>
+                <div class="terminator"></div>
+                <div class="interactive-list">
+                    <div class="interactive-element">
+                        <p>Save file</p>
+                        <p>Ctrl+S</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Open file</p>
+                        <p>Ctrl+O</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Export</p>
+                        <p>Ctrl+E</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Statictics</p>
+                        <p>Ctrl+I</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Help</p>
+                        <p>Ctrl+H</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Customize</p>
+                        <p>Ctrl+U</p>
+                    </div>
+                    <div class="interactive-element">
+                        <p>Version</p>
+                        <p style="color:#FF5E7B">v1.0.0</p>
+                    </div>
+                    <div class="change-list">
+                        <p>Something new 1</p>
+                        <p>Something new 2</p>
+                        <p>Something new 3</p>
+                        <p>Something new 4</p>
+                        <p>Something new 5</p>
+                        <p>Something new 6</p>
+                        <p>Something new 7</p>
+                        <p>Something new 8</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="popup-item">
-            <img src="Images/Buttons/Scroll.png">
-            <p>Zoom</p>
-        </div>
-        <div class="popup-item">
-            <img src="Images/Buttons/Shift.png">
-            <img src="Images/Buttons/plus.png">
-            <img src="Images/Buttons/Left.png">
-            <p>Add to selected</p>
-        </div>
-        <div class="popup-item">
-            <img src="Images/Buttons/Right.png">
-            <p>Creation menu</p>
-        </div>
-        <div class="popup-item">
-            <img src="Images/Buttons/Left.png">
-            <p>Select item</p>
-        </div>
-        <div class="popup-item">
-            <img src="Images/Buttons/Del.png">
-            <p>Delete selected item</p>
-        </div>
-        <img class="close" id="close" src="Images/cross.png">
-        <a class="doc-button"
-            href="https://docs.google.com/document/d/1n1ZzeUs44A2kmLjokA5K4eTSwA4Qu46xhLXFN7OOqLI/edit#heading=h.atk6pn2togi0"
-            target=”_blank”>Documentation</a>
     </div>
 
     <div class="chapter-popup" id="chapter-popup" style="display: none;">
@@ -116,11 +194,11 @@
 
     <div class="black-panel" id="stats" style="display: none;">
         <div class="window window-close" id="stats-window">
-            <div class="stats-header">
+            <div class="side-header">
                 <p>Statistics</p>
                 <img src="Images/Icons/good.png" class="icon" id="stat-icon">
                 <img src="Images/Icons/arrow.png" class="stats-arrow">
-                <button id="stats-export" class="stats-export">
+                <button id="stats-export" class="header-button">
                     <img src="Images/export.png">
                     <p>Export .json</p>
                 </button>
@@ -139,7 +217,7 @@
 
     <div class="black-panel" id="customize" style="display: none;">
         <div class="window window-close customize" id="customize-window">
-            <div class="customize-header">
+            <div class="side-header">
                 <p>Customize</p>
                 <img class="close" id="customize-close" src="Images/cross.png">
             </div>

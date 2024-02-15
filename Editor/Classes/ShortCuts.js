@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if ((event.ctrlKey || event.metaKey) && (event.key === 'h' || event.key === 'H' || event.key === 'р' || event.key === 'Р')) {
             event.preventDefault();
-            popupHelp();
+            helpPopupOpen();
             return;
         }
 
@@ -56,8 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById("exportButton").addEventListener('click', showChapterPopup)
     document.getElementById("stats-export").addEventListener('click', showChapterPopup)
-
-    document.getElementById("helpButton").addEventListener('click', popupHelp)
 
     document.getElementById("customizeButton").addEventListener('click', customizePopupOpen)
 
@@ -258,25 +256,33 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
     }
 
-    function popupHelp() {
-        if (popup.classList.contains("popup-open")) {
-            closePopup();
-        } else {
-            popup.style.display = 'flex';
-            popup.classList.remove('popup-close');
-            popup.classList.add('popup-open');
-        }
+    document.getElementById("helpButton").addEventListener('click', helpPopupOpen)
+
+    function helpPopupOpen() {
+        document.getElementById("help").style.display = "block";
+        setTimeout(() => {
+            document.getElementById("help-window").classList.remove("window-close");
+            document.getElementById("help-window").classList.add("window-open");
+        }, 1)
     }
 
-    document.getElementById('close').addEventListener('click', closePopup)
+    document.getElementById('help-close').addEventListener('click', helpPopupClose)
+    document.getElementById("help").addEventListener('click', (e) => {
+        if (e.target.id === "help")
+            helpPopupClose();
+    })
 
-    function closePopup() {
-        popup.classList.remove('popup-open');
-        popup.classList.add('popup-close');
+    document.getElementById("help").onwheel = function (e) {
+        e.preventDefault();
+    }
+
+    function helpPopupClose() {
+        document.getElementById("help-window").classList.add("window-close");
+        document.getElementById("help-window").classList.remove("window-open");
 
         setTimeout(() => {
-            popup.style.display = 'none';
-        }, 450);
+            document.getElementById("help").style.display = "none";
+        }, 300)
     }
 
     document.getElementById("statButton").addEventListener('click', statsPopupOpen)
