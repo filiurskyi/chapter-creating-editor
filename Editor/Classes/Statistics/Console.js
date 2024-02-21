@@ -80,7 +80,7 @@ function getConsoleErrors(body) {
 
             const trueCount = props.filter(Boolean).length;
             if (trueCount !== 0) {
-                if (forkLength !== 4) {
+                if (forkLength !== 3) {
                     errors.push({ message: errorsList[5][0], tip: errorsList[5][2], state: errorsList[5][1], position: block.position })
                 }
                 if (trueCount === 1 || trueCount === 2) {
@@ -107,6 +107,12 @@ function getConsoleErrors(body) {
         }
     });
 
+    for (const [block, end] of ends) {
+        if (end.state === false) {
+            errors.push({ message: errorsList[11][0], tip: errorsList[11][2], state: errorsList[11][1], position: block.position });
+        }
+    }
+
     let i = 0;
     errors.forEach(error => {
         const element = document.createElement('div');
@@ -129,6 +135,8 @@ function getConsoleErrors(body) {
 
         const name = document.createElement('p');
         name.textContent = error.message;
+        name.style.maxWidth = "300px";
+        name.style.width = "300px";
 
         element.appendChild(name);
 

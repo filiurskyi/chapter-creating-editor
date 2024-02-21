@@ -23,7 +23,6 @@
 
     <div class="header" id="header">
         <input type="file" id="fileInputToLoad" accept=".cce" style="display: none;" />
-        <input type="file" id="fileInputToSave" accept=".cce" style="display: none;" />
         <button id="saveButton" class="headerButton">
             <img src="Images/save.png">
             <div>
@@ -218,11 +217,29 @@
     <div class="black-panel" id="customize" style="display: none;">
         <div class="window window-close customize" id="customize-window">
             <div class="side-header">
-                <p>Customize</p>
+                <input type="file" id="schemeToLoad" accept=".scheme" style="display: none;" />
+                <p style="margin-right: 25px;">Customize</p>
+                <button id="save-scheme" class="header-button">
+                    <img src="Images/save.png">
+                    <p>Save scheme</p>
+                </button>
+                <button id="load-scheme" class="header-button">
+                    <img src="Images/load.png">
+                    <p>Load scheme</p>
+                </button>
+                <button id="reset-scheme" class="header-button">
+                    <img src="Images/red cross.png">
+                    <p>Reset</p>
+                </button>
                 <img class="close" id="customize-close" src="Images/cross.png">
             </div>
             <div class="customize-body" id="customize-body">
-                <div class="customize-body-content" id="customize-body-content"></div>
+                <div class="customize-body-content">
+                    <div class="container" id="customize-body-content">
+
+                    </div>
+                </div>
+                <div class="colors-template-menu" id="colors-template-menu"></div>
             </div>
         </div>
     </div>
@@ -237,6 +254,7 @@
     <script src="Classes/Entities/Arrow.js"></script>
     <script src="Classes/Entities/KeyValuePairForm.js"></script>
     <script src="Classes/Entities/TemplatesContextMenu.js"></script>
+    <script src="Classes/Entities/EndBlock.js"></script>
     <script src="Classes/Constants/FrameTypes.js"></script>
     <script src="Classes/Constants/FieldTypes.js"></script>
     <script src="Classes/Constants/ArrowTypes.js"></script>

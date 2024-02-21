@@ -20,10 +20,11 @@ const errorsList = [
     ["CCE0002: Text is too long", StatState.WARNING, "Text is too long"],// 2
     ["CCE0003: Unexpected frame type", StatState.ERROR, "The entered frame type is not recognized, check the correct spelling"],// 3
     ["CCE0004: Unexpected frame property", StatState.ERROR, "The entered frame property is not recognized, check the correct spelling"],// 4
-    ["CCE0005: Unexpected psychological Choice formatting", StatState.ERROR, "The choice with the issuance of psychological subjects should have ONLY 3 options"],// 5
+    ["CCE0005: Invalid psychological choice format", StatState.ERROR, "The choice with the issuance of psychological subjects should have ONLY 3 options"],// 5
     ["CCE0006: Choice variant should lead somewhere", StatState.WARNING, "Choice variant should lead somewhere"],// 6
     ["CCE0007: Choice frame must lead to Option frame", StatState.ERROR, "The Choice frame MUST lead only to Option frames"],// 7
     ["CCE0008: Unexpected frame formatting", StatState.ERROR, "Unexpected frame formatting (check the documentation)"],// 8
     ["CCE0009: Disconnected frame", StatState.WARNING, "A frame disconnected from the general history (not taken into account when exporting)"],// 9
     ["CCE0010: Duplicate property", StatState.ERROR, "Two identical properties in one frame are not allowed"],// 10
+    ["CCE0011: Dead-end line", StatState.ERROR, "The branch breaks off without finishing"],// 11
 ];

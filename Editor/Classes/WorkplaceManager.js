@@ -3,7 +3,7 @@ let pointX;
 let pointY;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const workplaceSize = new Vector2(10000, 10000)
+    const workplaceSize = new Vector2(1000000, 1000000)
     let isCtrlPressed = false;
     pointX = -workplaceSize.x * screen.width / 200;
     pointY = -workplaceSize.y * screen.height / 200;
@@ -130,7 +130,7 @@ function setLOD() {
     let leftTopVisibleCorner = new Vector2(-pointX / scale, -pointY / scale);
     let rightBottomVisibleCorner = new Vector2((width - pointX) / scale, (height - pointY) / scale);
 
-    leftTopVisibleCorner = leftTopVisibleCorner.multiply(0.99);
+    leftTopVisibleCorner = leftTopVisibleCorner.multiply(0.9);
     rightBottomVisibleCorner = rightBottomVisibleCorner.multiply(1.01);
 
     const visible = [];

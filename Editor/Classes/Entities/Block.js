@@ -2,7 +2,7 @@ class Block {
     constructor(position, size, container) {
         this.size = size;
         this.position = position;
-        this.id = 0
+        this.id = 0;
 
         this.icons = new Set();
 
@@ -81,7 +81,8 @@ class Block {
         this.addButton.addEventListener('click', () => {
             const keyValuePairForm = new KeyValuePairForm(this, Object.keys(fieldTypes), this.addButton, this.formsList.length)
             this.formsList.push(keyValuePairForm);
-            this.updateArrows()
+            this.updateArrows();
+            updateEnd(this);
         });
 
         this.docElement.addEventListener('contextmenu', (event) => {
@@ -120,6 +121,8 @@ class Block {
                 this.changeColor(selectedColor);
             }
         })
+
+        checkEnd(this);
     }
 
     placeToMousePosition(delta) {
@@ -135,6 +138,8 @@ class Block {
         this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
 
         this.updateArrows()
+
+        updateEnd(this);
     }
 
     updateArrows() {
@@ -194,6 +199,8 @@ class Block {
         blocks = blocks.filter(item => item !== this);
 
         this.docElement = null;
+
+        deleteEnd(this);
     }
 
     select() {

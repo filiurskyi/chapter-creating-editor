@@ -79,6 +79,8 @@ class KeyValuePairForm {
             isPremium();
             isComment();
             this.form.remove();
+
+            updateEnd(block);
         })
 
         const setAvatarImage = () => {

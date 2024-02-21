@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 invokeContextMenu();
             }
             else {
-                arrowToMove.fromBlock.arrowsList.push(arrowToMove)
-                arrows.push(arrowToMove)
-                arrowToMove.placeArrow()
+                arrowToMove.fromBlock.arrowsList.push(arrowToMove);
+                arrows.push(arrowToMove);
+                arrowToMove.placeArrow();
 
                 state = State.NONE;
             }

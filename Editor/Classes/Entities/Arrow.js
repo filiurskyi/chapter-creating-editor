@@ -18,10 +18,10 @@ class Arrow {
 
             const clickZone = document.createElement('div');
             clickZone.style.position = 'absolute';
-            clickZone.style.top = '-10px';
-            clickZone.style.left = '-10px';
-            clickZone.style.bottom = '-10px';
-            clickZone.style.right = '-10px';
+            clickZone.style.top = '-5px';
+            clickZone.style.left = '-5px';
+            clickZone.style.bottom = '-5px';
+            clickZone.style.right = '-5px';
             clickZone.style.cursor = 'pointer';
 
             clickZone.addEventListener('click', (e) => {
@@ -52,6 +52,8 @@ class Arrow {
 
         this.fromBlock = startBlock
         this.toBlock = null
+
+        checkEnd(this.fromBlock);
     }
 
     setFrom(from) {
@@ -61,6 +63,9 @@ class Arrow {
     setTo(to, toBlock) {
         this.to = to
         this.toBlock = toBlock
+
+        checkEnd(this.toBlock);
+        checkEnd(this.fromBlock);
 
         trySetBegin(this.fromBlock)
     }
@@ -165,6 +170,9 @@ class Arrow {
     deleteArrow() {
         arrows = arrows.filter(item => item !== this);
         blocks.forEach(b => b.arrowsList = b.arrowsList.filter(item => item !== this));
+
+        checkEnd(this.fromBlock);
+        checkEnd(this.toBlock);
 
         trySetBegin(this.toBlock);
 

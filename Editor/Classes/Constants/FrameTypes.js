@@ -1,4 +1,4 @@
-const frameTypes = new Map();
+let frameTypes = new Map();
 frameTypes.set("Text", 'rgba(74, 255, 103, 0.75)');
 frameTypes.set("Dialog", 'rgba(74, 255, 103, 0.75)');
 frameTypes.set("Choice", 'rgba(255, 161, 74, 0.75)');

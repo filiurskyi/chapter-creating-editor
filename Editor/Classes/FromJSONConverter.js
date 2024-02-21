@@ -53,10 +53,22 @@ function fromJSONConvert(jsonData, container) {
 
     lastAddedBlock = blocks[blocks.length - 1];
 
-    moveViewportTo(blocks[blocks.length - 1].position);
+    let targetPosition = blocks[blocks.length - 1].position;
+    targetPosition.y += blocks[blocks.length - 1].docElement.offsetHeight / 2.0;
+
+    moveViewportTo(targetPosition);
+
+    blocks.forEach(block => {
+        trySetBegin(block);
+        checkEnd(block);
+    });
+
+    if (jsonData.checkList === undefined || jsonData.checkList === null) return;
 
     checkList = jsonData.checkList;
 }
+
+
 
 function getBlockById(id, blocks) {
     for (let i = 0; i < blocks.length; i++) {

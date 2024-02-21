@@ -48,6 +48,7 @@
         "Classes/CustomizeManager.js",
         "Classes/Entities/Tooltip.js",
         "Classes/StoryBorders.js",
+        "Classes/Entities/EndBlock.js",
         "script.js"
     ],
     "exclude": [

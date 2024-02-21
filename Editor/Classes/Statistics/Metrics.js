@@ -106,7 +106,10 @@ function getMetrics(body) {
                 }
             });
 
-            if (props[0] && props[1] && props[2]) values[9]++;
+            if (props[0] && props[1] && props[2]) {
+                moveViewportTo(block.position);
+                values[9]++;
+            }
         }
     });
 
