@@ -114,7 +114,7 @@ class Block {
                             b.arrowTrigger.style.display = 'block';
                         });
                     }
-                }, 10);
+                }, 100);
             }
         });
 
