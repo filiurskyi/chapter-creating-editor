@@ -4,6 +4,8 @@ const State = {
     BLOCKS_MOVING: 'BLOCKS_MOVING',
     ARROW_MOVING: 'ARROW_MOVING',
     TEMPLATE_SELECTING: 'TEMPLATE_SELECTING',
+    ARROW_MOVING: 'ARROW_MOVING',
+    BLOCK_CONNECTION: 'BLOCK_CONNECTION',
 }
 
 const Visibility = {
@@ -22,6 +24,7 @@ let blocks = [];
 let arrows = [];
 let scrollable = [];
 let arrowToMove;
+let blockToConnect = null;
 const blockSize = new Vector2(540, 50)
 const startCellSize = new Vector2(25, 25)
 let cellSize = new Vector2(25, 25)

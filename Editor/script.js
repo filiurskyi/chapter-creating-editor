@@ -55,7 +55,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                 state = State.NONE;
             }
+        }
 
+        if (state === State.BLOCK_CONNECTION && blockToConnect !== null && e.button !== 1) {
+            state = State.NONE;
+
+            if (e.button === 2) {
+                for (let i = 0; i < blocks.length; i++) {
+                    if (e.target === blocks[i].arrowTrigger && blocks[i] !== blockToConnect) {
+                        const arrow = new Arrow(workplace, blockToConnect);
+                        arrow.setFrom(blockToConnect.bottomPoint);
+                        arrow.setTo(blocks[i].topPoint, blocks[i]);
+                        arrow.placeArrow()
+
+                        blockToConnect.arrowsList.push(arrow)
+                        blocks[i].arrowsList.push(arrow)
+                        arrows.push(arrow)
+
+                        break;
+                    }
+                }
+            }
+
+            blockToConnect = null;
+
+            blocks.forEach(b => {
+                b.arrowTrigger.style.display = 'none';
+            });
+
+            document.getElementById("block-connection-info-panel").style.display = 'none';
         }
 
         if (state === State.BLOCKS_MOVING) {

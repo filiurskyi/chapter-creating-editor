@@ -89,6 +89,35 @@ class Block {
             event.preventDefault();
         });
 
+        this.bottomPoint.addEventListener('contextmenu', (e) => {
+            if (e.button === 2) {
+                setTimeout(() => {
+                    if (e.target === this.bottomPoint && state === State.NONE && blockToConnect == null) {
+                        state = State.BLOCK_CONNECTION;
+                        blockToConnect = this;
+
+                        const panel = document.getElementById("block-connection-info-panel");
+
+                        panel.style.display = 'flex';
+
+                        const height = this.docElement.offsetHeight;
+
+                        let adjustedPosition = new Vector2(
+                            Math.round((this.position.x) / cellSize.x) * cellSize.x,
+                            Math.round((this.position.y - 20 + height) / cellSize.y) * cellSize.y
+                        );
+
+                        panel.style.left = adjustedPosition.x + "px";
+                        panel.style.top = adjustedPosition.y + "px";
+
+                        blocks.forEach(b => {
+                            b.arrowTrigger.style.display = 'block';
+                        });
+                    }
+                }, 10);
+            }
+        });
+
         this.docElement.addEventListener('mousedown', (e) => {
             if (e.button === 0) {
                 if (e.target === this.bottomPoint && state === State.NONE) {
@@ -231,10 +260,12 @@ class Block {
                 this.formsList.forEach(f => {
                     f.form.classList.add('invisible');
                 });
-                this.arrowsList.forEach(a => {
-                    a.docElement.classList.add('invisible');
-                    a.form.form.classList.add('invisible');
-                });
+                if (this.docElement.classList.contains('selected') === false) {
+                    this.arrowsList.forEach(a => {
+                        a.docElement.classList.add('invisible');
+                        a.form.form.classList.add('invisible');
+                    });
+                }
                 break;
             case Visibility.INVISIBLE:
                 this.docElement.classList.add('invisible');

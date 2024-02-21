@@ -71,6 +71,7 @@ function updateEnd(block) {
 
 function deleteEnd(block) {
     if (ends.has(block)) {
+        ends.get(block).deleteEndBlock();
         ends.delete(block);
     }
 }

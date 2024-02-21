@@ -9,6 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let chosenDiv;
     let chosenCircle;
 
+    frameTypes.forEach((value, key) => {
+        frameTypes.forEach((value, key) => {
+            resetFrameTypes.set(key, value);
+        })
+    })
+
     repaint = () => {
         body.innerHTML = '';
         frameTypes.forEach((value, key) => {
@@ -26,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             div.appendChild(text);
 
             body.appendChild(div);
-
-            resetFrameTypes.set(key, value);
 
             div.onclick = () => {
                 chosenFrame = key;
@@ -54,8 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chosenDiv.style.borderColor = div.style.backgroundColor;
             chosenCircle.style.backgroundColor = div.style.backgroundColor;
             templateMenu.style.display = 'none';
-
-            console.log(chosenFrame, frameTypes.get(chosenFrame));
         };
 
         templateMenu.appendChild(div);
@@ -89,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     schemeToLoad.addEventListener('change', (event) => {
         const files = event.target.files;
         const reader = new FileReader();
-
         reader.onload = (e) => {
             const text = e.target.result;
             const jsonArray = JSON.parse(text);
@@ -101,10 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('reset-scheme').onclick = () => {
-        frameTypes.forEach((value, key) => {
-            frameTypes.delete(key);
-        })
-
         resetFrameTypes.forEach((value, key) => {
             frameTypes.set(key, value);
         })
