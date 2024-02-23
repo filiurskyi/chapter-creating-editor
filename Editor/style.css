@@ -1186,3 +1186,23 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 12px;
     flex-grow: 1;
 }
+
+.loading-chapter-screen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #111824;
+    z-index: 999999;
+    cursor: wait;
+}
+
+.loading-chapter-screen>p {
+    line-height: 100vh;
+    font-size: 96px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    pointer-events: none;
+}

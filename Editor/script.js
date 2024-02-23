@@ -66,11 +66,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         const arrow = new Arrow(workplace, blockToConnect);
                         arrow.setFrom(blockToConnect.bottomPoint);
                         arrow.setTo(blocks[i].topPoint, blocks[i]);
-                        arrow.placeArrow()
+                        arrow.placeArrow();
 
-                        blockToConnect.arrowsList.push(arrow)
-                        blocks[i].arrowsList.push(arrow)
-                        arrows.push(arrow)
+                        blockToConnect.arrowsList.push(arrow);
+                        blocks[i].arrowsList.push(arrow);
+                        arrows.push(arrow);
 
                         break;
                     }

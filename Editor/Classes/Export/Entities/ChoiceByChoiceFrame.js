@@ -10,14 +10,13 @@ class ChoiceByChoiceFrame extends Converter {
     }
 
     choiceValueKeySerialization(index, bannedIndexes, jsonGenerator) {
-        const idPart = "chapter" + jsonGenerator.ChapterIndex + "_choice_by_choice" + this.choiceCount + "_answer";
-        let json = "\"frame_id_part\": \"" + idPart + "\",";
+        const idPart = "chapter" + jsonGenerator.ChapterIndex + "_choice_by_choice" + this.choiceCount + "_";
+        let json = "\"frame_id_part\": \"" + idPart + "\",\"choice_id\": \"prop\",";
 
         bannedIndexes.add(index);
 
-        let variantCount = 1;
 
-        const duplicates = getDublicateSourceToSource(jsonGenerator.Arrows, [index, 0]);
+        const duplicates = getDuplicateSourceToSource(jsonGenerator.Arrows, [index, 0]);
 
         for (let i = 0; i < duplicates.length; i++) {
             let jsonFrame;
@@ -29,15 +28,7 @@ class ChoiceByChoiceFrame extends Converter {
                 jsonGenerator.JSONFrames[duplicates[i].to] = jsonFrame;
             }
 
-            if (duplicates[i].value.input == "cbc") {
-                json += "\"choice_id\": \"" + jsonFrame.additionInformation + "\",";
-                variantCount--;
-                continue;
-            }
-
-            variantCount++;
-
-            jsonFrame.frameID = idPart + variantCount;
+            jsonFrame.frameID = idPart + duplicates[i].value.input;
         }
 
         this.choiceCount++;

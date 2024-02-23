@@ -84,8 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
         pointX = e.clientX - xs * scale;
         pointY = e.clientY - ys * scale;
 
-        console.log(pointX, pointY, scale);
-
         setTransform();
     }
 

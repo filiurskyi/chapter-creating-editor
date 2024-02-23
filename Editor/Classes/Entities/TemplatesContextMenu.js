@@ -470,10 +470,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
         const block2 = createBlock(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
-        const block3 = createBlock(new Vector2(lastMousePosition.x - 1000, lastMousePosition.y + 200))
 
         const arrow0 = new Arrow(workplace, block)
-        arrow0.form.input.textContent = "0"
+        arrow0.form.input.textContent = "rose"
         arrow0.setFrom(block.bottomPoint)
         arrow0.setTo(block0.topPoint, block0)
         arrow0.placeArrow()
@@ -482,6 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows.push(arrow0)
 
         const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "key"
         arrow1.setFrom(block.bottomPoint)
         arrow1.setTo(block1.topPoint, block1)
         arrow1.placeArrow()
@@ -490,20 +490,12 @@ document.addEventListener('DOMContentLoaded', () => {
         arrows.push(arrow1)
 
         const arrow2 = new Arrow(workplace, block)
+        arrow2.form.input.textContent = "crown"
         arrow2.setFrom(block.bottomPoint)
         arrow2.setTo(block2.topPoint, block2)
         arrow2.placeArrow()
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
         arrows.push(arrow2)
-
-        const arrow3 = new Arrow(workplace, block)
-        arrow3.form.input.textContent = "cbc"
-        arrow3.setFrom(block.bottomPoint)
-        arrow3.setTo(block3.topPoint, block3)
-        arrow3.placeArrow()
-        block3.arrowsList.push(arrow3)
-        block.arrowsList.push(arrow3)
-        arrows.push(arrow3)
     }
 })

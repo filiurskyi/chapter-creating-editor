@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'b' || event.key === 'B' || event.key === 'и' || event.key === 'И')) {
+            event.preventDefault();
+            moveToBegin();
+            return;
+        }
+
         if ((event.ctrlKey || event.metaKey) && (event.key === 'r' || event.key === 'R' || event.key === 'к' || event.key === 'К')) {
             event.preventDefault();
             return;
@@ -77,11 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function duplicate() {
         const dupBlocks = []
+        const selectedBlocks = []
         blocks.forEach(b => {
             if (b.docElement.classList.contains('selected')) {
                 const original = b
 
-                const point = new Vector2(original.position.x + 250, original.position.y + 250)
+                const point = new Vector2(original.position.x, original.position.y)
 
                 let adjustedPosition = new Vector2(
                     Math.round(point.x / cellSize.x) * cellSize.x,
@@ -92,23 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 block.formsList = []
                 block.arrowsList = []
 
-                block.header.input.textContent = original.header.input.textContent
+                block.header.input.textContent = original.header.input.textContent;
 
                 original.formsList.forEach(form => {
-                    const newForm = new KeyValuePairForm(block, fieldTypes, block.addButton, block.formsList.length)
-                    newForm.keyForm.input.textContent = form.keyForm.input.textContent
-                    newForm.valueForm.input.textContent = form.valueForm.input.textContent
-                    block.formsList.push(newForm)
+                    const newForm = new KeyValuePairForm(block, fieldTypes, block.addButton, block.formsList.length);
+                    newForm.keyForm.input.textContent = form.keyForm.input.textContent;
+                    newForm.valueForm.input.textContent = form.valueForm.input.textContent;
+                    block.formsList.push(newForm);
                 });
 
                 dupBlocks.push(block);
+                selectedBlocks.push(original);
             }
         })
 
         blocks.forEach(b => b.docElement.classList.remove('selected'));
         arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
 
+        const delta = mousePosition.subtract(dupBlocks[0].position);
+
         dupBlocks.forEach(b => {
+            b.placeToMousePosition(delta);
             b.docElement.classList.add('selected');
             blocks.push(b);
         });
@@ -342,5 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300)
     }
 
-
+    function moveToBegin() {
+        moveViewportTo(beginBlock.position);
+    }
 })

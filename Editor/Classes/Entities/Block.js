@@ -29,6 +29,7 @@ class Block {
         this.avatarPlaceholder.style.right = "25px"
         this.avatarPlaceholder.style.cursor = "pointer"
         this.avatarPlaceholder.style.borderRadius = "50%"
+        this.avatarPlaceholder.style.display = "none"
         this.avatarPlaceholder.draggable = false;
         this.docElement.appendChild(this.avatarPlaceholder);
 
@@ -91,30 +92,31 @@ class Block {
 
         this.bottomPoint.addEventListener('contextmenu', (e) => {
             if (e.button === 2) {
-                setTimeout(() => {
-                    if (e.target === this.bottomPoint && state === State.NONE && blockToConnect == null) {
-                        state = State.BLOCK_CONNECTION;
-                        blockToConnect = this;
+                // setTimeout(() => {
+                if (e.target === this.bottomPoint && state === State.NONE && blockToConnect == null) {
+                    setTimeout(() => state = State.BLOCK_CONNECTION, 500);
 
-                        const panel = document.getElementById("block-connection-info-panel");
+                    blockToConnect = this;
 
-                        panel.style.display = 'flex';
+                    const panel = document.getElementById("block-connection-info-panel");
 
-                        const height = this.docElement.offsetHeight;
+                    panel.style.display = 'flex';
 
-                        let adjustedPosition = new Vector2(
-                            Math.round((this.position.x) / cellSize.x) * cellSize.x,
-                            Math.round((this.position.y - 20 + height) / cellSize.y) * cellSize.y
-                        );
+                    const height = this.docElement.offsetHeight;
 
-                        panel.style.left = adjustedPosition.x + "px";
-                        panel.style.top = adjustedPosition.y + "px";
+                    let adjustedPosition = new Vector2(
+                        Math.round((this.position.x) / cellSize.x) * cellSize.x,
+                        Math.round((this.position.y - 20 + height) / cellSize.y) * cellSize.y
+                    );
 
-                        blocks.forEach(b => {
-                            b.arrowTrigger.style.display = 'block';
-                        });
-                    }
-                }, 100);
+                    panel.style.left = adjustedPosition.x + "px";
+                    panel.style.top = adjustedPosition.y + "px";
+
+                    blocks.forEach(b => {
+                        b.arrowTrigger.style.display = 'block';
+                    });
+                }
+                // }, 100);
             }
         });
 
@@ -181,7 +183,7 @@ class Block {
     }
 
     changeColor(color) {
-        if (this.docElement.classList.contains('selected'))
+        if (this.docElement?.classList.contains('selected'))
             color = selectedColor
 
         this.docElement.style.borderColor = color
