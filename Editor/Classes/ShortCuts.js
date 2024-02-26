@@ -426,15 +426,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const idPopup = document.getElementById('block-id-popup');
 
         if (idPopup.classList.contains("popup-close")) return;
+
         const input = document.getElementById('block-id-poput-input').value;
         console.log(input);
 
         let num = Number(input);
         if (num === null || num === undefined || isNaN(num)) num = 0;
-
-        setTimeout(() => {
-            idPopup.style.display = 'none';
-        }, 450);
 
         blocks.forEach(block => {
             if (block.editorId === num) {
@@ -442,9 +439,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         });
+
+        closeBlockIdPoput();
     });
 
-    document.getElementById('block-id-poput-cancel').addEventListener('click', () => {
+    function closeBlockIdPoput() {
         const idPopup = document.getElementById('block-id-popup');
 
         if (idPopup.classList.contains("popup-close")) return;
@@ -452,8 +451,12 @@ document.addEventListener('DOMContentLoaded', () => {
         idPopup.classList.remove('popup-open');
         idPopup.classList.add('popup-close');
 
+        console.log(idPopup.classList);
+
         setTimeout(() => {
             idPopup.style.display = 'none';
         }, 450);
-    });
+    }
+
+    document.getElementById('block-id-poput-cancel').addEventListener('click', closeBlockIdPoput);
 })
