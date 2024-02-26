@@ -1,5 +1,4 @@
 const arrowTypes = [
-    "cbc",
     "leo",
     "rabbit",
     "doe",
@@ -7,4 +6,7 @@ const arrowTypes = [
     "1",
     "clothes-id1",
     "clothes-id2",
+    "rose",
+    "key",
+    "crown",
 ];

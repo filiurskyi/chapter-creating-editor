@@ -160,6 +160,32 @@ body {
     color: #111824;
 }
 
+.link-button {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+    transform: scale(0.75);
+    background-image: url("Images/link.png");
+    width: 64px;
+    height: 64px;
+}
+
+.link-button>div {
+    background-color: #4A87FF;
+    transform: translateX(-5px) translateY(-50%);
+    position: absolute;
+    top: 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.link-button>div>p {
+    color: #fff;
+    text-align: center;
+}
+
 .formInput {
     width: 100%;
     max-width: 100%;
@@ -456,7 +482,7 @@ body::-webkit-scrollbar {
     font-size: 24px;
 }
 
-.chapter-popup {
+.modular-popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -475,14 +501,14 @@ body::-webkit-scrollbar {
     margin: 0;
 }
 
-.chapter-popup>p {
+.modular-popup>p {
     color: #fff;
     text-align: center;
     margin-top: 25px;
     font-size: 42px;
 }
 
-.chapter-popup>input {
+.modular-popup>input {
     color: #4A87FF;
     border: 2px solid #4A87FF;
     border-radius: 10px;
@@ -495,7 +521,7 @@ body::-webkit-scrollbar {
     border-radius: 50px;
 }
 
-.chapter-popup>div>button {
+.modular-popup>div>button {
     width: 100px;
     height: 45px;
     margin-top: 15px;
@@ -510,12 +536,12 @@ body::-webkit-scrollbar {
     margin-right: 20px;
 }
 
-.chapter-popup>div>button:hover {
+.modular-popup>div>button:hover {
     background-color: #1c222d;
     border: 1px #4A87FF solid;
 }
 
-.chapter-popup>div>button:active {
+.modular-popup>div>button:active {
     background-color: #4A87FF;
     color: #111824;
 }
@@ -588,30 +614,35 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #111824;
 }
 
-.target {
+.buttons-bar {
     position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 200;
+    display: flex;
+}
+
+.buttons-bar>div {
+    width: 50px;
+    height: 50px;
     background-color: #111824;
     border: 1px solid #4A87FF;
     border-radius: 10px;
-    bottom: 10px;
-    left: 10px;
-    width: 50px;
-    height: 50px;
     padding: 3px;
+    margin-right: 10px;
     transition: background-color 0.1s ease-in-out;
-    z-index: 200;
     cursor: pointer;
 }
 
-.target:hover {
+.buttons-bar>div:hover {
     background-color: #1c222d;
 }
 
-.target:active {
+.buttons-bar>div:active {
     background-color: #3b4860;
 }
 
-.target>img {
+.buttons-bar>div>img {
     width: 75%;
     height: 75%;
     margin-left: 12.5%;
@@ -619,14 +650,14 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: all 0.1s ease-in-out;
 }
 
-.target:hover>img {
+.buttons-bar>div:hover>img {
     width: 100%;
     height: 100%;
     margin-left: 0%;
     margin-top: 0%;
 }
 
-.target:active>img {
+.buttons-bar>div:active>img {
     width: 50%;
     height: 50%;
     margin-left: 25%;
@@ -786,7 +817,8 @@ input[type="number"]::-webkit-inner-spin-button {
 .black-panel>.window>.stats-main>.stats-main-body>.stat-field {
     position: relative;
     width: 500px;
-    height: 25px;
+    min-height: 25px;
+    height: fit-content;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -794,7 +826,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .black-panel>.window>.stats-main>.stats-main-body>.stat-field>img {
-    height: 100%;
+    height: 25px;
     padding-right: 20px;
     padding-left: 10px;
 }
@@ -813,6 +845,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .black-panel>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(1) {
     max-width: 200px;
     min-width: 200px;
+    height: fit-content;
     flex-grow: 0;
 }
 

@@ -11,7 +11,7 @@ const metricsList = [
     ["Psychological choice", 1, 1, 3, Number.MAX_VALUE, false, "Number of elections that give Rose, Key, Crown items"],// 9
     ["Mother moon", 1, 1, 1, Number.MAX_VALUE, false, "Total number of frames with moon_mother background"],// 10
     ["Number of letters", 0, 0, 175, 190, true, "Maximum number of characters in the 'text' field"],// 11
-    ["Number of locations", 6, 9, 11, 13, false, "Number of unique backgrounds"],// 12
+    ["Number of locations", 6, 9, Number.MAX_VALUE, Number.MAX_VALUE, false, "Number of unique backgrounds"],// 12
 ];
 
 const errorsList = [
@@ -27,4 +27,5 @@ const errorsList = [
     ["CCE0009: Disconnected frame", StatState.WARNING, "A frame disconnected from the general history (not taken into account when exporting)"],// 9
     ["CCE0010: Duplicate property", StatState.ERROR, "Two identical properties in one frame are not allowed"],// 10
     ["CCE0011: Dead-end line", StatState.ERROR, "The branch breaks off without finishing"],// 11
+    ["", StatState.COMMENT, ""],// 12
 ];

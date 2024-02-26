@@ -36,6 +36,10 @@ function getConsoleErrors(body) {
             else {
                 errors.push({ message: errorsList[10][0] + " (" + property + ")", tip: errorsList[10][2], state: errorsList[10][1], position: block.position })
             }
+
+            if (property === 'comment') {
+                errors.push({ message: errorsList[12][0] + fl.valueForm.input.textContent, tip: errorsList[12][2], state: errorsList[12][1], position: block.position })
+            }
         });
 
         const props = [false, false, false];
@@ -127,6 +131,9 @@ function getConsoleErrors(body) {
             case StatState.ERROR:
                 statIcon.src = "Images/Icons/error.png";
                 break;
+            case StatState.COMMENT:
+                statIcon.src = "Images/Icons/chat.png";
+                break;
             default:
                 break;
         }
@@ -154,14 +161,16 @@ function getConsoleErrors(body) {
             }, 300);
         })
 
-        element.addEventListener('mouseover', (e) => {
-            if (e.target !== statArrow)
-                showTooltip(error.tip, new Vector2(e.clientX, e.clientY));
-        });
+        if (error.tip !== "") {
+            element.addEventListener('mouseover', (e) => {
+                if (e.target !== statArrow)
+                    showTooltip(error.tip, new Vector2(e.clientX, e.clientY));
+            });
 
-        element.addEventListener('mouseout', () => {
-            hideTooltip();
-        });
+            element.addEventListener('mouseout', () => {
+                hideTooltip();
+            });
+        }
 
         element.appendChild(statArrow);
 

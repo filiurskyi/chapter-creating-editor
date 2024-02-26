@@ -16,6 +16,7 @@ function fromJSONConvert(jsonData, container) {
         let firstBlock = true;
         let delta = 0;
 
+        let tempId = 0;
         jsonData.blocks.forEach(blockInfo => {
             let position = new Vector2(blockInfo.position.x, blockInfo.position.y - delta)
 
@@ -28,6 +29,11 @@ function fromJSONConvert(jsonData, container) {
             const block = new Block(position, blockSize, container)
             block.header.input.textContent = blockInfo.header.input;
             block.id = blockInfo.id;
+
+            block.editorId =
+                (blockInfo.editorId === undefined || blockInfo.editorId === null) ?
+                    block.editorId = tempId++ :
+                    blockInfo.editorId;
 
             blockInfo.formsList.forEach(formInfo => {
                 const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)

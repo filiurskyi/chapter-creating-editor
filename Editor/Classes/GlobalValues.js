@@ -17,7 +17,8 @@ const Visibility = {
 const StatState = {
     GOOD: 'GOOD',
     WARNING: 'WARNING',
-    ERROR: 'ERROR'
+    ERROR: 'ERROR',
+    COMMENT: 'COMMENT',
 }
 
 let blocks = [];
@@ -32,3 +33,4 @@ let mousePosition = new Vector2(0, 0)
 const selectedColor = '#4A87FF';
 let scale = 1;
 let state = State.NONE;
+let copiedBlocks = [];

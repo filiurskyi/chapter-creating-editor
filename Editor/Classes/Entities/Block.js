@@ -3,6 +3,7 @@ class Block {
         this.size = size;
         this.position = position;
         this.id = 0;
+        this.editorId = Date.now();
 
         this.icons = new Set();
 
@@ -154,6 +155,32 @@ class Block {
         })
 
         checkEnd(this);
+
+        this.linkButton = document.createElement('div');
+        this.linkButton.classList.add('link-button');
+
+        const div = document.createElement('div');
+        div.style.display = 'none';
+        const text = document.createElement('p');
+        text.textContent = "Copied!";
+        div.appendChild(text);
+        this.linkButton.appendChild(div);
+
+        this.linkButton.onclick = () => {
+            div.style.display = 'block';
+
+            navigator.clipboard.writeText(this.editorId)
+                .then(() => {
+                    console.log('Text copied to clipboard');
+                })
+                .catch(err => {
+                    console.error('Failed to copy text to clipboard:', err);
+                });
+
+            setTimeout(() => div.style.display = 'none', 2000);
+        };
+
+        this.docElement.appendChild(this.linkButton);
     }
 
     placeToMousePosition(delta) {
@@ -288,9 +315,14 @@ class Block {
         this.updateArrows();
     }
 
+    setPointScale(scale) {
+        this.bottomPoint.parentNode.style.scale = scale <= 0.3 ? (0.3 / scale) : 1.0;
+    }
+
     toJSON() {
         return {
             id: this.id,
+            editorId: this.editorId,
             header: this.header,
             position: this.position,
             formsList: this.formsList

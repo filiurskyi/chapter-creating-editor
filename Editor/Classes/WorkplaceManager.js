@@ -1,4 +1,3 @@
-let lastAddedBlock;
 let pointX;
 let pointY;
 
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var panning = false,
         start = { x: 0, y: 0 },
         zoom = document.getElementById("zoom"),
-        minScale = 0.1,
+        minScale = 0.05,
         maxScale = 1;
 
     zoom.style.minWidth = workplaceSize.x + 'vw'
@@ -87,14 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTransform();
     }
 
-    document.getElementById("target").onclick = function (e) {
-        if (lastAddedBlock === null || lastAddedBlock === undefined) return;
-
-        const targetPosition = lastAddedBlock.position;
-
-        moveViewportTo(targetPosition);
-    };
-
     setTransform();
 
     setTimeout(() => {
@@ -142,6 +133,8 @@ function setLOD() {
         else {
             invisible.push(b);
         }
+
+        b.setPointScale(scale);
     });
 
     visible.forEach(b => {

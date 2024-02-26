@@ -74,8 +74,16 @@
         </button>
     </div>
 
-    <div class="target" id="target">
-        <img src="Images/target.png">
+    <div class="buttons-bar">
+        <div id="target">
+            <img src="Images/target.png">
+        </div>
+        <div id="up">
+            <img src="Images/up.png">
+        </div>
+        <div id="link">
+            <img src="Images/link.png">
+        </div>
     </div>
 
     <div class="black-panel" id="help" style="display: none;">
@@ -179,25 +187,33 @@
                         <p>Ctrl+B</p>
                     </div>
                     <div class="interactive-element">
+                        <p>Move to last added</p>
+                        <p>Ctrl+T</p>
+                    </div>
+                    <div class="interactive-element">
                         <p>Version</p>
-                        <p style="color:#FF5E7B">v1.0.1</p>
+                        <p style="color:#FF5E7B">v1.0.2</p>
                     </div>
                     <div class="change-list">
-                        <p>New customization menu</p>
-                        <p>Displaying borders of story</p>
-                        <p>Small visual changes<br> of target button</p>
-                        <p>Icons in some frames</p>
-                        <p>Block connection mechanism</p>
-                        <p>Loading saves screen</p>
-                        <p>Better duplicate function</p>
-                        <p>Move-to-begin shortcut</p>
+                        <p>Copy-paste</p>
+                        <p>Bottom buttons bar</p>
+                        <p>Search block for ID</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="chapter-popup" id="chapter-popup" style="display: none;">
+    <div class="modular-popup" id="block-id-popup" style="display: none;">
+        <p>Enter block id</p>
+        <input type="number" id="block-id-poput-input" placeholder="Id number....">
+        <div>
+            <button type="submit" id="block-id-poput-submit">Submit</button>
+            <button type="reset" id="block-id-poput-cancel">Cancel</button>
+        </div>
+    </div>
+
+    <div class="modular-popup" id="chapter-popup" style="display: none;">
         <p>Enter chapter number</p>
         <input type="number" id="chapter-poput-input" placeholder="Chapter number....">
         <div>
