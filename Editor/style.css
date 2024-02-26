@@ -164,26 +164,29 @@ body {
     position: absolute;
     right: 15px;
     bottom: 0px;
-    transform: scale(0.75);
-    background-image: url("Images/link.png");
+    transform: scale(0.5);
+    background-image: url("Images/linkwhite.png");
     width: 64px;
     height: 64px;
+    cursor: pointer;
 }
 
 .link-button>div {
     background-color: #4A87FF;
-    transform: translateX(-5px) translateY(-50%);
+    transform: translateX(-25%) translateY(-100%);
     position: absolute;
     top: 0;
     width: fit-content;
     height: fit-content;
     padding: 5px 10px;
     border-radius: 10px;
+    pointer-events: none;
 }
 
 .link-button>div>p {
     color: #fff;
     text-align: center;
+    font-size: 28px;
 }
 
 .formInput {
