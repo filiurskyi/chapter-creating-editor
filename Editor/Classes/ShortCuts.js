@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let a = document.createElement("a");
         a.href = url;
-        a.download = "save.cce";
+        a.download = "save " + getCurrentDateTime() + ".cce";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);

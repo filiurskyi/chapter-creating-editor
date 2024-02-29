@@ -17,6 +17,11 @@ class Converter {
         for (let field of fields) {
             let [key, type, isFounded] = tryGetParameterPair(field.key.input, field.value.input);
             if (isFounded) {
+                if (key === "dialog_text") {
+                    type = type[0] + type[1].toUpperCase() + type.slice(2);
+                    console.log(type)
+                }
+
                 json += `"${key}":${type},`;
             }
         }

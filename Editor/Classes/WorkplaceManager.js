@@ -138,10 +138,31 @@ function setLOD() {
     });
 
     visible.forEach(b => {
-        b.setVisible(scale <= 0.15 ? Visibility.PARTIALLY_VISIBLE : Visibility.VISIBLE);
+        if (b.docElement.classList.contains('selected'))
+            b.setVisible(Visibility.VISIBLE);
+        else
+            b.setVisible(scale <= 0.15 ? Visibility.PARTIALLY_VISIBLE : Visibility.VISIBLE);
     });
 
     invisible.forEach(b => {
         b.setVisible(Visibility.INVISIBLE);
+    });
+
+    visible.forEach(b => {
+        if (b.docElement.classList.contains('selected')) {
+            b.arrowsList.forEach(arrow => {
+                arrow.toBlock.setVisible(Visibility.VISIBLE);
+                arrow.fromBlock.setVisible(Visibility.VISIBLE);
+            });
+        }
+    });
+
+    invisible.forEach(b => {
+        if (b.docElement.classList.contains('selected')) {
+            b.arrowsList.forEach(arrow => {
+                arrow.toBlock.setVisible(Visibility.VISIBLE);
+                arrow.fromBlock.setVisible(Visibility.VISIBLE);
+            });
+        }
     });
 } 

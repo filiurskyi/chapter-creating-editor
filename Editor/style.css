@@ -269,6 +269,7 @@ body::-webkit-scrollbar {
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
+    z-index: 11;
 }
 
 .key-value-pair-form {
@@ -1208,7 +1209,7 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 10px;
     background-color: #4A87FF;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 12;
 }
 
 .block-connection-info-panel>img {

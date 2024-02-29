@@ -25,7 +25,8 @@ class Arrow {
             clickZone.style.cursor = 'pointer';
 
             clickZone.addEventListener('click', (e) => {
-                this.select();
+                if (e.target === clickZone)
+                    this.select();
             });
 
             element.appendChild(clickZone);

@@ -12,4 +12,5 @@ const fieldTypes = {
     "bubble-type": ["small", "big"],
     "luck-check": [0, 1, 2, 3],
     "comment": ["Lorem Ipsum is simply dummy text of the printing and typesetting industry"],
+    "timer": ["true", "false"],
 };
