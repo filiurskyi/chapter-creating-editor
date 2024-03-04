@@ -151,7 +151,6 @@ function setLOD() {
     visible.forEach(b => {
         if (b.docElement.classList.contains('selected')) {
             b.arrowsList.forEach(arrow => {
-                arrow.toBlock.setVisible(Visibility.VISIBLE);
                 arrow.fromBlock.setVisible(Visibility.VISIBLE);
             });
         }
@@ -160,7 +159,6 @@ function setLOD() {
     invisible.forEach(b => {
         if (b.docElement.classList.contains('selected')) {
             b.arrowsList.forEach(arrow => {
-                arrow.toBlock.setVisible(Visibility.VISIBLE);
                 arrow.fromBlock.setVisible(Visibility.VISIBLE);
             });
         }

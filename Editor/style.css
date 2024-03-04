@@ -864,19 +864,15 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-grow: 1;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>input {
-    flex-grow: 1;
-    background-color: transparent;
-    color: #fff;
+.black-panel>.window>.stats-main>.stats-main-body>.stat-field>span {
     font-size: 16px;
+    min-height: 17px;
+    line-height: 17px;
     border: none;
+    width: 395px;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>input:focus {
+.black-panel>.window>.stats-main>.stats-main-body>.stat-field>span:focus {
     outline: none;
     border-bottom: 1px solid #fff;
 }

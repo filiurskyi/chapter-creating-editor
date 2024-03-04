@@ -93,7 +93,6 @@ class Block {
 
         this.bottomPoint.addEventListener('contextmenu', (e) => {
             if (e.button === 2) {
-                // setTimeout(() => {
                 if (e.target === this.bottomPoint && state === State.NONE && blockToConnect == null) {
                     setTimeout(() => state = State.BLOCK_CONNECTION, 500);
 
@@ -117,7 +116,6 @@ class Block {
                         b.arrowTrigger.style.display = 'block';
                     });
                 }
-                // }, 100);
             }
         });
 

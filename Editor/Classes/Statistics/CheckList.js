@@ -44,16 +44,34 @@ function getCheckList(body) {
         })
         element.appendChild(statIcon);
 
-        const index = i - 1;
+        const message = document.createElement("span");
+        message.className = "textarea";
+        message.setAttribute("role", "textbox");
+        message.setAttribute("contenteditable", "");
 
-        const message = document.createElement('input');
-        message.type = "text";
+        message.addEventListener('focus', function () {
+            if (this.textContent === "Some action to do...") {
+                this.textContent = "";
+                this.style.color = "#fff";
+            }
+        });
+
+        message.addEventListener('blur', function () {
+            if (this.textContent.trim() === "") {
+                this.textContent = "Some action to do...";
+                this.style.color = "rgba(255, 255, 255, 0.5)";
+            }
+        });
+
         message.textContent = action.message;
-        message.placeholder = "Some action to do..."
-        message.value = checkList[index].message
-        message.addEventListener('input', () => {
-            checkList[index].message = message.value;
-        })
+
+        if (action.message.trim().length === 0) {
+            message.textContent = "Some action to do...";
+            message.style.color = "rgba(255, 255, 255, 0.5)";
+        }
+
+        const index = i - 1;
+        message.addEventListener('input', () => checkList[index].message = message.textContent);
         element.appendChild(message);
 
         const deleteImg = document.createElement('img');
@@ -69,7 +87,7 @@ function getCheckList(body) {
             ]
             body.innerHTML = '';
             getCheckList(body);
-        })
+        });
         element.appendChild(deleteImg);
 
         const addImg = document.createElement('img');
