@@ -1,4 +1,4 @@
-let checkList = [{ state: StatState.GOOD, message: "" }]
+let checkList = [{ state: StatState.ERROR, message: "" }]
 
 function getCheckList(body) {
     let i = 0;
@@ -52,14 +52,14 @@ function getCheckList(body) {
         message.addEventListener('focus', function () {
             if (this.textContent === "Some action to do...") {
                 this.textContent = "";
-                this.style.color = "#fff";
+                this.style.opacity = 1;
             }
         });
 
         message.addEventListener('blur', function () {
             if (this.textContent.trim() === "") {
                 this.textContent = "Some action to do...";
-                this.style.color = "rgba(255, 255, 255, 0.5)";
+                this.style.opacity = 0.5;
             }
         });
 
@@ -67,7 +67,7 @@ function getCheckList(body) {
 
         if (action.message.trim().length === 0) {
             message.textContent = "Some action to do...";
-            message.style.color = "rgba(255, 255, 255, 0.5)";
+            message.style.opacity = 0.5;
         }
 
         const index = i - 1;
@@ -97,7 +97,7 @@ function getCheckList(body) {
         addImg.addEventListener('click', () => {
             checkList = [
                 ...checkList.slice(0, index + 1),
-                { state: StatState.GOOD, message: "" },
+                { state: StatState.ERROR, message: "" },
                 ...checkList.slice(index + 1)
             ]
             body.innerHTML = '';

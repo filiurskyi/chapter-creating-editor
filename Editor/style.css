@@ -194,13 +194,9 @@ body {
     max-width: 100%;
     background-color: transparent;
     border: none;
-    color: #fff;
     outline: none;
     resize: none;
     overflow: hidden;
-}
-
-.formInput::placeholder {
     color: #fff;
 }
 
@@ -208,7 +204,6 @@ body {
     background-color: transparent;
     display: flex;
     position: relative;
-    /* overflow: hidden; */
     resize: none;
     width: 100%;
     max-width: 100%;
@@ -870,6 +865,7 @@ input[type="number"]::-webkit-inner-spin-button {
     line-height: 17px;
     border: none;
     width: 395px;
+    color: #fff;
 }
 
 .black-panel>.window>.stats-main>.stats-main-body>.stat-field>span:focus {

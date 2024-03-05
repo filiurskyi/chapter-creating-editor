@@ -9,7 +9,6 @@ class Form {
         this.input.setAttribute("contenteditable", "");
         this.input.id = 'formInput' + id;
         this.input.classList.add('formInput')
-        this.input.placeholder = 'None';
         this.input.style.fontSize = fontSize + "px"
         this.input.style.minHeight = (fontSize + 1) + "px"
         this.input.style.lineHeight = (fontSize + 1) + "px"
@@ -52,7 +51,7 @@ class Form {
                 this.input.style.borderBottom = ""
                 this.autocompleteList.innerHTML = '';
                 this.image.style.transform = "rotate(180deg)"
-                if (method) method(this.input.textContent)
+                if (method) method(this.input.textContent);
             }
         });
 
@@ -68,15 +67,26 @@ class Form {
         this.input.addEventListener('focus', function () {
             if (this.textContent === "None") {
                 this.textContent = "";
+                this.style.opacity = 1;
             }
         });
 
-        this.input.addEventListener('blur', function () {
-            if (this.textContent.trim() === "") {
-                this.textContent = "None";
+        let setPlaceholder = () => {
+            if (this.input.textContent.trim() === "" || this.input.textContent === "None") {
+                this.input.textContent = "None";
+                this.input.style.opacity = 0.5;
             }
+        }
+
+        this.input.addEventListener('blur', function () {
+            setPlaceholder();
         });
+
+        setTimeout(() => setPlaceholder(), 10);
+        // setPlaceholder();
     }
+
+
 
     typeEvent(input) {
         input.style.borderBottom = "2px solid"

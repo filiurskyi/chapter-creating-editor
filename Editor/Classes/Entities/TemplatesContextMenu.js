@@ -32,7 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: false });
 
-    const list = [...frameTypes.keys()]
+    const frameTypeKeys = frameTypes.keys();
+    let keysArray = Array.from(frameTypeKeys);
+    const newValue = 'Empty';
+    keysArray.unshift(newValue);
+    const list = keysArray.values();
+
     list.forEach(type => {
         const div = document.createElement('div');
         div.textContent = type
@@ -42,21 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         div.addEventListener('click', (e) => {
             contextMenu.style.display = 'none'
-            if (type == 'Dialog') dialogTemplate()
-            else if (type == 'Text') textTemplate()
-            else if (type == 'Customize') customizeTemplate()
-            else if (type == 'Animation') animationTemplate()
-            else if (type == 'Item') itemTemplate()
-            else if (type == 'Love') loveTemplate()
-            else if (type == 'Lucky') luckTemplate()
-            else if (type == 'Option') optionTemplate()
-            else if (type == 'Love-fork') loveForkTemplate()
-            else if (type == 'Max-love') maxLoveTemplate()
-            else if (type == 'Item-check') itemCheckTemplate()
-            else if (type == 'Choice') choiceTemplate()
-            else if (type == 'Choice-by-character') choiceByCharacterTemplate()
-            else if (type == 'Choice-by-choice') choiceByChoiceTemplate()
-            else if (type == 'Bubble') bubbleTemplate()
+            if (type == 'Dialog') dialogTemplate();
+            else if (type == 'Text') textTemplate();
+            else if (type == 'Customize') customizeTemplate();
+            else if (type == 'Animation') animationTemplate();
+            else if (type == 'Item') itemTemplate();
+            else if (type == 'Love') loveTemplate();
+            else if (type == 'Lucky') luckTemplate();
+            else if (type == 'Option') optionTemplate();
+            else if (type == 'Love-fork') loveForkTemplate();
+            else if (type == 'Max-love') maxLoveTemplate();
+            else if (type == 'Item-check') itemCheckTemplate();
+            else if (type == 'Choice') choiceTemplate();
+            else if (type == 'Choice-by-character') choiceByCharacterTemplate();
+            else if (type == 'Choice-by-choice') choiceByChoiceTemplate();
+            else if (type == 'Bubble') bubbleTemplate();
+            else createBlock();
         })
     })
 
