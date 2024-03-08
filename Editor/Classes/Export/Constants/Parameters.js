@@ -37,7 +37,7 @@ function tryGetParameterPair(key, rawValue) {
                 value = JSON.stringify(Boolean(rawValue));
                 break;
             case ValueTypes.String:
-                value = `"${rawValue}"`;
+                value = `"${rawValue.replace(/"/g, '\\"')}"`;
                 break;
             case ValueTypes.Integer:
                 value = parseInt(rawValue, 10);

@@ -259,7 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (chapterPopup.classList.contains("popup-close")) return;
         const input = document.getElementById('chapter-poput-input').value;
-        console.log(input);
 
         let num = Number(input);
         if (num === null || num === undefined || isNaN(num)) num = 0;
