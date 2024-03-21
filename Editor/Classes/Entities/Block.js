@@ -69,9 +69,11 @@ class Block {
             this.changeColor(color ? color : '#fff');
             const loveLink = "Images/Icons/love.png";
             const luckyLink = "Images/Icons/luck.png";
+            const counterLink = "Images/Icons/counter.png";
 
             (value === 'Love') ? this.addIcon(loveLink) : this.removeIcons(loveLink);
             (value === 'Lucky') ? this.addIcon(luckyLink) : this.removeIcons(luckyLink);
+            (value === 'Counter') ? this.addIcon(counterLink) : this.removeIcons(counterLink);
         });
         this.header.form.style.marginBottom = '10px';
         this.header.form.style.marginLeft = '10px';

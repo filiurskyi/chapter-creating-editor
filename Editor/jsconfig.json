@@ -37,6 +37,8 @@
         "Classes/Export/Entities/LuckyFrame.js",
         "Classes/Export/Entities/MaxLoveFrame.js",
         "Classes/Export/Entities/LoveForkFrame.js",
+        "Classes/Export/Entities/CounterFrame.js",
+        "Classes/Export/Entities/CounterCheckFrame.js",
         "Classes/Export/Exporter.js",
         "Classes/Export/JSONGenerator.js",
         "Classes/Statistics/StatisticsManager.js",

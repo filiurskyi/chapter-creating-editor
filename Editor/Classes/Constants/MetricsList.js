@@ -28,4 +28,5 @@ const errorsList = [
     ["CCE0010: Duplicate property", StatState.ERROR, "Two identical properties in one frame are not allowed"],// 10
     ["CCE0011: Dead-end line", StatState.ERROR, "The branch breaks off without finishing"],// 11
     ["", StatState.COMMENT, ""],// 12
+    ["", StatState.COUNTER, ""],// 13
 ];

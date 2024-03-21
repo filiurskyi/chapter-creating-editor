@@ -23,12 +23,15 @@ const parametersList = {
     "item-name": { name: "frame_type", type: ValueTypes.String },
     "add": { name: "take", type: ValueTypes.Boolean },
     "timer": { name: "frame_type", type: ValueTypes.Boolean },
-    "bubble-type": { name: "bubble-type", type: ValueTypes.String }
+    "name": { name: "name", type: ValueTypes.String },
+    "count": { name: "count", type: ValueTypes.Integer },
+    "type": { name: "type", type: ValueTypes.String },
+    "value": { name: "value", type: ValueTypes.Integer },
 };
 
 function tryGetParameterPair(key, rawValue) {
     key = key.toLowerCase();
-    rawValue = rawValue.toLowerCase();
+    rawValue = rawValue.toLowerCase().trim();
     if (parametersList.hasOwnProperty(key)) {
         const name = parametersList[key].name;
         let value;

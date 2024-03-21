@@ -3,6 +3,15 @@ function getConsoleErrors(body) {
     blocks.forEach(block => {
         const frameType = block.header.input.textContent;
 
+        if (frameType === 'Counter') {
+            block.formsList.forEach(fl => {
+                const property = fl.keyForm.input.textContent;
+                if (property === "name") {
+                    errors.push({ message: errorsList[13][0] + fl.valueForm.input.textContent, tip: errorsList[13][2], state: errorsList[13][1], position: block.position })
+                }
+            })
+        }
+
         if (frameTypes.get(frameType) === undefined) {
             errors.push({ message: errorsList[3][0] + " (" + frameType + ")", tip: errorsList[3][2], state: errorsList[3][1], position: block.position })
         }
@@ -133,6 +142,9 @@ function getConsoleErrors(body) {
                 break;
             case StatState.COMMENT:
                 statIcon.src = "Images/Icons/chat.png";
+                break;
+            case StatState.COUNTER:
+                statIcon.src = "Images/Icons/counter.png";
                 break;
             default:
                 break;

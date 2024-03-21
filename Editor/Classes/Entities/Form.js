@@ -67,26 +67,26 @@ class Form {
         this.input.addEventListener('focus', function () {
             if (this.textContent === "None") {
                 this.textContent = "";
-                this.style.opacity = 1;
             }
+
+            this.style.opacity = 1;
         });
 
-        let setPlaceholder = () => {
+        let trySetPlaceholder = () => {
             if (this.input.textContent.trim() === "" || this.input.textContent === "None") {
                 this.input.textContent = "None";
                 this.input.style.opacity = 0.5;
+            } else {
+                this.input.style.opacity = 1;
             }
         }
 
         this.input.addEventListener('blur', function () {
-            setPlaceholder();
+            trySetPlaceholder();
         });
 
-        setTimeout(() => setPlaceholder(), 10);
-        // setPlaceholder();
+        setTimeout(() => trySetPlaceholder(), 10);
     }
-
-
 
     typeEvent(input) {
         input.style.borderBottom = "2px solid"
@@ -101,6 +101,8 @@ class Form {
                 divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
                 divElement.addEventListener('click', () => {
                     input.textContent = item;
+                    input.style.opacity = 1;
+
                     this.autocompleteList.innerHTML = '';
                     if (this.method !== null) {
                         this.method(item)

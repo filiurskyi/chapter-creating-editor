@@ -22,8 +22,6 @@ class Converter {
                         type = type[0] + type[1].toUpperCase() + type.slice(2);
                     else
                         type = type[0] + type[1] + type[2] + type[3].toUpperCase() + type.slice(4);
-
-                    console.log(type);
                 }
 
                 json += `"${key}":${type},`;

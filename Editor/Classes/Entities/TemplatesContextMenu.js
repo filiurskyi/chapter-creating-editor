@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Choice-by-character') choiceByCharacterTemplate();
             else if (type == 'Choice-by-choice') choiceByChoiceTemplate();
             else if (type == 'Bubble') bubbleTemplate();
+            else if (type == 'Counter') counterTemplate();
+            else if (type == 'Counter-comparison') counterComparisonTemplate();
+            else if (type == 'Counter-check') counterCheckTemplate();
             else createBlock();
         })
     })
@@ -503,5 +506,90 @@ document.addEventListener('DOMContentLoaded', () => {
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
         arrows.push(arrow2)
+    }
+
+    function counterTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Counter"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "name"
+        keyValuePairForm.valueForm.list = fieldTypes["name"]
+        block.formsList.push(keyValuePairForm)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "count"
+        keyValuePairForm1.valueForm.list = fieldTypes["count"]
+        block.formsList.push(keyValuePairForm1)
+    }
+
+    function counterComparisonTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Counter-comparison"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "type"
+        keyValuePairForm.valueForm.list = fieldTypes["type"]
+        block.formsList.push(keyValuePairForm)
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "name1"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "name2"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
+    }
+
+    function counterCheckTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Counter-check"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "name"
+        keyValuePairForm.valueForm.list = fieldTypes["name"]
+        block.formsList.push(keyValuePairForm)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "value"
+        keyValuePairForm1.valueForm.list = fieldTypes["value"]
+        block.formsList.push(keyValuePairForm1)
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "-1"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "1"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
     }
 })

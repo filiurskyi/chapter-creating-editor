@@ -19,6 +19,7 @@ const StatState = {
     WARNING: 'WARNING',
     ERROR: 'ERROR',
     COMMENT: 'COMMENT',
+    COUNTER: 'COUNTER',
 }
 
 let blocks = [];

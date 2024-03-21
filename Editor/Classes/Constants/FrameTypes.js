@@ -14,3 +14,6 @@ frameTypes.set("Lucky", 'rgba(251, 226, 0, 0.75)');
 frameTypes.set("Choice-by-choice", 'rgba(255, 74, 84, 0.75)');
 frameTypes.set("Bubble", 'rgba(251, 226, 0, 0.75)');
 frameTypes.set("Animation", 'rgba(0, 251, 206, 0.75)');
+frameTypes.set("Counter", 'rgba(0, 251, 206, 0.75)');
+frameTypes.set("Counter-comparison", 'rgba(0, 251, 206, 0.75)');
+frameTypes.set("Counter-check", 'rgba(0, 251, 206, 0.75)');

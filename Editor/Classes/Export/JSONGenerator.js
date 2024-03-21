@@ -28,7 +28,8 @@ class JSONGenerator {
             new ItemCheckFrame(),
             new MaxLoveFrame(),
             new LoveForkFrame(),
-            new LuckyFrame(),
+            new CounterFrame(),
+            new CounterCheckFrame(),
         ];
 
         this.bannedIndexes = new Set();

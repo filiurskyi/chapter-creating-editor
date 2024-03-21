@@ -13,4 +13,7 @@ const fieldTypes = {
     "luck-check": [0, 1, 2, 3],
     "comment": ["Lorem Ipsum is simply dummy text of the printing and typesetting industry"],
     "timer": ["true", "false"],
+    "count": [0, 1, 2, 3],
+    "type": ["min", "max"],
+    "value": [-1, 0, 1],
 };
