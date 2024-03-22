@@ -87,6 +87,16 @@ class Block {
             this.formsList.push(keyValuePairForm);
             this.updateArrows();
             updateEnd(this);
+
+            addUndoAction(() => {
+                keyValuePairForm.setAvatarImage();
+                keyValuePairForm.isPremium();
+                keyValuePairForm.isComment();
+                this.formsList = this.formsList.filter(item => item !== keyValuePairForm)
+                keyValuePairForm.form.remove();
+                updateEnd(this);
+            });
+
         });
 
         this.docElement.addEventListener('contextmenu', (event) => {
@@ -124,8 +134,8 @@ class Block {
         this.docElement.addEventListener('mousedown', (e) => {
             if (e.button === 0) {
                 if (e.target === this.bottomPoint && state === State.NONE) {
-                    arrowToMove = new Arrow(workplace, this)
-                    arrowToMove.setFrom(this.bottomPoint)
+                    arrowToMove = new Arrow(workplace, this);
+                    arrowToMove.setFrom(this.bottomPoint);
                     state = State.ARROW_MOVING;
 
                     blocks.forEach(b => {
@@ -210,10 +220,11 @@ class Block {
     }
 
     changeColor(color) {
-        if (this.docElement?.classList.contains('selected'))
+        if (this.docElement?.classList.contains('selected')) {
             color = selectedColor
-
-        this.docElement.style.borderColor = color
+        }
+        if (this.docElement !== null)
+            this.docElement.style.borderColor = color
         this.header.input.style.borderColor = color
         this.header.input.style.color = color
         this.bottomPoint.style.backgroundColor = color

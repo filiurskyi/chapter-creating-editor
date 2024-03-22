@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     var rect = workplace.getBoundingClientRect();
     mousePosition = new Vector2(event.clientX - rect.left, event.clientY - rect.top)
 
+    let lastBlockPosition = [];
+    let firstMove = true;
+
     document.addEventListener('mousemove', function (e) {
         var rect = workplace.getBoundingClientRect();
 
@@ -22,11 +25,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
             blocks.forEach(b => {
                 if (b.docElement.classList.contains('selected')) {
+                    if (firstMove) {
+                        lastBlockPosition.push({
+                            block: b,
+                            position: new Vector2(b.position.x, b.position.y)
+                        });
+                    }
                     b.placeToMousePosition(delta, cellSize)
                 }
 
                 trySetBegin(b);
             })
+            firstMove = false;
         }
 
         mousePosition = newMousePosition;
@@ -53,6 +63,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 arrows.push(arrowToMove);
                 arrowToMove.placeArrow();
 
+                addUndoAction(() => arrowToMove.deleteArrow());
+
                 state = State.NONE;
             }
         }
@@ -67,6 +79,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         arrow.setFrom(blockToConnect.bottomPoint);
                         arrow.setTo(blocks[i].topPoint, blocks[i]);
                         arrow.placeArrow();
+                        addUndoAction(() => arrow.deleteArrow());
 
                         blockToConnect.arrowsList.push(arrow);
                         blocks[i].arrowsList.push(arrow);
@@ -88,6 +101,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         if (state === State.BLOCKS_MOVING) {
             state = State.NONE;
+
+            firstMove = true;
+            addUndoAction(() => {
+                lastBlockPosition.forEach(item => {
+                    const delta = item.position.subtract(item.block.position);
+                    console.log(delta);
+                    item.block.placeToMousePosition(delta);
+                });
+                lastBlockPosition = [];
+            });
         }
     });
 
@@ -105,14 +128,34 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (e.key === 'Delete') {
             blocks.forEach(b => {
                 if (b.docElement.classList.contains('selected')) {
-                    b.remove()
+                    const header = b.header.input.textContent
+                    addUndoAction(() => {
+                        let block = new Block(b.position, blockSize, workplace);
+                        block.header.input.textContent = header
+                        for (let i = 0; i < b.formsList.length; i++) {
+                            block.formsList[i] = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length);
+                            block.formsList[i].keyForm.input.textContent = b.formsList[i].keyForm.input.textContent;
+                            block.formsList[i].valueForm.input.textContent = b.formsList[i].valueForm.input.textContent;
+                        }
+                        blocks.push(block);
+                    });
+                    b.remove();
                 }
             })
 
             arrows.forEach(a => {
-                console.log(a.arrowParts[0].classList);
                 if (a.arrowParts[0].classList.contains('selected')) {
-                    a.deleteArrow()
+                    addUndoAction(() => {
+                        const arrow = new Arrow(workplace, a.fromBlock);
+                        arrow.setFrom(a.fromBlock.bottomPoint);
+                        arrow.setTo(a.toBlock.topPoint, a.toBlock);
+                        arrow.fromBlock.arrowsList.push(arrow);
+                        arrow.toBlock.arrowsList.push(arrow);
+                        arrow.form.input.textContent = a.form.input.textContent;
+                        arrow.placeArrow();
+                        arrows.push(arrow);
+                    });
+                    a.deleteArrow();
                 }
             })
         }

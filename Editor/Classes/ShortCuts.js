@@ -78,6 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        if ((event.ctrlKey || event.metaKey) && (event.key === 'z' || event.key === 'Z' || event.key === 'я' || event.key === 'Я')) {
+            event.preventDefault();
+            undo();
+            return;
+        }
+
         if ((event.ctrlKey || event.metaKey) && (event.key === 'r' || event.key === 'R' || event.key === 'к' || event.key === 'К')) {
             event.preventDefault();
             return;

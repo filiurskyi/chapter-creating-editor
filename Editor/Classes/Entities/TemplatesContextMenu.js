@@ -116,6 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         trySetBegin(block);
 
+        addUndoAction(() => block.remove());
+
         return block
     }
 

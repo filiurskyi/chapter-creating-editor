@@ -30,6 +30,7 @@ class JSONGenerator {
             new LoveForkFrame(),
             new CounterFrame(),
             new CounterCheckFrame(),
+            new CounterComparisonFrame(),
         ];
 
         this.bannedIndexes = new Set();

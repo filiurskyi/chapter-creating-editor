@@ -63,8 +63,11 @@ class Form {
             }
         }, { passive: false });
 
+        this.lastInputValue = "";
 
         this.input.addEventListener('focus', function () {
+            this.lastInputValue = this.textContent;
+
             if (this.textContent === "None") {
                 this.textContent = "";
             }
@@ -83,6 +86,9 @@ class Form {
 
         this.input.addEventListener('blur', function () {
             trySetPlaceholder();
+            if (this.lastInputValue !== this.textContent) {
+                addUndoAction(() => this.textContent = this.lastInputValue);
+            }
         });
 
         setTimeout(() => trySetPlaceholder(), 10);
@@ -100,6 +106,7 @@ class Form {
                 scrollable.push(divElement)
                 divElement.innerHTML = inputText !== '' ? `<b>${item.substr(0, inputText.length)}</b>${item.substr(inputText.length)}` : item;
                 divElement.addEventListener('click', () => {
+                    this.lastInputValue = input.textContent;
                     input.textContent = item;
                     input.style.opacity = 1;
 
@@ -107,6 +114,8 @@ class Form {
                     if (this.method !== null) {
                         this.method(item)
                     }
+
+                    addUndoAction(() => input.textContent = this.lastInputValue);
                 });
                 this.autocompleteList.appendChild(divElement);
             }
