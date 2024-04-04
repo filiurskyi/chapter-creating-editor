@@ -294,6 +294,40 @@ document.addEventListener('DOMContentLoaded', () => {
     function exportToFile(chapter) {
         const json = exportToJson(chapter);
 
+        const exportInfoWindow = document.getElementById("export-info-popup");
+        const exportInfoText = document.getElementById("export-info-text");
+        const exportInfoButton = document.getElementById("export-info-submit");
+
+        if (exportInfoWindow.classList.contains("popup-open")) return;
+
+        exportInfoWindow.style.display = 'flex';
+        exportInfoWindow.classList.remove('popup-close');
+        exportInfoWindow.classList.add('popup-open');
+
+        exportInfoButton.onclick = () => {
+            if (exportInfoWindow.classList.contains("popup-close")) return;
+
+            exportInfoWindow.classList.remove('popup-open');
+            exportInfoWindow.classList.add('popup-close');
+
+            setTimeout(() => {
+                exportInfoWindow.style.display = 'none';
+            }, 450);
+        };
+
+        const exportArrayLength = JSON.parse(json).length - 1;
+        let blockArrayLength = 0;
+
+        blocks.forEach(block => {
+            if (block.header.input.textContent !== "Option") {
+                blockArrayLength++;
+            }
+        });
+
+        exportInfoText.style.whiteSpace = "pre";
+        exportInfoText.textContent = "Blocks count: " + blockArrayLength + "\r\nFrames count: " + exportArrayLength;
+
+
         let blob = new Blob([json], { type: "application/json" });
         let url = URL.createObjectURL(blob);
 

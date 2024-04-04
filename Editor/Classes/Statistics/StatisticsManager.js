@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const icon = document.getElementById('stat-icon');
     const body = document.getElementById('stats-main-body');
 
+    const content = document.createElement('div');
+    content.classList.add('content');
+    body.appendChild(content);
+
+    let contentDelta = 0;
+    body.onwheel = function (e) {
+        contentDelta = Math.max(Math.min(contentDelta - e.deltaY * 0.3, 0), -content.clientHeight);
+        content.style.transform = "translateY(" + contentDelta + "px)";
+    }
+
     document.getElementById('statButton').addEventListener('click', () => setWindow(lastWindow))
 
     document.getElementById('stat-metrics').addEventListener('click', () => setWindow(Window.METRICS))
@@ -21,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('stat-list').addEventListener('click', () => setWindow(Window.LIST))
 
     function setWindow(window) {
-        body.innerHTML = '';
+        content.innerHTML = '';
 
         metrics.classList.remove("active");
         statConsole.classList.remove("active");
@@ -48,24 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
         //     iconState = newState2;
         // }
 
+        contentDelta = 0;
+        content.style.transform = "translateY(0px)";
         switch (window) {
             case Window.METRICS:
                 metrics.classList.add("active");
                 statConsole.classList.add("unactive");
                 list.classList.add("unactive");
-                iconState = getMetrics(body);
+                iconState = getMetrics(content);
                 break;
             case Window.CONSOLE:
                 metrics.classList.add("unactive");
                 statConsole.classList.add("active");
                 list.classList.add("unactive");
-                iconState = getConsoleErrors(body);
+                iconState = getConsoleErrors(content);
                 break;
             case Window.LIST:
                 metrics.classList.add("unactive");
                 statConsole.classList.add("unactive");
                 list.classList.add("active");
-                getCheckList(body);
+                getCheckList(content);
                 break;
             default:
                 break;

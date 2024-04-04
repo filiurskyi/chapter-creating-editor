@@ -29,4 +29,5 @@ const errorsList = [
     ["CCE0011: Dead-end line", StatState.ERROR, "The branch breaks off without finishing"],// 11
     ["", StatState.COMMENT, ""],// 12
     ["", StatState.COUNTER, ""],// 13
+    ["CCE0012: Extra start", StatState.ERROR, "Chapter must have only one start"],// 14
 ];

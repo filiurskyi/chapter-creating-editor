@@ -813,7 +813,12 @@ input[type="number"]::-webkit-inner-spin-button {
     overflow: hidden;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field {
+.black-panel>.window>.stats-main>.stats-main-body>.content {
+    min-width: 100%;
+    min-height: fit-content;
+}
+
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field {
     position: relative;
     width: 500px;
     min-height: 25px;
@@ -824,42 +829,42 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #fff;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>img {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>img {
     height: 25px;
     padding-right: 20px;
     padding-left: 10px;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2) {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>img:nth-of-type(2) {
     margin-left: auto;
     transition: transform 0.15s ease-in-out;
     transform-origin: center;
     cursor: pointer;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>img:nth-of-type(2):hover {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>img:nth-of-type(2):hover {
     transform: scale(1.25);
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(1) {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>p:nth-of-type(1) {
     max-width: 200px;
     min-width: 200px;
     height: fit-content;
     flex-grow: 0;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(2) {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>p:nth-of-type(2) {
     max-width: 75px;
     min-width: 75px;
     flex-grow: 0;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>p:nth-of-type(3) {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>p:nth-of-type(3) {
     color: rgba(255, 255, 255, 0.5);
     flex-grow: 1;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>span {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>span {
     font-size: 16px;
     min-height: 17px;
     line-height: 17px;
@@ -868,7 +873,7 @@ input[type="number"]::-webkit-inner-spin-button {
     color: #fff;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>span:focus {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>span:focus {
     outline: none;
     border-bottom: 1px solid #fff;
 }
@@ -881,12 +886,12 @@ input[type="number"]::-webkit-inner-spin-button {
     background-color: #212e44;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>.checklist-delete {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>.checklist-delete {
     height: 15px;
     padding-right: 10px;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>.checklist-icon {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>.checklist-icon {
     cursor: pointer;
     transition: transform 0.15s ease-in-out;
     margin-right: 20px;
@@ -894,11 +899,11 @@ input[type="number"]::-webkit-inner-spin-button {
     padding: 0;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>.checklist-icon:hover {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>.checklist-icon:hover {
     transform: scale(1.25);
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>.checklist-add {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>.checklist-add {
     position: absolute;
     width: 10px;
     height: 10px;
@@ -910,7 +915,7 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-.black-panel>.window>.stats-main>.stats-main-body>.stat-field>.checklist-add:hover {
+.black-panel>.window>.stats-main>.stats-main-body>.content>.stat-field>.checklist-add:hover {
     transform: scale(1.25);
 }
 

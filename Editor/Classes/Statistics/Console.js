@@ -103,14 +103,17 @@ function getConsoleErrors(body) {
         }
 
         let fromArrowsCount = 0;
+        let toArrowsCount = 0;
         block.arrowsList.forEach(arrow => {
-            if (arrow.toBlock !== block) {
-                fromArrowsCount++;
-            }
+            (arrow.toBlock !== block) ? fromArrowsCount++ : toArrowsCount++;
         });
 
         if (block.arrowsList.length === 0) {
             errors.push({ message: errorsList[9][0] + " (" + frameType + ")", tip: errorsList[9][2], state: errorsList[9][1], position: block.position });
+        }
+
+        if (toArrowsCount === 0 && block !== beginBlock) {
+            errors.push({ message: errorsList[14][0] + " (" + frameType + ")", tip: errorsList[14][2], state: errorsList[14][1], position: block.position });
         }
 
         const linearFrames = ["Text", "Dialog", "Option", "Item", "Customize", "Love", "Lucky", "Bubble", "Animation"];
