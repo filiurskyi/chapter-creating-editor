@@ -84,16 +84,24 @@ class Arrow {
             from = new Vector2(mouse.x - rect.left, mouse.y - rect.top)
         }
         else {
-            rect0 = this.from.getBoundingClientRect();
-            from = new Vector2(rect0.left - rect.left + rect0.width / 2, rect0.top - rect.top + rect0.height / 2)
+            if (this.fromBlock.docElement.classList.contains("invisible")) {
+                from = this.fromBlock.position.multiply(scale);
+            } else {
+                rect0 = this.from.getBoundingClientRect();
+                from = new Vector2(rect0.left - rect.left + rect0.width / 2, rect0.top - rect.top + rect0.height / 2)
+            }
         }
 
         if (this.to == null) {
             to = new Vector2(mouse.x - rect.left, mouse.y - rect.top)
         }
         else {
-            rect1 = this.to.getBoundingClientRect();
-            to = new Vector2(rect1.left - rect.left + rect1.width / 2, rect1.top - rect.top + rect1.height / 2)
+            if (this.toBlock.docElement.classList.contains("invisible")) {
+                to = this.toBlock.position.multiply(scale);
+            } else {
+                rect1 = this.to.getBoundingClientRect();
+                to = new Vector2(rect1.left - rect.left + rect1.width / 2, rect1.top - rect.top + rect1.height / 2)
+            }
         }
 
         this.placeArrowParts(from.divide(scale), to.divide(scale))

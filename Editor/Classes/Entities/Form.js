@@ -87,7 +87,8 @@ class Form {
         this.input.addEventListener('blur', function () {
             trySetPlaceholder();
             if (this.lastInputValue !== this.textContent) {
-                addUndoAction(() => this.textContent = this.lastInputValue);
+                const lastInput = this.lastInputValue;
+                addUndoAction(() => this.textContent = lastInput);
             }
         });
 

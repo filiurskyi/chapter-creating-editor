@@ -300,12 +300,12 @@ class Block {
                 this.formsList.forEach(f => {
                     f.form.classList.add('invisible');
                 });
-                if (this.docElement.classList.contains('selected') === false) {
-                    this.arrowsList.forEach(a => {
-                        a.docElement.classList.add('invisible');
-                        a.form.form.classList.add('invisible');
-                    });
-                }
+                // if (this.docElement.classList.contains('selected') === false) {
+                //     this.arrowsList.forEach(a => {
+                //         a.docElement.classList.add('invisible');
+                //         a.form.form.classList.add('invisible');
+                //     });
+                // }
                 break;
             case Visibility.INVISIBLE:
                 this.docElement.classList.add('invisible');
@@ -314,10 +314,10 @@ class Block {
                 this.formsList.forEach(f => {
                     f.form.classList.add('invisible');
                 });
-                this.arrowsList.forEach(a => {
-                    a.docElement.classList.add('invisible');
-                    a.form.form.classList.add('invisible');
-                });
+                // this.arrowsList.forEach(a => {
+                //     a.docElement.classList.add('invisible');
+                //     a.form.form.classList.add('invisible');
+                // });
                 break;
             default:
                 break;

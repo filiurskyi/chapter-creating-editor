@@ -27,6 +27,7 @@ const parametersList = {
     "count": { name: "count", type: ValueTypes.Integer },
     "type": { name: "type", type: ValueTypes.String },
     "value": { name: "value", type: ValueTypes.Integer },
+    "needed_prop": { name: "needed_prop", type: ValueTypes.String },
 };
 
 function tryGetParameterPair(key, rawValue) {

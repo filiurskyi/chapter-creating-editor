@@ -37,6 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.buttons === 4 || (isCtrlPressed && e.buttons === 1)) zoom.classList.add('grabbing')
     }
 
+
+    document.onkeydown = function (event) {
+        if (event.key === ' ') {
+            let isActive = false;
+            const inputs = document.querySelectorAll('span');
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i] === document.activeElement) {
+                    isActive = true;
+                    break;
+                }
+            }
+
+            if (isActive) return;
+
+            event.preventDefault();
+        }
+    }
+
     zoom.onmouseup = function (e) {
         panning = false;
         zoom.classList.remove('grabbing')
