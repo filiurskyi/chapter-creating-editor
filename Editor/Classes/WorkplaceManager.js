@@ -101,6 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
         pointX = e.clientX - xs * scale;
         pointY = e.clientY - ys * scale;
 
+        bookmarks.forEach(b => {
+            b.docElement.style.transform = "scale(" + 1 / scale + ")";
+        })
+
         setTransform();
     }
 

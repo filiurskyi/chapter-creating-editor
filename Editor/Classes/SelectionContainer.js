@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (workplace !== e.target) return;
 
         blocks.forEach(b => b.docElement.classList.remove('selected'));
+        bookmarks.forEach(b => b.docElement.classList.remove('selected'));
         arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
 
         isSelection = true;
@@ -75,13 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         blocks.forEach(b => {
             const rect = b.docElement.getBoundingClientRect();
             const position = new Vector2(b.position.x, b.position.y + (rect.height - b.size.y) / 2);
-            // const corners = [];
-            // corners.push(position.add(new Vector2(rect.height / 2, rect.width / 2)));
-            // corners.push(position.add(new Vector2(rect.height / 2, -rect.width / 2)));
-            // corners.push(position.add(new Vector2(-rect.height / 2, rect.width / 2)));
-            // corners.push(position.add(new Vector2(-rect.height / 2, -rect.width / 2)));
 
-            // for (let i = 0; i < 4; i++) {
             if (
                 position.x >= lowerX &&
                 position.y >= lowerY &&
@@ -89,9 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 position.y <= upperY
             ) {
                 b.docElement.classList.add('selected');
-                // i = 5;
             }
-            // }
+        });
+
+        bookmarks.forEach(b => {
+            if (
+                b.position.x >= lowerX &&
+                b.position.y >= lowerY &&
+                b.position.x <= upperX &&
+                b.position.y <= upperY
+            ) {
+                b.docElement.classList.add('selected');
+                b.docElement.style.borderColor = selectedColor;
+            }
         });
     }
 

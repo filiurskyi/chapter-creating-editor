@@ -208,6 +208,7 @@ body {
     width: 100%;
     max-width: 100%;
     word-wrap: break-word;
+    align-items: center;
 }
 
 .autocomplete-items {
@@ -986,7 +987,7 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-direction: column;
     padding: 50px 50px;
     width: 540px;
-    height: 520px;
+    height: 620px;
 }
 
 .customize>.customize-body>.customize-body-content>.container>.customize-element {
@@ -1239,4 +1240,19 @@ input[type="number"]::-webkit-inner-spin-button {
     text-align: center;
     color: #fff;
     pointer-events: none;
+}
+
+.bookmark {
+    position: absolute;
+    display: flex;
+    border: #fff 1px solid;
+    border-radius: 10px;
+    align-items: center;
+    z-index: 51;
+}
+
+.bookmark>img {
+    width: 50px;
+    height: 50px;
+    margin: 0px 25px;
 }

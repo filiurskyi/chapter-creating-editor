@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const frameTypeKeys = frameTypes.keys();
     let keysArray = Array.from(frameTypeKeys);
+    keysArray.unshift('Mark');
     const newValue = 'Empty';
     keysArray.unshift(newValue);
     const list = keysArray.values();
@@ -65,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Counter') counterTemplate();
             else if (type == 'Counter-comparison') counterComparisonTemplate();
             else if (type == 'Counter-check') counterCheckTemplate();
+            else if (type == 'Counter-value') counterValueTemplate();
+            else if (type == 'Mark') markTemplate();
             else createBlock();
         })
     })
@@ -90,6 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    function markTemplate(position = lastMousePosition) {
+        let adjustedPosition = new Vector2(
+            Math.round(position.x / cellSize.x) * cellSize.x,
+            Math.round(position.y / cellSize.y) * cellSize.y
+        );
+
+        let bookmark = new Bookmark(adjustedPosition, workplace);
+        bookmarks.push(bookmark);
+
+        state = State.NONE;
+
+        addUndoAction(() => bookmark.remove());
+    }
 
     function createBlock(position = lastMousePosition) {
         let adjustedPosition = new Vector2(
@@ -593,5 +610,46 @@ document.addEventListener('DOMContentLoaded', () => {
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
+    }
+
+    function counterValueTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Counter-value";
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length);
+        keyValuePairForm.keyForm.input.textContent = "name";
+        keyValuePairForm.valueForm.list = fieldTypes["name"];
+        block.formsList.push(keyValuePairForm);
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "0"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "3"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
+        const arrow2 = new Arrow(workplace, block)
+        arrow2.form.input.textContent = "7"
+        arrow2.setFrom(block.bottomPoint)
+        arrow2.setTo(block2.topPoint, block2)
+        arrow2.placeArrow()
+        block2.arrowsList.push(arrow2)
+        block.arrowsList.push(arrow2)
+        arrows.push(arrow2)
     }
 })

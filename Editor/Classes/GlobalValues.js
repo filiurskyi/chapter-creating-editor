@@ -20,10 +20,12 @@ const StatState = {
     ERROR: 'ERROR',
     COMMENT: 'COMMENT',
     COUNTER: 'COUNTER',
+    BOOKMARK: 'BOOKMARK',
 }
 
 let blocks = [];
 let arrows = [];
+let bookmarks = [];
 let scrollable = [];
 let arrowToMove;
 let blockToConnect = null;

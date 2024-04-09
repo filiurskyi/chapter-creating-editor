@@ -10,9 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let chosenCircle;
 
     frameTypes.forEach((value, key) => {
-        frameTypes.forEach((value, key) => {
-            resetFrameTypes.set(key, value);
-        })
+        resetFrameTypes.set(key, value);
     })
 
     repaint = () => {

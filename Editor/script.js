@@ -31,10 +31,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             position: new Vector2(b.position.x, b.position.y)
                         });
                     }
-                    b.placeToMousePosition(delta, cellSize)
+                    b.placeToMousePosition(delta)
                 }
 
                 trySetBegin(b);
+            })
+
+            bookmarks.forEach(b => {
+                if (b.docElement.classList.contains('selected')) {
+                    if (firstMove) {
+                        lastBlockPosition.push({
+                            block: b,
+                            position: new Vector2(b.position.x, b.position.y)
+                        });
+                    }
+                    b.placeToMousePosition(delta)
+                }
             })
             firstMove = false;
         }
@@ -106,7 +118,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addUndoAction(() => {
                 lastBlockPosition.forEach(item => {
                     const delta = item.position.subtract(item.block.position);
-                    console.log(delta);
                     item.block.placeToMousePosition(delta);
                 });
                 lastBlockPosition = [];
@@ -117,6 +128,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.addEventListener('mousedown', function (e) {
         if (e.button === 0 && state === State.NONE && e.target === workplace) {
             blocks.forEach(b => b.docElement.classList.remove('selected'));
+            bookmarks.forEach(b => b.docElement.classList.remove('selected'));
             arrows.forEach(a => a.arrowParts.forEach(ap => ap.classList.remove('selected')));
         }
         else if (e.button === 1) {
@@ -138,6 +150,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
                             block.formsList[i].valueForm.input.textContent = b.formsList[i].valueForm.input.textContent;
                         }
                         blocks.push(block);
+                    });
+                    b.remove();
+                }
+            })
+
+            bookmarks.forEach(b => {
+                if (b.docElement.classList.contains('selected')) {
+                    const header = b.header.input.textContent;
+                    addUndoAction(() => {
+                        let bookmark = new Bookmark(b.position, workplace);
+                        bookmark.header.input.textContent = header
+                        bookmarks.push(bookmark);
                     });
                     b.remove();
                 }

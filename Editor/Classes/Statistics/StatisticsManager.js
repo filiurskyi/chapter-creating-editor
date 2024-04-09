@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let contentDelta = 0;
     body.onwheel = function (e) {
-        contentDelta = Math.max(Math.min(contentDelta - e.deltaY * 0.3, 0), -content.clientHeight);
+        contentDelta = Math.max(Math.min(contentDelta - e.deltaY, 0), -content.clientHeight);
         content.style.transform = "translateY(" + contentDelta + "px)";
     }
 

@@ -31,6 +31,7 @@ class JSONGenerator {
             new CounterFrame(),
             new CounterCheckFrame(),
             new CounterComparisonFrame(),
+            new CounterValueFrame(),
         ];
 
         this.bannedIndexes = new Set();

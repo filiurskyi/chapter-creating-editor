@@ -1,5 +1,11 @@
 function getConsoleErrors(body) {
     const errors = [];
+
+    bookmarks.forEach(b => {
+        console.log("+");
+        errors.push({ message: errorsList[15][0] + b.header.input.textContent, tip: errorsList[15][2], state: errorsList[15][1], position: b.position });
+    });
+
     blocks.forEach(block => {
         const frameType = block.header.input.textContent;
 
@@ -148,6 +154,9 @@ function getConsoleErrors(body) {
                 break;
             case StatState.COUNTER:
                 statIcon.src = "Images/Icons/counter.png";
+                break;
+            case StatState.BOOKMARK:
+                statIcon.src = "Images/Icons/bookmark.png";
                 break;
             default:
                 break;

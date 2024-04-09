@@ -40,6 +40,8 @@
         "Classes/Export/Entities/CounterFrame.js",
         "Classes/Export/Entities/CounterCheckFrame.js",
         "Classes/Export/Entities/CounterComparisonFrame.js",
+        "Classes/Export/Entities/CounterValueFrame.js",
+        "Classes/Entities/Bookmark.js",
         "Classes/Undo/Stack.js",
         "Classes/Undo/UndoRedoManager.js",
         "Classes/Export/Exporter.js",

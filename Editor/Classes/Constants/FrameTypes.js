@@ -17,3 +17,4 @@ frameTypes.set("Animation", 'rgba(0, 251, 206, 1)');
 frameTypes.set("Counter", 'rgba(161, 90, 250, 1)');
 frameTypes.set("Counter-comparison", 'rgba(161, 90, 250, 1)');
 frameTypes.set("Counter-check", 'rgba(161, 90, 250, 1)');
+frameTypes.set("Counter-value", 'rgba(161, 90, 250, 1)');
