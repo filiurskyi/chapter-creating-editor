@@ -60,12 +60,14 @@ function fromJSONConvert(jsonData, container) {
             arrows.push(arrow)
         });
 
-        jsonData.bookmarks.forEach(bookmarksInfo => {
-            let position = new Vector2(bookmarksInfo.position.x, bookmarksInfo.position.y - delta)
-            const bookmark = new Bookmark(position, container);
-            bookmark.header.input.textContent = bookmarksInfo.header.input;
-            bookmarks.push(bookmark);
-        })
+        if (!(jsonData.bookmarks === undefined || jsonData.bookmarks === null)) {
+            jsonData.bookmarks.forEach(bookmarksInfo => {
+                let position = new Vector2(bookmarksInfo.position.x, bookmarksInfo.position.y - delta)
+                const bookmark = new Bookmark(position, container);
+                bookmark.header.input.textContent = bookmarksInfo.header.input;
+                bookmarks.push(bookmark);
+            })
+        }
 
         lastAddedBlock = blocks[blocks.length - 1];
 
