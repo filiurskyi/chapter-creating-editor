@@ -400,6 +400,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.valueForm.list = fieldTypes["text"]
         block.formsList.push(keyValuePairForm)
 
+        const keyValuePairForm4 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm4.keyForm.input.textContent = "character"
+        keyValuePairForm4.valueForm.list = fieldTypes["character"]
+        block.formsList.push(keyValuePairForm4)
+
         const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
         keyValuePairForm2.keyForm.input.textContent = "emotion"
         keyValuePairForm2.valueForm.list = fieldTypes["emotion"]

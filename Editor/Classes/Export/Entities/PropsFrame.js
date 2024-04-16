@@ -4,6 +4,6 @@ class PropsFrame extends Converter {
     }
 
     convertToJSON(index, csvFrame, jsonGenerator) {
-        return `"frame_type": "${this.frameType}","frame_settings": {` + this.simpleValueKeySerialization(csvFrame.formsList) + `}`;
+        return `"frame_type": "prop","frame_settings": {` + this.simpleValueKeySerialization(csvFrame.formsList) + `}`;
     }
 }
