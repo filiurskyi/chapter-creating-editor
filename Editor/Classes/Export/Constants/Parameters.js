@@ -38,7 +38,7 @@ function tryGetParameterPair(key, rawValue) {
         let value;
         switch (parametersList[key].type) {
             case ValueTypes.Boolean:
-                value = JSON.stringify(Boolean(rawValue));
+                value = rawValue === 'true';
                 break;
             case ValueTypes.String:
                 value = `"${rawValue.replace(/"/g, '\\"')}"`;
