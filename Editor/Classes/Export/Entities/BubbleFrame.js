@@ -14,7 +14,7 @@ class BubbleFrame extends Converter {
             }
         });
 
-        return this.simpleValueKeySerialization(fields) + `,"frame_type": "bubble","frame_settings": ` +
+        return this.simpleValueKeySerialization(fields) + `"frame_type": "bubble","frame_settings": ` +
             `{"frame_type": "${bubble === 'small' ? 'small-bubble' : 'big-bubble'}"}`;
     }
 }

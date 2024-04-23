@@ -316,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 450);
         };
 
+
         const exportArrayLength = JSON.parse(json).length - 1;
         let blockArrayLength = 0;
 

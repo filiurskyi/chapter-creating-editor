@@ -12,7 +12,7 @@ class CounterValueFrame extends Converter {
         const idPart = "chapter" + jsonGenerator.ChapterIndex + "_counter_value" + this.choiceCount + "_";
 
         let json = "\"frame_type\": \"counter-value\"," + this.simpleValueKeySerialization(fields);
-        json += ",\"frame_id_part\": \"" + idPart + "\"";
+        json += "\"frame_id_part\": \"" + idPart + "\"";
 
         bannedIndexes.add(index);
 

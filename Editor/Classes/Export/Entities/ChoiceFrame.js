@@ -27,7 +27,7 @@ class ChoiceFrame extends Converter {
 
         let json = `"choice_id": "${choiceId}",`;
         json += this.simpleValueKeySerialization(finalFields);
-        json += `,"frame_settings": {"frame_type": "${isTimerChoice ? "choice_timer" : "choice"}","answers": [`;
+        json += `"frame_settings": {"frame_type": "${isTimerChoice ? "choice_timer" : "choice"}","answers": [`;
 
         bannedIndexes.add(index);
 
@@ -54,7 +54,7 @@ class ChoiceFrame extends Converter {
             }
 
             json += `{`;
-            json += this.simpleValueKeySerialization(jsonGenerator.csvFrames[duplicate.to].formsList) + `,`;
+            json += this.simpleValueKeySerialization(jsonGenerator.csvFrames[duplicate.to].formsList);
             json += `"next_id": "${fullId}"`;
             json += `},`;
         });

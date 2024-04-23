@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Counter-comparison') counterComparisonTemplate();
             else if (type == 'Counter-check') counterCheckTemplate();
             else if (type == 'Counter-value') counterValueTemplate();
+            else if (type == 'Prop-show') propShowTemplate();
+            else if (type == 'Auto-customize') autoCustomizeTemplate();
             else if (type == 'Mark') markTemplate();
             else createBlock();
         })
@@ -656,5 +658,37 @@ document.addEventListener('DOMContentLoaded', () => {
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
         arrows.push(arrow2)
+    }
+
+    function propShowTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Prop-show";
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length);
+        keyValuePairForm.keyForm.input.textContent = "animation";
+        keyValuePairForm.valueForm.list = fieldTypes["animation"];
+        block.formsList.push(keyValuePairForm);
+    }
+
+    function autoCustomizeTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Auto-customize";
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "character"
+        keyValuePairForm.valueForm.list = fieldTypes["character"]
+        block.formsList.push(keyValuePairForm)
+
+        const keyValuePairForm2 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm2.keyForm.input.textContent = "outfit-set"
+        keyValuePairForm2.valueForm.list = fieldTypes["outfit-set"]
+        block.formsList.push(keyValuePairForm2)
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm1.keyForm.input.textContent = "outfit-id"
+        keyValuePairForm1.valueForm.list = fieldTypes["outfit-id"]
+        block.formsList.push(keyValuePairForm1)
     }
 })

@@ -18,7 +18,7 @@ class AnimationFrame extends Converter {
             `{"frame_type": "${this.frameType}","animation": "${animation}","autoplay": true}`;
 
         if (fields.length > 0) {
-            json = this.simpleValueKeySerialization(fields) + "," + json;
+            json = this.simpleValueKeySerialization(fields) + json;
         }
 
         return json;

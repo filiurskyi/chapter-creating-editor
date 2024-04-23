@@ -12,7 +12,7 @@ class ChoiceByCharacterFrame extends Converter {
         const idPart = "chapter" + jsonGenerator.ChapterIndex + "_choice_by_character" + this.choiceCount + "_";
 
         let json = "\"frame_type\": \"choice-by-character\"," + this.simpleValueKeySerialization(fields);
-        json += ",\"frame_id_part\": \"" + idPart + "\"";
+        json += "\"frame_id_part\": \"" + idPart + "\"";
 
         bannedIndexes.add(index);
 

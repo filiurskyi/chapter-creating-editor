@@ -15,6 +15,7 @@ const fieldTypes = {
     "timer": ["true", "false"],
     "count": [0, 1, 2, 3],
     "type": ["min", "max"],
-    "needed_prop": ["ring"],
+    "needed-prop": ["ring"],
     "value": [-1, 0, 1],
+    "outfit-id": []
 };

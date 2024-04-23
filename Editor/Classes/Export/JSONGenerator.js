@@ -18,7 +18,6 @@ class JSONGenerator {
             new AnimationFrame(),
             new CustomizeFrame(),
             new DialogFrame(),
-            new LegacyChoiceFrame(),
             new PropsFrame(),
             new ChoiceFrame(),
             new ChoiceByCharacterFrame(),
@@ -32,6 +31,8 @@ class JSONGenerator {
             new CounterCheckFrame(),
             new CounterComparisonFrame(),
             new CounterValueFrame(),
+            new PropShowFrame(),
+            new AutoCustomizeFrame(),
         ];
 
         this.bannedIndexes = new Set();
