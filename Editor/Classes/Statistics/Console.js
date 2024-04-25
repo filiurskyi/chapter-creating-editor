@@ -2,7 +2,6 @@ function getConsoleErrors(body) {
     const errors = [];
 
     bookmarks.forEach(b => {
-        console.log("+");
         errors.push({ message: errorsList[15][0] + b.header.input.textContent, tip: errorsList[15][2], state: errorsList[15][1], position: b.position });
     });
 
@@ -28,6 +27,25 @@ function getConsoleErrors(body) {
             if (chain > metricsList[2][3]) {
                 errors.push({ message: errorsList[1][0], tip: errorsList[1][2], state: errorsList[1][1], position: blockPosition })
             }
+        }
+
+        if (frameType === 'Animation') {
+            block.arrowsList.forEach(arrow => {
+                if (arrow.toBlock.header.input.textContent !== 'Animation') {
+                    let hasLocation = false;
+                    arrow.toBlock.formsList.forEach(form => {
+                        if (form.keyForm.input.textContent == 'location') {
+                            console.log(form.valueForm.input.textContent)
+                            if (form.valueForm.input.textContent != 'None' && form.valueForm.input.textContent != 'none') {
+                                hasLocation = true;
+                            }
+                        }
+                    });
+
+                    if (hasLocation == false)
+                        errors.push({ message: errorsList[16][0], tip: errorsList[16][2], state: errorsList[16][1], position: block.position })
+                }
+            });
         }
 
         const fields = new Set();

@@ -14,7 +14,7 @@ class AnimationFrame extends Converter {
             }
         });
 
-        let json = `"frame_type": "animation","frame_settings": ` +
+        let json = `"frame_type": "${this.frameType}","frame_settings": ` +
             `{"frame_type": "${this.frameType}","animation": "${animation}","autoplay": true}`;
 
         if (fields.length > 0) {
