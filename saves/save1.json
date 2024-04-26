@@ -1,0 +1,337 @@
+{
+    "blocks": [
+        {
+            "id": 1,
+            "editorId": 1711350075615,
+            "header": {
+                "input": "Counter"
+            },
+            "position": {
+                "x": 7200600,
+                "y": 4500200
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "name"
+                    },
+                    "value": {
+                        "input": "good_choice"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "count"
+                    },
+                    "value": {
+                        "input": "1"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Добавляем к счетчику 1. Если такого счетчика нет, он будет создан"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "editorId": 1711350119101,
+            "header": {
+                "input": "Counter"
+            },
+            "position": {
+                "x": 7200605.999999997,
+                "y": 4500666.899999998
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "name"
+                    },
+                    "value": {
+                        "input": "bad_choice"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "count"
+                    },
+                    "value": {
+                        "input": "10"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Добавляем ко второму счетчику 10. Если такого счетчика нет, он будет создан"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "editorId": 1711350147003,
+            "header": {
+                "input": "Counter-comparison"
+            },
+            "position": {
+                "x": 7200599.474642759,
+                "y": 4501233.654603879
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "type"
+                    },
+                    "value": {
+                        "input": "max"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Сравниваем два счетчика, ищем среди них максимальный и переходим в него"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "editorId": 1711350147005,
+            "header": {
+                "input": "None"
+            },
+            "position": {
+                "x": 7200229.326656001,
+                "y": 4501689.2900479995
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Сюда перехода не будет"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "editorId": 1711350147005,
+            "header": {
+                "input": "Text"
+            },
+            "position": {
+                "x": 7200929.326656001,
+                "y": 4501689.2900479995
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Сюда будет переход, потому что bad было больше"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "editorId": 1711350447702,
+            "header": {
+                "input": "Counter-check"
+            },
+            "position": {
+                "x": 7200928.62801127,
+                "y": 4502155.771842994
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "name"
+                    },
+                    "value": {
+                        "input": " good_choice"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "value"
+                    },
+                    "value": {
+                        "input": "2"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "None"
+                    },
+                    "value": {
+                        "input": "Сравниваем good_choice (равен 1)  с числом 2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "editorId": 1711350447704,
+            "header": {
+                "input": "None"
+            },
+            "position": {
+                "x": 7200411.82801127,
+                "y": 4502647.371842994
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Если меньше (ветка -1). Переход в эту ветку"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "editorId": 1711350447705,
+            "header": {
+                "input": "None"
+            },
+            "position": {
+                "x": 7201739.293201096,
+                "y": 4502655.771842994
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "None"
+                    },
+                    "value": {
+                        "input": "None"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Если больше (ветка 1), сюда перехода нет, так как 1 меньше 2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "editorId": 1711350548502,
+            "header": {
+                "input": "Text"
+            },
+            "position": {
+                "x": 7201042.055999999,
+                "y": 4502760.4848
+            },
+            "formsList": [
+                {
+                    "key": {
+                        "input": "text"
+                    },
+                    "value": {
+                        "input": "None"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "location"
+                    },
+                    "value": {
+                        "input": "None"
+                    }
+                },
+                {
+                    "key": {
+                        "input": "comment"
+                    },
+                    "value": {
+                        "input": "Если равно (ветка 0). Сюда перехода нет, они не равны"
+                    }
+                }
+            ]
+        }
+    ],
+    "arrows": [
+        {
+            "from": 1,
+            "to": 2,
+            "value": {
+                "input": "None"
+            }
+        },
+        {
+            "from": 3,
+            "to": 4,
+            "value": {
+                "input": "good_choice"
+            }
+        },
+        {
+            "from": 3,
+            "to": 5,
+            "value": {
+                "input": "bad_choice"
+            }
+        },
+        {
+            "from": 2,
+            "to": 3,
+            "value": {
+                "input": "None"
+            }
+        },
+        {
+            "from": 6,
+            "to": 7,
+            "value": {
+                "input": "-1"
+            }
+        },
+        {
+            "from": 6,
+            "to": 8,
+            "value": {
+                "input": "1"
+            }
+        },
+        {
+            "from": 5,
+            "to": 6,
+            "value": {
+                "input": "None"
+            }
+        },
+        {
+            "from": 6,
+            "to": 9,
+            "value": {
+                "input": "0"
+            }
+        }
+    ],
+    "checkList": [
+        {
+            "state": "ERROR",
+            "message": ""
+        }
+    ]
+}

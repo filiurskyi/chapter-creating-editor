@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MetaEditor</title>
+    <link rel="stylesheet" href="css/mainStyle.css">
+</head>
+
+<body>
+    <div class="saves-container" id="saves-container">
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('uid') === null) {
+                location.href = '/login';
+                return;
+            }
+
+            fetch('/load-data', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('saves-container');
+                    let lastName;
+                    data.forEach(name => {
+                        const block = document.createElement('div');
+                        block.classList.add('save');
+                        const p = document.createElement('p');
+                        p.textContent = name;
+                        block.appendChild(p);
+                        container.appendChild(block);
+                        block.onclick = () => {
+                            localStorage.setItem('save-name', name);
+                            location.href = '/editor';
+                        };
+                        lastName = name;
+                    });
+                    lastName += '1'
+                    const createBlock = document.createElement('div');
+                    createBlock.classList.add('save');
+                    const p = document.createElement('p');
+                    p.textContent = "+";
+                    createBlock.appendChild(p);
+                    container.appendChild(createBlock);
+                    createBlock.onclick = () => {
+                        localStorage.setItem('save-name', name);
+                        fetch('/create-project', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'text/plain',
+                            },
+                            body: lastName
+                        }).then(response => {
+                            localStorage.setItem('save-name', lastName);
+                            location.href = '/editor';
+                        });
+                    };
+                })
+                .catch((error) => {
+                    console.error('Помилка:', error);
+                });
+        });
+
+        // window.addEventListener('beforeunload', function (event) {
+        //     event.preventDefault();
+        //     event.returnValue = '';
+        //     fetch('/logout', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'text/plain',
+        //         },
+        //         body: localStorage.getItem('uid')
+        //     })
+        // });
+    </script>
+</body>
+
+</html>
