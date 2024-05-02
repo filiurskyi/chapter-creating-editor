@@ -316,18 +316,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 450);
         };
 
-
-        const exportArrayLength = JSON.parse(json).length - 1;
-        let blockArrayLength = 0;
-
-        blocks.forEach(block => {
-            if (block.header.input.textContent !== "Option") {
-                blockArrayLength++;
-            }
-        });
-
         exportInfoText.style.whiteSpace = "pre";
-        exportInfoText.textContent = "Blocks count: " + blockArrayLength + "\r\nFrames count: " + exportArrayLength;
+        try {
+            const exportArrayLength = JSON.parse(json).length - 1;
+            let blockArrayLength = 0;
+
+            blocks.forEach(block => {
+                if (block.header.input.textContent !== "Option") {
+                    blockArrayLength++;
+                }
+            });
+
+            exportInfoText.textContent = "Blocks count: " + blockArrayLength + "\r\nFrames count: " + exportArrayLength;
+        } catch (e) {
+            exportInfoText.textContent = "Something went wrong...\r\nThere are errors in JSON";
+        }
 
 
         let blob = new Blob([json], { type: "application/json" });
