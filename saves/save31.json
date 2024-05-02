@@ -1,11 +1,1 @@
-{
-    "blocks": [],
-    "arrows": [],
-    "checkList": [
-        {
-            "state": "ERROR",
-            "message": ""
-        }
-    ],
-    "bookmarks": []
-}
+{"blocks":[{"id":0,"editorId":1714481562806,"header":{"input":"Text"},"position":{"x":7680105,"y":4320050},"formsList":[{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"text"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}},{"key":{"input":"location"},"value":{"input":"None"}}]}],"arrows":[],"checkList":[{"state":"ERROR","message":""}],"bookmarks":[]}

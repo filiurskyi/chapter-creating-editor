@@ -75,6 +75,11 @@ class Block {
             (value === 'Love') ? this.addIcon(loveLink) : this.removeIcons(loveLink);
             (value === 'Lucky') ? this.addIcon(luckyLink) : this.removeIcons(luckyLink);
             (value === 'Counter') ? this.addIcon(counterLink) : this.removeIcons(counterLink);
+
+            updateActions('update-block', {
+                block: this.toJSON()
+            });
+
         }, this.formIdCounter++);
         this.header.form.style.marginBottom = '10px';
         this.header.form.style.marginLeft = '10px';
@@ -190,12 +195,16 @@ class Block {
 
         this.docElement.appendChild(this.linkButton);
 
-        updateActions('create-block', {
-            id: this.editorId,
-            position: {
-                x: this.position.x,
-                y: this.position.y
-            }
+        // updateActions('create-block', {
+        //     id: this.editorId,
+        //     position: {
+        //         x: this.position.x,
+        //         y: this.position.y
+        //     }
+        // });
+
+        updateActions('update-block', {
+            block: this.toJSON()
         });
     }
 
@@ -214,6 +223,10 @@ class Block {
         this.updateArrows()
 
         updateEnd(this);
+
+        updateActions('update-block', {
+            block: this.toJSON()
+        });
     }
 
     updateArrows() {
@@ -277,9 +290,13 @@ class Block {
 
         deleteEnd(this);
 
-        updateActions('create-block', {
-            id: this.editorId
-        });
+        // updateActions('create-block', {
+        //     id: this.editorId
+        // });
+
+        // updateActions('update-block', {
+        //     block: this.toJSON()
+        // });
     }
 
     select() {
@@ -337,8 +354,8 @@ class Block {
         this.updateArrows();
         updateEnd(this);
 
-        updateActions('block-add-field', {
-            id: this.editorId
+        updateActions('update-block', {
+            block: this.toJSON()
         });
 
         return keyValuePairForm;

@@ -24,10 +24,14 @@ class KeyValuePairForm {
         }
 
         const updateText = (value, id) => {
-            updateActions('block-text-change', {
-                id: block.editorId,
-                formId: id,
-                text: value
+            // updateActions('block-text-change', {
+            //     id: block.editorId,
+            //     formId: id,
+            //     text: value
+            // });
+
+            updateActions('update-block', {
+                block: block.toJSON()
             });
         }
 
@@ -35,7 +39,7 @@ class KeyValuePairForm {
 
         this.keyForm = new Form(this.form, listKey, null, 14, updateText, id + '_0')
         this.keyForm.form.style.marginRight = "50px"
-        this.valueForm = new Form(this.form, [], null, id, 14, this.inputEvent, id + '_1')
+        this.valueForm = new Form(this.form, [], null, 14, this.inputEvent, id + '_1')
 
         const background = document.createElement('div');
         background.classList.add('options')
@@ -67,8 +71,12 @@ class KeyValuePairForm {
         document.addEventListener('click', (e) => {
             if (e.target !== textarea && e.target !== resize) {
 
-                if (opened)
+                if (opened) {
                     this.valueForm.input.textContent = textarea.value
+                    updateActions('update-block', {
+                        block: block.toJSON()
+                    });
+                }
 
                 textarea.classList.remove('textarea-grow-up')
                 textarea.classList.add('textarea-grow-down')
@@ -101,10 +109,14 @@ class KeyValuePairForm {
                 updateEnd(block);
             });
 
-            updateActions('block-delete-field', {
-                id: this.editorId,
-                formId: keyValuePairForm.keyForm.editorId
+            updateActions('update-block', {
+                block: block.toJSON()
             });
+
+            // updateActions('block-delete-field', {
+            //     id: block.editorId,
+            //     formId: this.keyForm.editorId
+            // });
         })
 
         this.block = block;
@@ -154,11 +166,11 @@ class KeyValuePairForm {
 
     setKeyFormValue(value) {
         this.keyForm.input.textContent = value
-        updateActions('block-text-change', {
-            id: this.block.editorId,
-            formId: this.keyForm.editorId,
-            text: value
-        });
+        // updateActions('block-text-change', {
+        //     id: this.block.editorId,
+        //     formId: this.keyForm.editorId,
+        //     text: value
+        // });
     }
 
     toJSON() {

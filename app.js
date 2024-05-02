@@ -56,6 +56,7 @@ app.post('/login-data', urlencodedParser, async (req, res) => {
         let loginSuccess = false;
         let id;
         for (let i = 0; i < users.length; i++) {
+            console.log(users[i]);
             if (users[i].login === username && users[i].password === password) {
                 loginSuccess = true;
                 id = users[i]._id;
@@ -68,7 +69,7 @@ app.post('/login-data', urlencodedParser, async (req, res) => {
         res.end(JSON.stringify({
             success: loginSuccess,
             href: loginSuccess ? '/' : '/failed-login',
-            uid: id === undefined ? ' ' : id.toString()
+            uid: id.toString()
         }));
     } catch (err) {
         console.log(err);
@@ -98,10 +99,8 @@ app.post('/load-project/:saveName', urlencodedParser, async (req, res) => {
     const saveName = req.params["saveName"]
 
     let infobase = infobases.has(saveName) ? infobases.get(saveName) : new Infobase()
-    infobase.addUser(req.body);
+    infobase.addUser(req.body.id);
     infobases.set(saveName, infobase);
-
-    // console.log(infobases);
 
     readFilePromise('./saves/' + saveName + '.json')
         .then(data => {
@@ -116,18 +115,20 @@ app.post('/create-project', urlencodedParser, async (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
     const text = '{"blocks":[],"arrows":[],"checkList":[{"state":"ERROR","message":""}],"bookmarks":[]}';
-    fs.writeFileSync('./saves/' + body + '.json', text, { encoding: 'utf8', flag: 'w' })
+    fs.writeFileSync('./saves/' + req.body.name + '.json', text, { encoding: 'utf8', flag: 'w' })
     res.end();
 });
 
 app.post('/editor-exit/:saveName', urlencodedParser, async (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
+    const saveName = req.params["saveName"];
+
     let infobase = infobases.get(saveName);
     infobase.removeUser(req.body);
     infobases.set(saveName, infobase);
     if (infobase.isEmpty()) {
-        infobases.delete(req.params["saveName"]);
+        infobases.delete(saveName);
     }
 
     try {
@@ -152,7 +153,7 @@ app.post('/logout', urlencodedParser, async (req, res) => {
         const db = mongoClient.db("metaeditor");
         const collection = db.collection("Users");
 
-        await collection.updateOne({ _id: new ObjectId(body) }, { $set: { entered: false } });
+        await collection.updateOne({ _id: new ObjectId(req.body.id) }, { $set: { entered: false } });
     } catch (err) {
         console.log(err);
     } finally {
@@ -174,11 +175,22 @@ app.post('/cursor-positions-update/:saveName', urlencodedParser, (req, res) => {
     const { uid, x, y } = req.body;
 
     let infobase = infobases.get(req.params["saveName"]);
-    infobase.setUserPosition(uid, x, y);
-    infobases.set(uid, infobase);
-    // console.log(infobase.users);
 
-    res.end(JSON.stringify(infobase.getUserPositions(uid)));
+    if (infobase === undefined) {
+        res.end(JSON.stringify({
+            id: uid,
+            position: {
+                x: 0,
+                y: 0,
+            }
+        }));
+    } else {
+        infobase.setUserPosition(uid, x, y);
+        infobases.set(uid, infobase);
+
+        res.end(JSON.stringify(infobase.getUserPositions()));
+    }
+
 });
 
 app.post('/add-editor-action/:saveName', urlencodedParser, (req, res) => {
@@ -193,50 +205,18 @@ app.post('/add-editor-action/:saveName', urlencodedParser, (req, res) => {
     }));
 
     res.status(200);
-
-    // let infobase = infobases.get(saveName);
-    // infobase.addAction({
-    //     actionName: actionName,
-    //     action: action
-    // }, id);
-    // infobases.set(id, infobase);
-
-    // res.end();
+    res.end();
 });
 
 app.get('/get-editor-action/:saveName', (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-
     emitter.once('newAction' + req.params["saveName"], (action) => {
-        res.json(action);
+        res.end(action);
     });
 });
 
-// app.post('/get-editor-actions/', urlencodedParser, (req, res) => {
-//     if (!req.body) return res.sendStatus(400);
-
-//     const { id, saveName } = req.body;
-
-//     emitter.once('newAction' + saveName, (action) => {
-//         res.json(action);
-//     });
-
-//     // res.end(JSON.stringify(infobases.get(saveName)?.getActions(id)));
-// });
-
-app.get('/get-message', (_, res) => {
-    emitter.once('newMessage', (message) => {
-        res.json(message);
-    });
-});
-
-app.post('/new-message', urlencodedParser, (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-
-    emitter.emit('newMessage', req.body);
-
-    res.status(200);
-});
+app.get('/favicon.ico', (_, res) => {
+    staticFile(res, '/images/favicon.ico', '.ico');
+})
 
 app.all('*', (req, res) => {
     const extname = String(path.extname(req.url)).toLowerCase();
@@ -246,7 +226,3 @@ app.all('*', (req, res) => {
         staticFile(res, '/html/not-found.html', '.html');
     }
 });
-
-app.get('/favicon.ico', (_, res) => {
-    staticFile(res, '/images/favicon.ico', '.ico');
-})

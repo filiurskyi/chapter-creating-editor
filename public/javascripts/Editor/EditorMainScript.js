@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     //     fetch('/editor-exit/'+localStorage.getItem('save-name'), {
     //         method: 'POST',
     //         headers: {
-    //             'Content-Type': 'application/json',
+    //             'Content-Type': 'text/plain',
     //         },
     //         body: localStorage.getItem('uid')
     //     });

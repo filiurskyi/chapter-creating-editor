@@ -47,28 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
         divList.push(div);
 
         div.addEventListener('click', (e) => {
+            writeActions = false;
+
             contextMenu.style.display = 'none'
-            if (type == 'Dialog') dialogTemplate();
-            else if (type == 'Text') textTemplate();
-            else if (type == 'Customize') customizeTemplate();
-            else if (type == 'Animation') animationTemplate();
-            else if (type == 'Item') itemTemplate();
-            else if (type == 'Love') loveTemplate();
-            else if (type == 'Lucky') luckTemplate();
-            else if (type == 'Option') optionTemplate();
-            else if (type == 'Love-fork') loveForkTemplate();
-            else if (type == 'Max-love') maxLoveTemplate();
-            else if (type == 'Item-check') itemCheckTemplate();
-            else if (type == 'Choice') choiceTemplate();
-            else if (type == 'Choice-by-character') choiceByCharacterTemplate();
-            else if (type == 'Choice-by-choice') choiceByChoiceTemplate();
-            else if (type == 'Bubble') bubbleTemplate();
-            else if (type == 'Counter') counterTemplate();
-            else if (type == 'Counter-comparison') counterComparisonTemplate();
-            else if (type == 'Counter-check') counterCheckTemplate();
-            else if (type == 'Counter-value') counterValueTemplate();
+
+            let block;
+            if (type == 'Dialog') block = dialogTemplate();
+            else if (type == 'Text') block = textTemplate();
+            else if (type == 'Customize') block = customizeTemplate();
+            else if (type == 'Animation') block = animationTemplate();
+            else if (type == 'Item') block = itemTemplate();
+            else if (type == 'Love') block = loveTemplate();
+            else if (type == 'Lucky') block = luckTemplate();
+            else if (type == 'Option') block = optionTemplate();
+            else if (type == 'Love-fork') block = loveForkTemplate();
+            else if (type == 'Max-love') block = maxLoveTemplate();
+            else if (type == 'Item-check') block = itemCheckTemplate();
+            else if (type == 'Choice') block = choiceTemplate();
+            else if (type == 'Choice-by-character') block = choiceByCharacterTemplate();
+            else if (type == 'Choice-by-choice') block = choiceByChoiceTemplate();
+            else if (type == 'Bubble') block = bubbleTemplate();
+            else if (type == 'Counter') block = counterTemplate();
+            else if (type == 'Counter-comparison') block = counterComparisonTemplate();
+            else if (type == 'Counter-check') block = counterCheckTemplate();
+            else if (type == 'Counter-value') block = counterValueTemplate();
             else if (type == 'Mark') markTemplate();
-            else createBlock();
+            else block = createBlock();
+
+            writeActions = true;
+
+            updateActions('update-block', {
+                block: block.toJSON()
+            });
         })
     })
 
@@ -146,22 +156,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("character");
         keyValuePairForm.valueForm.list = fieldTypes["character"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm2 = block.addKeyValueForm();
         keyValuePairForm2.setKeyFormValue("text");
         keyValuePairForm2.valueForm.list = fieldTypes["text"]
-        block.formsList.push(keyValuePairForm2)
+        // block.formsList.push(keyValuePairForm2)
 
         const keyValuePairForm3 = block.addKeyValueForm();
         keyValuePairForm3.setKeyFormValue("emotion");
         keyValuePairForm3.valueForm.list = fieldTypes["emotion"]
-        block.formsList.push(keyValuePairForm3)
+        // block.formsList.push(keyValuePairForm3)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("location");
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
     }
 
     function textTemplate() {
@@ -172,12 +182,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("text");
         keyValuePairForm1.valueForm.list = fieldTypes["text"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
 
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("location");
         keyValuePairForm.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
+
+        return block;
     }
 
     function bubbleTemplate() {
@@ -188,12 +200,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("text");
         keyValuePairForm.valueForm.list = fieldTypes["text"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("bubble-type");
         keyValuePairForm1.valueForm.list = fieldTypes["bubble-type"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function customizeTemplate() {
@@ -204,17 +218,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("character");
         keyValuePairForm.valueForm.list = fieldTypes["character"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm2 = block.addKeyValueForm();
         keyValuePairForm2.setKeyFormValue("outfit-set");
         keyValuePairForm2.valueForm.list = fieldTypes["outfit-set"]
-        block.formsList.push(keyValuePairForm2)
+        // block.formsList.push(keyValuePairForm2)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("location");
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function animationTemplate() {
@@ -225,12 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("animation");
         keyValuePairForm.valueForm.list = fieldTypes["animation"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("location");
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function itemTemplate() {
@@ -241,12 +259,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("item-name");
         keyValuePairForm.valueForm.list = fieldTypes["item-name"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("add");
         keyValuePairForm1.valueForm.list = fieldTypes["add"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function loveTemplate() {
@@ -257,12 +277,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("character");
         keyValuePairForm.valueForm.list = fieldTypes["character"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("add");
         keyValuePairForm1.valueForm.list = fieldTypes["add"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function luckTemplate() {
@@ -273,7 +295,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("add");
         keyValuePairForm.valueForm.list = fieldTypes["add"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
+
+        return block;
     }
 
     function optionTemplate(position = lastMousePosition) {
@@ -284,17 +308,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("text");
         keyValuePairForm.valueForm.list = fieldTypes["text"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("premium");
         keyValuePairForm1.valueForm.list = fieldTypes["premium"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
 
         const keyValuePairForm2 = block.addKeyValueForm();
         keyValuePairForm2.setKeyFormValue("thought");
         keyValuePairForm2.valueForm.list = fieldTypes["thought"]
-        block.formsList.push(keyValuePairForm2)
+        // block.formsList.push(keyValuePairForm2)
 
         return block
     }
@@ -307,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("item-name");
         keyValuePairForm.valueForm.list = fieldTypes["item-name"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
@@ -329,6 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrow1.setFormValue("1")
         arrows.push(arrow1)
+
+        return block;
     }
 
     function maxLoveTemplate() {
@@ -356,6 +382,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrow1.setFormValue("character2")
         arrows.push(arrow1)
+
+        return block;
     }
 
     function loveForkTemplate() {
@@ -366,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("character");
         keyValuePairForm.valueForm.list = fieldTypes["character"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
@@ -388,6 +416,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrow1.setFormValue("1")
         arrows.push(arrow1)
+
+        return block;
     }
 
     function choiceTemplate() {
@@ -398,22 +428,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("text");
         keyValuePairForm.valueForm.list = fieldTypes["text"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm2 = block.addKeyValueForm();
         keyValuePairForm2.setKeyFormValue("emotion");
         keyValuePairForm2.valueForm.list = fieldTypes["emotion"]
-        block.formsList.push(keyValuePairForm2)
+        // block.formsList.push(keyValuePairForm2)
 
         const keyValuePairForm3 = block.addKeyValueForm();
         keyValuePairForm3.setKeyFormValue("thought");
         keyValuePairForm3.valueForm.list = fieldTypes["thought"]
-        block.formsList.push(keyValuePairForm3)
+        // block.formsList.push(keyValuePairForm3)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("location");
         keyValuePairForm1.valueForm.list = fieldTypes["location"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
 
         const block0 = optionTemplate(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = optionTemplate(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
@@ -442,6 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block2.arrowsList.push(arrow2)
         block.arrowsList.push(arrow2)
         arrows.push(arrow2)
+
+        return block;
     }
 
     function choiceByCharacterTemplate() {
@@ -452,12 +484,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("character");
         keyValuePairForm.valueForm.list = fieldTypes["character"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("outfit-set");
         keyValuePairForm1.valueForm.list = fieldTypes["outfit-set"]
-        block.formsList.push(keyValuePairForm1)
+        // // block.formsList.push(keyValuePairForm1)
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
@@ -489,6 +521,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow2)
         arrow2.setFormValue("clothes-id2")
         arrows.push(arrow2)
+
+        return block;
     }
 
     function choiceByChoiceTemplate() {
@@ -526,6 +560,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow2)
         arrow2.setFormValue("crown")
         arrows.push(arrow2)
+
+        return block;
     }
 
     function counterTemplate() {
@@ -536,12 +572,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("name");
         keyValuePairForm.valueForm.list = fieldTypes["name"]
-        block.formsList.push(keyValuePairForm)
+        // // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("count");
         keyValuePairForm1.valueForm.list = fieldTypes["count"]
-        block.formsList.push(keyValuePairForm1)
+        // // block.formsList.push(keyValuePairForm1)
+
+        return block;
     }
 
     function counterComparisonTemplate() {
@@ -552,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("type");
         keyValuePairForm.valueForm.list = fieldTypes["type"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
@@ -574,6 +612,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrow1.setFormValue("name2")
         arrows.push(arrow1)
+
+        return block;
     }
 
     function counterCheckTemplate() {
@@ -584,12 +624,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();
         keyValuePairForm.setKeyFormValue("name");
         keyValuePairForm.valueForm.list = fieldTypes["name"]
-        block.formsList.push(keyValuePairForm)
+        // block.formsList.push(keyValuePairForm)
 
         const keyValuePairForm1 = block.addKeyValueForm();
         keyValuePairForm1.setKeyFormValue("value");
         keyValuePairForm1.valueForm.list = fieldTypes["value"]
-        block.formsList.push(keyValuePairForm1)
+        // block.formsList.push(keyValuePairForm1)
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 350, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x + 350, lastMousePosition.y + 500))
@@ -611,6 +651,8 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow1)
         arrow1.setFormValue("1")
         arrows.push(arrow1)
+
+        return block;
     }
 
     function counterValueTemplate() {
@@ -621,7 +663,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const keyValuePairForm = block.addKeyValueForm();;
         keyValuePairForm.setKeyFormValue("name");;
         keyValuePairForm.valueForm.list = fieldTypes["name"];
-        block.formsList.push(keyValuePairForm);
+        // block.formsList.push(keyValuePairForm);
 
         const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
         const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
@@ -653,5 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
         block.arrowsList.push(arrow2)
         arrow2.setFormValue("7")
         arrows.push(arrow2)
+
+        return block;
     }
 })

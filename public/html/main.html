@@ -53,7 +53,9 @@
                             headers: {
                                 'Content-Type': 'text/plain',
                             },
-                            body: lastName
+                            body: JSON.stringify({
+                                name: lastName
+                            })
                         }).then(response => {
                             localStorage.setItem('save-name', lastName);
                             location.href = '/editor';

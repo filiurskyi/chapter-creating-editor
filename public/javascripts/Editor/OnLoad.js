@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: localStorage.getItem('uid')
+        body: JSON.stringify({
+            id: localStorage.getItem('uid').toString()
+        })
     })
         .then(response => response.json())
         .then(data => {
@@ -49,13 +51,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let cursorUpdate = () => {
         setTimeout(() => {
-            fetch('/cursor-positions-update', {
+            fetch('/cursor-positions-update/' + localStorage.getItem('save-name'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    saveName: localStorage.getItem('save-name'),
                     uid: localStorage.getItem('uid'),
                     x: mousePosition.x,
                     y: mousePosition.y,
@@ -63,6 +64,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             })
                 .then(response => response.json())
                 .then(data => {
+                    if (data == undefined) return;
+
+                    data = data.filter(item => item.id !== localStorage.getItem('uid'));
+
                     while (data.length > cursors) {
                         cursors.push(new Cursor(workplace));
                     }
@@ -73,9 +78,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                     for (let i = 0; i < data.length; i++) {
                         cursors[i].update(data[i].id, data[i].position.x, data[i].position.y);
                     }
+
                     cursorUpdate();
                 })
-        }, 10);
+        }, 100);
     }
 
     cursorUpdate();
