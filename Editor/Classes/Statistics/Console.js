@@ -140,7 +140,7 @@ function getConsoleErrors(body) {
             errors.push({ message: errorsList[14][0] + " (" + frameType + ")", tip: errorsList[14][2], state: errorsList[14][1], position: block.position });
         }
 
-        const linearFrames = ["Text", "Dialog", "Option", "Item", "Customize", "Love", "Lucky", "Bubble", "Animation"];
+        const linearFrames = ["Text", "Dialog", "Option", "Item", "Customize", "Love", "Lucky", "Bubble", "Animation", "Prop-show", "Auto-customize", "Counter"];
 
         if ((linearFrames.includes(frameType) && fromArrowsCount > 1) || (!linearFrames.includes(frameType) && fromArrowsCount < 2)) {
             errors.push({ message: errorsList[8][0] + " (" + frameType + ")", tip: errorsList[8][2], state: errorsList[8][1], position: block.position });

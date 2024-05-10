@@ -669,6 +669,11 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm.keyForm.input.textContent = "animation";
         keyValuePairForm.valueForm.list = fieldTypes["animation"];
         block.formsList.push(keyValuePairForm);
+
+        const keyValuePairForm1 = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length);
+        keyValuePairForm1.keyForm.input.textContent = "location";
+        keyValuePairForm1.valueForm.list = fieldTypes["location"];
+        block.formsList.push(keyValuePairForm1);
     }
 
     function autoCustomizeTemplate() {
