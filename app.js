@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const events = require('events');
 const path = require('path');
 const fs = require('fs');
 const mime = require('./utilities/mime');
@@ -14,8 +13,6 @@ const url = "mongodb+srv://metaeditor:OhZtCLktDG63VPeY@metaeditor.98ooqui.mongod
 
 const mongoClient = new MongoClient(url);
 let infobases = new Map();
-
-const emitter = new events.EventEmitter();
 
 const urlencodedParser = express.urlencoded({ extended: false });
 
@@ -56,7 +53,7 @@ app.post('/login-data', urlencodedParser, async (req, res) => {
         let loginSuccess = false;
         let id;
         for (let i = 0; i < users.length; i++) {
-            console.log(users[i]);
+            // console.log(users[i]);
             if (users[i].login === username && users[i].password === password) {
                 loginSuccess = true;
                 id = users[i]._id;
@@ -69,7 +66,7 @@ app.post('/login-data', urlencodedParser, async (req, res) => {
         res.end(JSON.stringify({
             success: loginSuccess,
             href: loginSuccess ? '/' : '/failed-login',
-            uid: id.toString()
+            uid: id === undefined ? "0" : id.toString()
         }));
     } catch (err) {
         console.log(err);
@@ -84,7 +81,9 @@ app.get('/load-data', async (_, res) => {
     readDirPromise(pathToSaves)
         .then(data => {
             for (let i = 0; i < data.length; i++) {
-                info.push(path.parse(data[i]).name);
+                const name = path.parse(data[i]).name;
+                if (infobases.has(name) == false)
+                    info.push(name);
             }
             res.end(JSON.stringify(info));
         })
@@ -111,39 +110,48 @@ app.post('/load-project/:saveName', urlencodedParser, async (req, res) => {
         });
 });
 
-app.post('/create-project', urlencodedParser, async (req, res) => {
+app.post('/create-project/:projectName', urlencodedParser, async (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
+    const projectName = req.params["projectName"]
+
     const text = '{"blocks":[],"arrows":[],"checkList":[{"state":"ERROR","message":""}],"bookmarks":[]}';
-    fs.writeFileSync('./saves/' + req.body.name + '.json', text, { encoding: 'utf8', flag: 'w' })
+    fs.writeFileSync('./saves/' + projectName + '.json', text, { encoding: 'utf8', flag: 'w' })
     res.end();
 });
 
-app.post('/editor-exit/:saveName', urlencodedParser, async (req, res) => {
+app.post('/editor-exit/:saveName/:uid', urlencodedParser, async (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
     const saveName = req.params["saveName"];
+    const uid = req.params["uid"];
 
     let infobase = infobases.get(saveName);
-    infobase.removeUser(req.body);
-    infobases.set(saveName, infobase);
+
+    if (infobase !== undefined || infobase !== null) {
+        infobase.removeUser(uid);
+        infobases.set(saveName, infobase);
+    }
+
     if (infobase.isEmpty()) {
         infobases.delete(saveName);
     }
 
-    try {
-        await mongoClient.connect();
-        const db = mongoClient.db("metaeditor");
-        const collection = db.collection("Users");
+    res.end();
 
-        await collection.updateOne({ _id: new ObjectId(req.body) }, { $set: { entered: false } });
-    } catch (err) {
-        console.log(err);
-    } finally {
-        await mongoClient.close();
+    // try {
+    //     await mongoClient.connect();
+    //     const db = mongoClient.db("metaeditor");
+    //     const collection = db.collection("Users");
 
-        res.end();
-    }
+    //     await collection.updateOne({ _id: new ObjectId(req.body) }, { $set: { entered: false } });
+    // } catch (err) {
+    //     console.log(err);
+    // } finally {
+    //     await mongoClient.close();
+
+    //     res.end();
+    // }
 });
 
 app.post('/logout', urlencodedParser, async (req, res) => {
@@ -165,7 +173,10 @@ app.post('/logout', urlencodedParser, async (req, res) => {
 app.post('/save-project/:saveName', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
-    fs.writeFileSync('./saves/' + req.params["saveName"] + '.json', JSON.stringify(req.body), { encoding: 'utf8', flag: 'w' })
+    fs.writeFileSync('./saves/' + req.params["saveName"] + '.json', JSON.stringify(req.body), { encoding: 'utf8', flag: 'w' });
+
+    console.log(req.params["saveName"] + " saved");
+
     res.end();
 });
 
@@ -193,27 +204,6 @@ app.post('/cursor-positions-update/:saveName', urlencodedParser, (req, res) => {
 
 });
 
-app.post('/add-editor-action/:saveName', urlencodedParser, (req, res) => {
-    if (!req.body) return res.sendStatus(400);
-
-    const { id, actionName, action } = req.body;
-
-    emitter.emit('newAction' + req.params["saveName"], JSON.stringify({
-        id: id,
-        actionName: actionName,
-        action: action
-    }));
-
-    res.status(200);
-    res.end();
-});
-
-app.get('/get-editor-action/:saveName', (req, res) => {
-    emitter.once('newAction' + req.params["saveName"], (action) => {
-        res.end(action);
-    });
-});
-
 app.get('/favicon.ico', (_, res) => {
     staticFile(res, '/images/favicon.ico', '.ico');
 })
@@ -226,3 +216,6 @@ app.all('*', (req, res) => {
         staticFile(res, '/html/not-found.html', '.html');
     }
 });
+
+// login: 'developer'
+// password: 'K3TRXX9w'

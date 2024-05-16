@@ -47,12 +47,7 @@ class Arrow {
         this.from = null
         this.to = null
 
-        this.form = new Form(container, arrowTypes, null, 16, (value, id) => {
-            updateActions('arrow-text-change', {
-                id: this.editorId,
-                text: value
-            });
-        })
+        this.form = new Form(container, arrowTypes, null, 16)
         this.form.form.classList.add('arrow-form')
 
         this.fromId = null
@@ -76,12 +71,6 @@ class Arrow {
         checkEnd(this.fromBlock);
 
         trySetBegin(this.fromBlock);
-
-        updateActions('create-arrow', {
-            id: this.editorId,
-            from: this.fromBlock.editorId,
-            to: this.toBlock.editorId,
-        });
     }
 
     placeArrow(mouse) {
@@ -200,10 +189,6 @@ class Arrow {
 
         this.docElement.remove();
         this.form.form.remove();
-
-        updateActions('delete-arrow', {
-            id: this.editorId
-        });
     }
 
     setColor(color) {
@@ -224,10 +209,6 @@ class Arrow {
 
     setFormValue(value) {
         this.form.input.textContent = value
-        updateActions('arrow-text-change', {
-            id: this.editorId,
-            text: value
-        });
     }
 
     toJSON() {

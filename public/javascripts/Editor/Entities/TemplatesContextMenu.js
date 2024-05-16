@@ -75,10 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else block = createBlock();
 
             writeActions = true;
-
-            updateActions('update-block', {
-                block: block.toJSON()
-            });
         })
     })
 

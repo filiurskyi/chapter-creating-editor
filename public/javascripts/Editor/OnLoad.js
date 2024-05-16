@@ -1,3 +1,5 @@
+const uid = localStorage.getItem('uid').toString();
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const workplace = document.getElementById('workplace');
     let cursors = [];
@@ -9,13 +11,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     writeActions = false;
 
-    fetch('/load-project/' + localStorage.getItem('save-name'), {
+    fetch('/load-project/' + localStorage.getItem('save-name').toString(), {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            id: localStorage.getItem('uid').toString()
+            id: uid
         })
     })
         .then(response => response.json())
@@ -28,26 +30,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let autosave = () => {
         setTimeout(() => {
-            fetch('/save-project', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: localStorage.getItem('save-name'),
-                    save: {
-                        blocks: blocks,
-                        arrows: arrows,
-                        checkList: checkList,
-                        bookmarks: bookmarks,
-                    }
-                })
-            })
+            save();
             autosave();
         }, autosaveDelay * 60000);
     };
 
-    // autosave();
+    autosave();
 
     let cursorUpdate = () => {
         setTimeout(() => {
@@ -84,5 +72,57 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 100);
     }
 
-    cursorUpdate();
+    // cursorUpdate();
+});
+
+function save() {
+    blocks.sort((a, b) => {
+        const scaleRate = 3;
+        const ax = Math.round(a.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+        const ay = Math.round(a.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+        const bx = Math.round(b.position.x * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+        const by = Math.round(b.position.y * cellSize.x * scaleRate) / (cellSize.x * scaleRate);
+
+        if (ay === by) {
+            return ax - bx;
+        }
+        return ay - by;
+    });
+
+    blocks.forEach((block, index) => {
+        block.id = index + 1;
+    });
+
+    let data = {
+        blocks: blocks,
+        arrows: arrows,
+        checkList: checkList,
+        bookmarks: bookmarks,
+    };
+
+    fetch('/save-project/' + localStorage.getItem('save-name').toString(), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+}
+
+window.addEventListener('beforeunload', function (event) {
+    event.preventDefault();
+    event.returnValue = '';
+
+    save();
+
+    fetch('/editor-exit/' + localStorage.getItem('save-name') + '/' + uid, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify({
+            id: uid
+        })
+    })
 });

@@ -122,23 +122,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 lastBlockPosition.forEach(item => {
                     const delta = item.position.subtract(item.block.position);
                     item.block.placeToMousePosition(delta);
-
-                    updateActions('block-moving', {
-                        id: item.block.editorId,
-                        blockInfo: item.block.toJSON()
-                    });
                 });
                 lastBlockPosition = [];
-            });
-
-            movedBlocks.forEach(block => {
-                updateActions('block-moving', {
-                    id: block.editorId,
-                    position: {
-                        x: block.position.x,
-                        y: block.position.y,
-                    }
-                });
             });
 
             movedBlocks = [];

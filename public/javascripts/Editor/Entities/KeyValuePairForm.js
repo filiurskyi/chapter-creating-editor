@@ -19,25 +19,11 @@ class KeyValuePairForm {
             this.isComment();
 
             block.updateArrows();
-
-            updateText(value, id);
-        }
-
-        const updateText = (value, id) => {
-            // updateActions('block-text-change', {
-            //     id: block.editorId,
-            //     formId: id,
-            //     text: value
-            // });
-
-            updateActions('update-block', {
-                block: block.toJSON()
-            });
         }
 
         block.docElement.insertBefore(this.form, insertBeforeItem);
 
-        this.keyForm = new Form(this.form, listKey, null, 14, updateText, id + '_0')
+        this.keyForm = new Form(this.form, listKey, null, 14, null, id + '_0')
         this.keyForm.form.style.marginRight = "50px"
         this.valueForm = new Form(this.form, [], null, 14, this.inputEvent, id + '_1')
 
@@ -72,10 +58,7 @@ class KeyValuePairForm {
             if (e.target !== textarea && e.target !== resize) {
 
                 if (opened) {
-                    this.valueForm.input.textContent = textarea.value
-                    updateActions('update-block', {
-                        block: block.toJSON()
-                    });
+                    this.valueForm.input.textContent = textarea.value;
                 }
 
                 textarea.classList.remove('textarea-grow-up')
@@ -108,15 +91,6 @@ class KeyValuePairForm {
                 block.updateArrows();
                 updateEnd(block);
             });
-
-            updateActions('update-block', {
-                block: block.toJSON()
-            });
-
-            // updateActions('block-delete-field', {
-            //     id: block.editorId,
-            //     formId: this.keyForm.editorId
-            // });
         })
 
         this.block = block;
@@ -166,11 +140,6 @@ class KeyValuePairForm {
 
     setKeyFormValue(value) {
         this.keyForm.input.textContent = value
-        // updateActions('block-text-change', {
-        //     id: this.block.editorId,
-        //     formId: this.keyForm.editorId,
-        //     text: value
-        // });
     }
 
     toJSON() {
