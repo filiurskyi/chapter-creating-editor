@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Counter-value') counterValueTemplate();
             else if (type == 'Prop-show') propShowTemplate();
             else if (type == 'Auto-customize') autoCustomizeTemplate();
+            else if (type == 'Maze') mazeTemplate();
             else if (type == 'Mark') markTemplate();
             else createBlock();
         })
@@ -487,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
         block1.arrowsList.push(arrow1)
         block.arrowsList.push(arrow1)
         arrows.push(arrow1)
+
         const arrow2 = new Arrow(workplace, block)
         arrow2.form.input.textContent = "clothes-id2"
         arrow2.setFrom(block.bottomPoint)
@@ -695,5 +697,47 @@ document.addEventListener('DOMContentLoaded', () => {
         keyValuePairForm1.keyForm.input.textContent = "outfit-id"
         keyValuePairForm1.valueForm.list = fieldTypes["outfit-id"]
         block.formsList.push(keyValuePairForm1)
+    }
+
+    function mazeTemplate() {
+        const block = createBlock()
+
+        block.header.input.textContent = "Maze"
+
+        const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length)
+        keyValuePairForm.keyForm.input.textContent = "location"
+        keyValuePairForm.valueForm.list = fieldTypes["location"]
+        block.formsList.push(keyValuePairForm)
+
+        const block0 = createBlock(new Vector2(lastMousePosition.x - 750, lastMousePosition.y + 500))
+        const block1 = createBlock(new Vector2(lastMousePosition.x, lastMousePosition.y + 500))
+        const block2 = createBlock(new Vector2(lastMousePosition.x + 750, lastMousePosition.y + 500))
+
+        const arrow0 = new Arrow(workplace, block)
+        arrow0.form.input.textContent = "left"
+        arrow0.setFrom(block.bottomPoint)
+        arrow0.setTo(block0.topPoint, block0)
+        arrow0.placeArrow()
+        block0.arrowsList.push(arrow0)
+        block.arrowsList.push(arrow0)
+        arrows.push(arrow0)
+
+        const arrow1 = new Arrow(workplace, block)
+        arrow1.form.input.textContent = "center"
+        arrow1.setFrom(block.bottomPoint)
+        arrow1.setTo(block1.topPoint, block1)
+        arrow1.placeArrow()
+        block1.arrowsList.push(arrow1)
+        block.arrowsList.push(arrow1)
+        arrows.push(arrow1)
+
+        const arrow2 = new Arrow(workplace, block)
+        arrow2.form.input.textContent = "right"
+        arrow2.setFrom(block.bottomPoint)
+        arrow2.setTo(block2.topPoint, block2)
+        arrow2.placeArrow()
+        block2.arrowsList.push(arrow2)
+        block.arrowsList.push(arrow2)
+        arrows.push(arrow2)
     }
 })

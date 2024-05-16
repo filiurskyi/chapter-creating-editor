@@ -33,6 +33,7 @@ class JSONGenerator {
             new CounterValueFrame(),
             new PropShowFrame(),
             new AutoCustomizeFrame(),
+            new MazeFrame(),
         ];
 
         this.bannedIndexes = new Set();

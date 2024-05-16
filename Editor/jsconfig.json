@@ -42,6 +42,7 @@
         "Classes/Export/Entities/CounterValueFrame.js",
         "Classes/Export/Entities/PropShowFrame.js",
         "Classes/Export/Entities/AutoCustomizeFrame.js",
+        "Classes/Export/Entities/MazeFrame.js",
         "Classes/Entities/Bookmark.js",
         "Classes/Undo/Stack.js",
         "Classes/Undo/UndoRedoManager.js",
