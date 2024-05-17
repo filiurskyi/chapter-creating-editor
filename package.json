@@ -4,6 +4,11 @@
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
     "nodemon": "^3.1.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
     "ws": "^8.16.0"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }

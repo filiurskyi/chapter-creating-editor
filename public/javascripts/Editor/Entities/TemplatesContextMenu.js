@@ -47,8 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         divList.push(div);
 
         div.addEventListener('click', (e) => {
-            writeActions = false;
-
             contextMenu.style.display = 'none'
 
             let block;
@@ -73,8 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (type == 'Counter-value') block = counterValueTemplate();
             else if (type == 'Mark') markTemplate();
             else block = createBlock();
-
-            writeActions = true;
         })
     })
 

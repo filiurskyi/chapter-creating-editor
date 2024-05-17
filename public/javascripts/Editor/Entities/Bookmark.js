@@ -1,5 +1,7 @@
 class Bookmark {
     constructor(position, container) {
+        this.editorId = Date.now();
+
         this.size = new Vector2(500, 100);
 
         this.position = position;
@@ -12,7 +14,12 @@ class Bookmark {
         image.draggable = false;
         this.docElement.appendChild(image);
 
-        this.header = new Form(this.docElement, [], null, 18);
+        this.header = new Form(this.docElement, [], null, 18, (value, id) => {
+            sendAction(ChangesType.BOOKMARK_TEXT_UPDATE, {
+                bookmarkEditorId: this.editorId,
+                text: value
+            });
+        });
         this.header.form.style.margin = '10px 25px';
 
         let adjustedPosition = new Vector2(
@@ -56,6 +63,11 @@ class Bookmark {
                 }
             }
         })
+
+        sendAction(ChangesType.BOOKMARK_CREATE, {
+            bookmarkEditorId: this.editorId,
+            position: this.position
+        });
     }
 
     placeToMousePosition(delta) {
@@ -69,6 +81,23 @@ class Bookmark {
 
         this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
         this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
+
+        sendAction(ChangesType.BOOKMARK_MOVING, {
+            bookmarkEditorId: this.editorId,
+            position: this.position
+        });
+    }
+
+    placeToNewPosition(newPosition) {
+        this.position.x = newPosition.x;
+        this.position.y = newPosition.y;
+
+        this.docElement.style.left = (this.position.x - this.size.x / 2.0) + 'px';
+        this.docElement.style.top = (this.position.y - this.size.y / 2.0) + 'px';
+
+        this.updateArrows();
+
+        updateEnd(this);
     }
 
     select() {
@@ -87,10 +116,15 @@ class Bookmark {
         bookmarks = bookmarks.filter(item => item !== this);
 
         this.docElement = null;
+
+        sendAction(ChangesType.BOOKMARK_DELETE, {
+            bookmarkEditorId: this.editorId
+        });
     }
 
     toJSON() {
         return {
+            editorId: this.editorId,
             header: this.header,
             position: this.position
         };

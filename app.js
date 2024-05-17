@@ -21,7 +21,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.listen(PORT, '192.168.0.102', () => console.log('Server is active'));
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
 app.get('/', (_, res) => {
     staticFile(res, '/html/main.html', '.html');
@@ -82,8 +83,7 @@ app.get('/load-data', async (_, res) => {
         .then(data => {
             for (let i = 0; i < data.length; i++) {
                 const name = path.parse(data[i]).name;
-                if (infobases.has(name) == false)
-                    info.push(name);
+                info.push(name);
             }
             res.end(JSON.stringify(info));
         })
@@ -128,14 +128,15 @@ app.post('/editor-exit/:saveName/:uid', urlencodedParser, async (req, res) => {
 
     let infobase = infobases.get(saveName);
 
-    if (infobase !== undefined || infobase !== null) {
+    if (infobase !== undefined && infobase !== null && uid !== undefined && uid !== null) {
         infobase.removeUser(uid);
         infobases.set(saveName, infobase);
+
+        if (infobase.isEmpty()) {
+            infobases.delete(saveName);
+        }
     }
 
-    if (infobase.isEmpty()) {
-        infobases.delete(saveName);
-    }
 
     res.end();
 
@@ -174,8 +175,6 @@ app.post('/save-project/:saveName', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400);
 
     fs.writeFileSync('./saves/' + req.params["saveName"] + '.json', JSON.stringify(req.body), { encoding: 'utf8', flag: 'w' });
-
-    console.log(req.params["saveName"] + " saved");
 
     res.end();
 });
@@ -217,5 +216,21 @@ app.all('*', (req, res) => {
     }
 });
 
-// login: 'developer'
-// password: 'K3TRXX9w'
+io.on('connection', (socket) => {
+    socket.on('joinRoom', (roomName) => {
+        socket.leaveAll();
+        socket.join(roomName);
+    });
+
+    socket.on('message', (message) => {
+        const room = socket.rooms.values().next().value;
+        io.to(room).emit('changesMessage', message);
+    }
+    );
+
+    socket.on('disconnect', () => {
+        socket.leaveAll();
+    });
+});
+
+http.listen(PORT, '192.168.0.102', () => console.log('Server is active'));

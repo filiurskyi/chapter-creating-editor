@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             const bufferString = new TextDecoder('utf-8').decode(bufferArray);
             const dataObject = JSON.parse(bufferString);
             fromJSONConvert(dataObject, workplace);
+            socket.emit('joinRoom', localStorage.getItem('save-name').toString());
         })
 
     let autosave = () => {
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, autosaveDelay * 60000);
     };
 
-    autosave();
+    // autosave();
 
     let cursorUpdate = () => {
         setTimeout(() => {
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }, 100);
     }
 
-    // cursorUpdate();
+    cursorUpdate();
 });
 
 function save() {

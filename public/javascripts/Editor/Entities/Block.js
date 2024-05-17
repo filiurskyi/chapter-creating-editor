@@ -76,6 +76,12 @@ class Block {
             (value === 'Lucky') ? this.addIcon(luckyLink) : this.removeIcons(luckyLink);
             (value === 'Counter') ? this.addIcon(counterLink) : this.removeIcons(counterLink);
 
+            sendAction(ChangesType.BLOCK_TEXT_UPDATE, {
+                blockEditorId: this.editorId,
+                formEditorId: id,
+                text: value
+            });
+
         }, this.formIdCounter++);
         this.header.form.style.marginBottom = '10px';
         this.header.form.style.marginLeft = '10px';
@@ -190,6 +196,11 @@ class Block {
         };
 
         this.docElement.appendChild(this.linkButton);
+
+        sendAction(ChangesType.BLOCK_CREATE, {
+            blockEditorId: this.editorId,
+            position: this.position
+        });
     }
 
     placeToMousePosition(delta) {
@@ -204,7 +215,24 @@ class Block {
         this.docElement.style.left = (adjustedPosition.x - this.size.x / 2.0) + 'px';
         this.docElement.style.top = (adjustedPosition.y - this.size.y / 2.0) + 'px';
 
-        this.updateArrows()
+        this.updateArrows();
+
+        sendAction(ChangesType.BLOCK_MOVING, {
+            editorId: this.editorId,
+            position: this.position
+        });
+
+        updateEnd(this);
+    }
+
+    placeToNewPosition(newPosition) {
+        this.position.x = newPosition.x;
+        this.position.y = newPosition.y;
+
+        this.docElement.style.left = (this.position.x - this.size.x / 2.0) + 'px';
+        this.docElement.style.top = (this.position.y - this.size.y / 2.0) + 'px';
+
+        this.updateArrows();
 
         updateEnd(this);
     }
@@ -269,6 +297,10 @@ class Block {
         this.docElement = null;
 
         deleteEnd(this);
+
+        sendAction(ChangesType.BLOCK_DELETE, {
+            blockEditorId: this.editorId,
+        });
     }
 
     select() {
@@ -325,6 +357,10 @@ class Block {
         this.formsList.push(keyValuePairForm);
         this.updateArrows();
         updateEnd(this);
+
+        sendAction(ChangesType.KEY_VALUE_PAIR_FORM_ADD, {
+            blockEditorId: this.editorId
+        });
 
         return keyValuePairForm;
     }

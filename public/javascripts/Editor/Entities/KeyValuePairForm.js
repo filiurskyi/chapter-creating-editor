@@ -19,11 +19,21 @@ class KeyValuePairForm {
             this.isComment();
 
             block.updateArrows();
+
+            this.updateText(value, id);
+        }
+
+        this.updateText = (value, id) => {
+            sendAction(ChangesType.BLOCK_TEXT_UPDATE, {
+                blockEditorId: block.editorId,
+                formEditorId: id,
+                text: value
+            });
         }
 
         block.docElement.insertBefore(this.form, insertBeforeItem);
 
-        this.keyForm = new Form(this.form, listKey, null, 14, null, id + '_0')
+        this.keyForm = new Form(this.form, listKey, null, 14, this.updateText, id + '_0')
         this.keyForm.form.style.marginRight = "50px"
         this.valueForm = new Form(this.form, [], null, 14, this.inputEvent, id + '_1')
 
@@ -82,6 +92,11 @@ class KeyValuePairForm {
             this.form.remove();
 
             updateEnd(block);
+
+            sendAction(ChangesType.KEY_VALUE_PAIR_FORM_DELETE, {
+                blockEditorId: block.editorId,
+                formEditorId: id + '_0'
+            });
 
             addUndoAction(() => {
                 const keyValuePairForm = new KeyValuePairForm(block, Object.keys(fieldTypes), block.addButton, block.formsList.length);

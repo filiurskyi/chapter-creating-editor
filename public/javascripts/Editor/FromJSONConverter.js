@@ -71,6 +71,11 @@ function fromJSONConvert(jsonData, container) {
                 const bookmark = new Bookmark(position, container);
                 bookmark.header.input.textContent = bookmarksInfo.header.input;
                 bookmarks.push(bookmark);
+
+                bookmark.editorId =
+                    (bookmarksInfo.editorId === undefined || bookmarksInfo.editorId === null) ?
+                        bookmark.editorId = tempId++ :
+                        bookmarksInfo.editorId;
             })
         }
 

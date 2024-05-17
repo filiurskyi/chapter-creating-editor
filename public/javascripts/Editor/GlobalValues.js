@@ -38,3 +38,4 @@ let scale = 1;
 let state = State.NONE;
 let copiedBlocks = [];
 const autosaveDelay = 3
+const socket = io("http://192.168.0.102:3500/");

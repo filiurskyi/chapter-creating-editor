@@ -1,6 +1,8 @@
 let checkList = [{ state: StatState.ERROR, message: "" }]
 
 function getCheckList(body) {
+    return;
+
     let i = 0;
 
     checkList.forEach(action => {

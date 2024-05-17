@@ -5,6 +5,8 @@ function addUndoAction(action) {
 }
 
 function undo() {
+    return;
+
     if (undoActions.isEmpty()) return;
 
     const action = undoActions.pop();

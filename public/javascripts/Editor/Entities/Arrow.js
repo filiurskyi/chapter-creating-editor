@@ -47,7 +47,12 @@ class Arrow {
         this.from = null
         this.to = null
 
-        this.form = new Form(container, arrowTypes, null, 16)
+        this.form = new Form(container, arrowTypes, null, 16, (value, id) => {
+            sendAction(ChangesType.ARROW_TEXT_UPDATE, {
+                arrowEditorId: this.editorId,
+                text: value
+            });
+        })
         this.form.form.classList.add('arrow-form')
 
         this.fromId = null
@@ -71,6 +76,12 @@ class Arrow {
         checkEnd(this.fromBlock);
 
         trySetBegin(this.fromBlock);
+
+        sendAction(ChangesType.ARROW_CREATE, {
+            arrowEditorId: this.editorId,
+            fromEditorId: this.fromBlock.editorId,
+            toEditorId: this.toBlock.editorId
+        });
     }
 
     placeArrow(mouse) {
@@ -87,6 +98,8 @@ class Arrow {
         }
         else {
             if (this.fromBlock.docElement.classList.contains("invisible")) {
+                const pos = new Vector2(this.fromBlock.position.x, this.fromBlock.position.y);
+                this.fromBlock.position = pos;
                 from = this.fromBlock.position.multiply(scale);
             } else {
                 rect0 = this.from.getBoundingClientRect();
@@ -99,6 +112,8 @@ class Arrow {
         }
         else {
             if (this.toBlock.docElement.classList.contains("invisible")) {
+                const pos = new Vector2(this.toBlock.position.x, this.toBlock.position.y);
+                this.toBlock.position = pos;
                 to = this.toBlock.position.multiply(scale);
             } else {
                 rect1 = this.to.getBoundingClientRect();
@@ -189,6 +204,10 @@ class Arrow {
 
         this.docElement.remove();
         this.form.form.remove();
+
+        sendAction(ChangesType.ARROW_DELETE, {
+            arrowEditorId: this.editorId
+        });
     }
 
     setColor(color) {
