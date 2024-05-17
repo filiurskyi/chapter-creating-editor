@@ -14,7 +14,7 @@ class LoveFrame extends Converter {
             }
         });
 
-        return this.simpleValueKeySerialization(fields) + `,"frame_type": "relationship","frame_settings": ` +
+        return this.simpleValueKeySerialization(fields) + `"frame_type": "relationship","frame_settings": ` +
             `{"love_level_change": ${love}}`;
     }
 }

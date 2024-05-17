@@ -12,7 +12,7 @@ class CounterComparisonFrame extends Converter {
         const idPart = "chapter" + jsonGenerator.ChapterIndex + "_counter_comparison" + this.choiceCount + "_";
 
         let json = "\"frame_type\": \"counter-comparison\"," + this.simpleValueKeySerialization(fields);
-        json += ",\"frame_id_part\": \"" + idPart + "\", \"counters\":\"";
+        json += "\"frame_id_part\": \"" + idPart + "\", \"counters\":\"";
 
         bannedIndexes.add(index);
 

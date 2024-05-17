@@ -17,6 +17,10 @@ class JSONFrame {
         }
     }
 
+    set frameIDRaw(value) {
+        this._frameID = value;
+    }
+
     get body() {
         return this._body;
     }

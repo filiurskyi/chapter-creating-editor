@@ -1,17 +1,17 @@
-class ChoiceByCharacterFrame extends Converter {
+class MazeFrame extends Converter {
     constructor() {
-        super("choice-by-character")
-        this.choiceCount = 0;
+        super("maze")
+        this.mazeCount = 0;
     }
 
     convertToJSON(index, csvFrame, jsonGenerator) {
-        return this.choiceValueKeySerialization(index, csvFrame.formsList, jsonGenerator.BannedIndexes, jsonGenerator);
+        return this.mazeKeySerialization(index, csvFrame.formsList, jsonGenerator.BannedIndexes, jsonGenerator);
     }
 
-    choiceValueKeySerialization(index, fields, bannedIndexes, jsonGenerator) {
-        const idPart = "chapter" + jsonGenerator.ChapterIndex + "_choice_by_character" + this.choiceCount + "_";
+    mazeKeySerialization(index, fields, bannedIndexes, jsonGenerator) {
+        const idPart = "chapter" + jsonGenerator.ChapterIndex + "_maze" + this.mazeCount + "_";
 
-        let json = "\"frame_type\": \"choice-by-character\"," + this.simpleValueKeySerialization(fields);
+        let json = "\"frame_type\": \"maze\"," + this.simpleValueKeySerialization(fields);
         json += "\"frame_id_part\": \"" + idPart + "\"";
 
         bannedIndexes.add(index);
@@ -29,11 +29,10 @@ class ChoiceByCharacterFrame extends Converter {
                 jsonFrame = new JSONFrame(duplicates[i].to);
                 jsonGenerator.JSONFrames[duplicates[i].to] = jsonFrame;
             }
-
-            jsonFrame.frameID = fullId;
+            jsonFrame.frameIDRaw = (jsonFrame.frameID === null ? fullId : (jsonFrame.frameID + " " + fullId));
         }
 
-        this.choiceCount++;
+        this.mazeCount++;
         return json;
     }
 }

@@ -8,14 +8,14 @@ class CustomizeFrame extends Converter {
         let outfitBundleKey = "";
 
         csvFrame.formsList.forEach(field => {
-            if (field.key.input === "outfit_set") {
+            if (field.key.input === "outfit-set") {
                 outfitBundleKey = field.value.input;
             } else {
                 fields.push(field);
             }
         });
 
-        return this.simpleValueKeySerialization(fields) + `,"frame_type": "customize","frame_settings": ` +
+        return this.simpleValueKeySerialization(fields) + `"frame_type": "customize","frame_settings": ` +
             `{"frame_type": "${this.frameType}","outfit_bundle_key": "${outfitBundleKey}"}`;
     }
 }

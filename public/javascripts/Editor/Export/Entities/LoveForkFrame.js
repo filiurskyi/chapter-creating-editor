@@ -12,7 +12,7 @@ class LoveForkFrame extends Converter {
         const idPart = "chapter" + jsonGenerator.ChapterIndex + "_fork" + this.choiceCount + "_";
 
         let json = "\"frame_type\": \"love-fork\"," + this.simpleValueKeySerialization(fields);
-        json += ",\"frame_id_part\": \"" + idPart + "\"";
+        json += "\"frame_id_part\": \"" + idPart + "\"";
 
         bannedIndexes.add(index);
 
