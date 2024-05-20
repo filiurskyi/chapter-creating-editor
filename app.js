@@ -233,4 +233,4 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(PORT, '192.168.0.102', () => console.log('Server is active'));
+http.listen(process.env.PORT || PORT, '0.0.0.0', () => console.log('Server is active'));

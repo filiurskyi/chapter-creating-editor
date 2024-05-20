@@ -26,6 +26,7 @@ const StatState = {
 let blocks = [];
 let arrows = [];
 let bookmarks = [];
+let endBlocks = [];
 let scrollable = [];
 let arrowToMove;
 let blockToConnect = null;
@@ -38,4 +39,4 @@ let scale = 1;
 let state = State.NONE;
 let copiedBlocks = [];
 const autosaveDelay = 3
-const socket = io("http://192.168.0.102:3500/");
+const socket = io("https://0ded-94-154-215-143.ngrok-free.app");
