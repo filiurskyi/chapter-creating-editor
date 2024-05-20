@@ -34,6 +34,7 @@ class JSONGenerator {
             new PropShowFrame(),
             new AutoCustomizeFrame(),
             new MazeFrame(),
+            new LuckyFrame(),
         ];
 
         this.bannedIndexes = new Set();
@@ -78,6 +79,7 @@ class JSONGenerator {
                 }
             }
         }
+
         return "[" + this.joinFrames() + "]";
     }
 

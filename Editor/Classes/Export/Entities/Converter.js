@@ -5,7 +5,7 @@ class Converter {
     }
 
     get frameType() {
-        return this._frameType;
+        return this._frameType.toLowerCase();
     }
 
     convertToJSON(index, csvFrame, jsonGenerator) {
