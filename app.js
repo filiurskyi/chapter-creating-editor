@@ -4,14 +4,14 @@ const path = require('path');
 const fs = require('fs');
 const mime = require('./utilities/mime');
 
-const PORT = 3500;
 const { staticFile, readDirPromise, readFilePromise } = require('./utilities/filesHandle');
 const Infobase = require('./utilities/project-infobase');
 
 const { MongoClient, ObjectId } = require('mongodb');
-const url = "mongodb+srv://metaeditor:OhZtCLktDG63VPeY@metaeditor.98ooqui.mongodb.net/?retryWrites=true&w=majority";
 
-const mongoClient = new MongoClient(url);
+require('dotenv').config();
+
+const mongoClient = new MongoClient(process.env.DATABASE_URL);
 let infobases = new Map();
 
 const urlencodedParser = express.urlencoded({ extended: false });
@@ -233,4 +233,4 @@ io.on('connection', (socket) => {
     });
 });
 
-http.listen(process.env.PORT || PORT, '0.0.0.0', () => console.log('Server is active'));
+http.listen(process.env.PORT, '0.0.0.0', () => console.log('Server is active'));
