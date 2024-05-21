@@ -26,6 +26,7 @@ const StatState = {
 let blocks = [];
 let arrows = [];
 let bookmarks = [];
+let endBlocks = [];
 let scrollable = [];
 let arrowToMove;
 let blockToConnect = null;

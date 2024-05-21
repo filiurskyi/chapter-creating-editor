@@ -42,6 +42,8 @@ function fromJSONConvert(jsonData, container) {
                 block.formsList.push(keyValuePairForm)
             })
 
+            setupEndblockByEditorId(block);
+
             blocks.push(block)
         });
 
@@ -78,7 +80,7 @@ function fromJSONConvert(jsonData, container) {
 
         blocks.forEach(block => {
             trySetBegin(block);
-            checkEnd(block);
+            // checkEnd(block);
         });
 
         document.getElementById("loading-chapter-screen").style.display = 'none';
@@ -86,6 +88,25 @@ function fromJSONConvert(jsonData, container) {
         if (jsonData.checkList === undefined || jsonData.checkList === null) return;
 
         checkList = jsonData.checkList;
+
+        function setupEndblockByEditorId(block) {
+            if (!(jsonData.endBlocks === undefined || jsonData.endBlocks === null)) {
+                jsonData.endBlocks.forEach(endBlocksInfo => {
+                    if (endBlocksInfo.editorId === block.editorId) {
+                        const endBlock = new EndBlock(block, container);
+                        ends.set(block, endBlock);
+                        endBlocks.push(endBlock);
+
+                        jsonData.endBlocks.filter(item => item !== endBlocksInfo);
+
+                        if (endBlocksInfo.state)
+                            endBlock.changeStatus();
+
+                        return;
+                    }
+                });
+            }
+        }
     }, 100)
 }
 

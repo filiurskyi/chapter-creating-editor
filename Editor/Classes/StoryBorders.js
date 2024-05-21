@@ -89,11 +89,17 @@ function checkEnd(block) {
         });
 
         if (ends.has(block) && isLast === false) {
-            ends.get(block).deleteEndBlock();
+            const endBlock = ends.get(block);
+
+            endBlocks.filter(item => item !== endBlock);
+            endBlock.deleteEndBlock();
+
             ends.delete(block);
         }
         else if (ends.has(block) === false && isLast) {
-            ends.set(block, new EndBlock(block, document.getElementById('workplace')));
+            const endBlock = new EndBlock(block, document.getElementById('workplace'));
+            ends.set(block, endBlock);
+            endBlocks.push(endBlock);
         }
     }, 100);
 }

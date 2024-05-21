@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         blocks.forEach((block, index) => {
             block.id = index + 1;
+            checkEnd(block);
         });
 
         let data = {
@@ -234,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
             arrows: arrows,
             checkList: checkList,
             bookmarks: bookmarks,
+            endBlocks: endBlocks,
         };
 
         let jsonString = JSON.stringify(data);

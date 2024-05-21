@@ -5,29 +5,20 @@ class EndBlock {
         this.docElement = document.createElement('div');
         this.docElement.classList.add('chapter-end-block');
 
-        const p = document.createElement('p');
-        const img = document.createElement('img');
-        this.docElement.appendChild(p);
-        this.docElement.appendChild(img);
+        this.p = document.createElement('p');
+        this.img = document.createElement('img');
+        this.docElement.appendChild(this.p);
+        this.docElement.appendChild(this.img);
 
         this.docElement.onclick = () => {
-            changeStatus();
+            this.changeStatus();
         }
 
         container.appendChild(this.docElement);
 
-        let changeStatus = () => {
-            this.state = !this.state;
-
-            this.docElement.style.backgroundColor = this.state ? "#254E39" : "#461B24";
-            this.docElement.style.borderColor = this.state ? "#4AFF67" : "#FF0000";
-            p.textContent = this.state ? "End of chapter" : "Dead-end line";
-            img.src = this.state ? "Images/Icons/good.png" : "Images/Icons/error.png";
-        }
-
         this.block = block;
 
-        changeStatus();
+        this.changeStatus();
         this.updatePosition();
     }
 
@@ -46,5 +37,21 @@ class EndBlock {
 
         this.docElement.style.left = adjustedPosition.x + "px";
         this.docElement.style.top = adjustedPosition.y + "px";
+    }
+
+    changeStatus() {
+        this.state = !this.state;
+
+        this.docElement.style.backgroundColor = this.state ? "#254E39" : "#461B24";
+        this.docElement.style.borderColor = this.state ? "#4AFF67" : "#FF0000";
+        this.p.textContent = this.state ? "End of chapter" : "Dead-end line";
+        this.img.src = this.state ? "Images/Icons/good.png" : "Images/Icons/error.png";
+    }
+
+    toJSON() {
+        return {
+            editorId: this.block.editorId,
+            state: this.state,
+        };
     }
 }
